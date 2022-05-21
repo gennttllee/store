@@ -23,6 +23,7 @@
 }
 
 .p {
+  text-align: left;
   font-size: 1.3rem;
   color: brown;
   width: 100%;
