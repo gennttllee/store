@@ -47,6 +47,7 @@ function PlaceOrder() {
             const orderId = data.mainOrder._id
             console.log(orderId)
             customerReceipt(orderId);
+            adminReceipt();
             enqueueSnackbar('order successful', { variant: 'success' });
             dispatch({ type: 'CART_CLEAR' });
             Cookies.remove('cartItems');
