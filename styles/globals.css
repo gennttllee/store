@@ -4,8 +4,9 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-    background-image: url('../public/images/ego.jpeg');
-    background-color: rgba(255, 255, 255, 0.842);
+    background: url('../public/images/ego.jpeg'), rgba(255, 255, 255, 0.842);
+    -webkit-background :url('../public/images/ego.jpeg'), rgba(255, 255, 255, 0.842);
+    -webkit-background-blend-mode : lighter;
     background-blend-mode: lighten;
 }
 
