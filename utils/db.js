@@ -2,6 +2,8 @@ import mongoose from "mongoose";
 
 const connection = {};
 
+const URI = process.env.MONGODBURI
+
 async function connect() {
     if (connection.isConnected) {
         console.log('already connected');
@@ -15,7 +17,7 @@ async function connect() {
             await mongoose.disconnect();
         }
     }
-    const db = await mongoose.connect(process.env.MONGODBURI, {
+    const db = await mongoose.connect(URI, {
         useUnifiedTopology: true,
 
     });
@@ -25,12 +27,8 @@ async function connect() {
 
 async function disconnect() {
     if (connection.isConnected) {
-        if (process.env.MONGODBURI === "production") {
-            await mongoose.disconnect();
-            connection.isConnected = false;
-        } else {
-            console.log('not disconnected')
-        }
+        await mongoose.disconnect();
+        connection.isConnected = false;
     }
 };
 
@@ -41,5 +39,5 @@ function convertDocToObj(doc) {
     return doc;
 }
 
-const db = {connect, disconnect, convertDocToObj};
+const db = { connect, disconnect, convertDocToObj };
 export default db;
