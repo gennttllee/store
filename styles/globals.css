@@ -6,6 +6,8 @@ body {
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
     background: url('../public/images/ego.jpeg'), rgba(255, 255, 255, 0.842);
     background-blend-mode: overlay;
+    background-size: cover;
+    background-position: center;
 }
 
 a {
