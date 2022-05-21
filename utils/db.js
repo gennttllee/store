@@ -15,7 +15,7 @@ async function connect() {
             await mongoose.disconnect();
         }
     }
-    const db = await mongoose.connect(process.env.MONGODB_URI, {
+    const db = await mongoose.connect(process.env.MONGODBURI, {
         useUnifiedTopology: true,
 
     });
@@ -25,7 +25,7 @@ async function connect() {
 
 async function disconnect() {
     if (connection.isConnected) {
-        if (process.env.MONGODB_URI === "production") {
+        if (process.env.MONGODBURI === "production") {
             await mongoose.disconnect();
             connection.isConnected = false;
         } else {
