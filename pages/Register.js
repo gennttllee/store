@@ -35,7 +35,7 @@ export default function Register() {
                 if (state.cart.cartItems.length >= 1) {
                     router.push('/Shipping');
                 } else {
-                    router.push('/');
+                    router.push('/Loading');
                 }
             } catch (error) {
                 setLoading(false)

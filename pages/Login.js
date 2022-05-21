@@ -38,7 +38,7 @@ export default function Login() {
             enqueueSnackbar('login successfully', { variant: 'success' });
             setLoading(false)
             if (mark < 1) {
-                router.push('/');
+                router.push('/Loading');
             } else {
                 router.push('/Shipping');
             }

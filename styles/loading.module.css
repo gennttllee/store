@@ -1,0 +1,23 @@
+.div{
+    text-align: center;
+    margin: 20% auto 0;
+}
+
+.image{
+    position: relative;
+    animation: rotate;
+    animation-duration: .4s;
+    animation-iteration-count: infinite;
+    border-radius: 100%;
+    border-style: solid;
+    width: fit-content;
+    overflow: hidden;
+    margin: 0 auto;
+}
+
+@keyframes rotate {
+    25% {transform: rotate(90deg)};
+    50% {transform: rotate(180deg)}
+    75% {transform: rotate(270deg)}
+    100% {transform: rotate(360deg)}
+}
