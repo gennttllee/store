@@ -1,0 +1,59 @@
+.div {
+    margin: 5rem 0;
+    text-align: center;
+}
+
+.label {
+    display: block;
+    margin: 1rem;
+    color: brown;
+    text-transform: capitalize;
+    font-size: 1.5rem;
+}
+
+.input {
+    width: 50%;
+    height: 3rem;
+    border: none;
+    padding-left: 1rem;
+}
+
+.input:focus {
+    outline-color: orange;
+}
+
+.btn {
+    display: block;
+    margin: 2rem auto;
+    width: 10rem;
+    height: 2.5rem;
+    background-color: red;
+    border: none;
+    color: white;
+    font-size: 1.3rem;
+}
+
+.btn2{
+    display: block;
+    margin: 2rem auto;
+    width: 10rem;
+    height: 2.5rem;
+    background-color: orange;
+    border: none;
+    color: black;
+    font-size: 1.3rem;
+}
+
+.btn1 {
+    margin: 3rem 1rem;
+    width: 5rem;
+    height: 2rem;
+    display: block;
+    font-size: 1.3rem;
+    color: red;
+    border: none;
+    outline-style: solid;
+    outline-width: 2px;
+    outline-offset: 7px;
+    outline-color: orange;
+}

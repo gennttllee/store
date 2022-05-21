@@ -1,0 +1,41 @@
+.li{
+    background-color:white;
+    padding: 5px;
+    box-shadow: 1px 1px 9px 2px rgba(128, 128, 128, 0.352);
+}
+
+.h1{
+    color: brown;
+    text-align: center;
+}
+
+.table{
+    width: 100%;
+}
+
+.th{
+    width: 17%;
+    color: brown;
+    text-transform: capitalize;
+}
+
+.th1{
+    width: 53%;
+    color: brown;
+    text-transform: capitalize;
+}
+
+.th2{
+    width: 20%;
+    color: brown;
+    text-transform: capitalize;
+}
+
+.tr{
+    color: brown;
+    text-transform: capitalize;
+}
+
+.spanner{
+    color: black;
+}

@@ -1,0 +1,20 @@
+.card {
+    display: block;
+    margin: 1rem 1rem;
+    text-align: center;
+    width:30%;
+    box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.118);
+    word-break: break-all;
+    padding: .5rem;
+    text-align: left;
+    background-color: white;
+}
+
+.btn{
+    color: white;
+    background-color: rgb(151, 88, 88);
+    width: 100%;
+    border: none;
+    outline: none;
+    height: 2rem;
+}

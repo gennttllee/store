@@ -1,0 +1,62 @@
+.h1{
+    margin: 1rem auto ;
+    font-weight: bold;
+    color: brown;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+}
+
+.h3{
+    color:rgb(121, 90, 50);
+    text-align: left;
+    margin-bottom: -5px;
+    margin-top: 1rem;
+}
+
+.div{
+    padding: 5px;
+    text-align: center;
+}
+
+.btn{
+    width: 30%;
+    text-align: center;
+    height: 2.5rem;
+    border: none;
+    background-color: red;
+    color: white;
+    font-size: 1.3rem;
+}
+
+.load{
+    width: 30%;
+    text-align: center;
+    height: 2.5rem;
+    border: none;
+    background-color: orange;
+    color: black;
+    font-size: 1.3rem;
+}
+
+.table {
+    width: 100%;
+    text-align: left;
+    box-shadow: 1px 5px 5px 1px rgba(0, 0, 0, 0.144);
+    margin: 15px 0;
+    padding: 5px;
+    background-color: white;
+}
+
+.th {
+    width: 20%;
+    color: brown;
+}
+
+.th2{
+    color: brown;
+}
+
+.th1 {
+    width: 30%;
+    color: brown;
+}
