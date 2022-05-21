@@ -88,10 +88,10 @@ export default function AdminOrders(props) {
 }
 
 export async function getServerSideProps() {
-    db.connect();
+    await db.connect();
     const orders = await Order.find({}).lean();
     const data = JSON.stringify(orders)
-    db.disconnect();
+    await db.disconnect();
     return {
         props: {
             data

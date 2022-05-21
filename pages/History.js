@@ -66,10 +66,10 @@ export default function History(props) {
 }
 
 export async function getServerSideProps() {
-    db.connect();
+    await db.connect();
     const orders = await Order.find({})
     const baba = JSON.stringify(orders)
-    db.disconnect();
+    await db.disconnect();
     return {
         props: {
             baba

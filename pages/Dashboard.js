@@ -71,9 +71,9 @@ export default function Dashboard(props) {
 }
 
 export async function getServerSideProps() {
-    db.connect();
+    await db.connect();
     const products = await Product.find({}).lean();
-    db.disconnect();
+    await db.disconnect();
     return {
         props: {
             products: products.map(db.convertDocToObj),
