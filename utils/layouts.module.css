@@ -21,9 +21,10 @@
 }
 
 .main {
-    margin: 1.7rem 0 5rem;
+    margin: 8% 0 10%;
     padding: 1rem;
     height: 82%;
+    background :inherit;
 }
 
 .footer {
