@@ -14,7 +14,6 @@ export default function Profile() {
     const router = useRouter();
     const[status, setStatus] = useState();
     const myData = Cookies.get('shippingAddress') ? JSON.parse( Cookies.get('shippingAddress')) : ''
-    console.log(myData)
 
     useEffect(() => {
         if (userInfo === 'boy') {

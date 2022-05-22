@@ -20,9 +20,9 @@ export default function AdminOrders(props) {
 
     useEffect(() => {
         if (!userInfo){
-            router.push('/')
+            router.push('/Loading')
         } else if (!userInfo.isAdmin ){
-            router.push('/')
+            router.push('/Loading')
         }
     }, [userInfo]);
 

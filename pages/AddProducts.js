@@ -17,7 +17,7 @@ export default function AddProducts() {
             router.push('/Login')
         }
         if (userInfo.isAdmin === false) {
-            router.push('/')
+            router.push('/Loading')
         }
     }, [userInfo]);
 

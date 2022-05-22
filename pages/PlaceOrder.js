@@ -52,7 +52,7 @@ function PlaceOrder() {
             dispatch({ type: 'CART_CLEAR' });
             Cookies.remove('cartItems');
             setLoading(false)
-            router.push('/')
+            router.push('/Loading')
         } catch (err) {
             setLoading(false)
             enqueueSnackbar(err.message, { variant: 'error' });
@@ -61,7 +61,7 @@ function PlaceOrder() {
 
     useEffect(() => {
         if (!userInfo) {
-            router.push('/')
+            router.push('/Loading')
         }
     }, [])
 

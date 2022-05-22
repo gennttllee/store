@@ -19,7 +19,7 @@ function Layouts({ title, children }) {
             Cookies.remove('userInfo')
             Cookies.remove('cartItems')
             Cookies.remove('shippingAddress')
-            router.push('/')
+            router.push('/Loading')
         } else if (e.target.value === 'profile') {
             router.push('/Profile')
         } else if (e.target.value === 'dashboard') {
@@ -41,6 +41,7 @@ function Layouts({ title, children }) {
         <div className={styles.container}>
             <Head>
                 <title>{title ? `${title}-mw-shop` : 'mw-shop'}</title>
+                <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'></meta>
             </Head>
             <nav className={styles.navbar}>
                 <Link href='/'>

@@ -21,7 +21,7 @@ export default function Shipping() {
     useEffect(() => {
         const mark = state.cart.cartItems.reduce((a, c) => a + c.quantity * 1, 0)
         if (mark < 1) {
-            router.push('/')
+            router.push('/Loading')
         } else if (!userInfo.name) {
             router.push('/Login')
         }
