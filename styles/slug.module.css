@@ -46,6 +46,16 @@
     font-size: 1rem;
 }
 
+.loading {
+    width: 40%;
+    height: 2rem;
+    background-color: orange;
+    color: black;
+    outline: none;
+    border: none;
+    font-size: 1rem;
+}
+
 .row {
     display: flex;
     flex-direction: row;
@@ -69,6 +79,18 @@
 .btn1{
     color: white;
     background-color: red;
+    width: 100%;
+    outline: none;
+    border: none;
+    height:2rem;
+    position: absolute;
+    bottom: 0;
+    margin: 1rem 0 0;
+}
+
+.load{
+    color: black;
+    background-color: orange;
     width: 100%;
     outline: none;
     border: none;

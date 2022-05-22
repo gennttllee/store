@@ -5,17 +5,19 @@ import Link from 'next/link';
 import db from '../../utils/db';
 import Product from '../../models/Product';
 import { Store } from '../../utils/Mystore';
-import {useContext} from 'react';
+import { useContext, useState } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import { useSnackbar } from 'notistack';
 
 
 export default function ProductScreen(props) {
-    const {enqueueSnackbar, closeSnackbar} = useSnackbar();
+    const { enqueueSnackbar, closeSnackbar } = useSnackbar();
     let router = useRouter();;
-    const {dispatch, state} = useContext(Store);
-    const {product, products} = props;
+    const { dispatch, state } = useContext(Store);
+    const { product, products } = props;
+    const [loader, setLoader] = useState()
+    const [loading, setLoading] = useState()
     let stock = '';
 
     if (!product) {
@@ -27,25 +29,41 @@ export default function ProductScreen(props) {
         window.alert('out of stock')
     }
 
-    const addToCart = async ()=>{
-        const {data} = await axios.get(`/api/products/${product._id}`);
+    const addToCart = async () => {
+        setLoading(true)
+        const { data } = await axios.get(`/api/products/${product._id}`);
         const existItem = state.cart.cartItems.find(x => x._id === product._id);
-        const quantity = existItem ?  existItem.quantity + 1 : 1;
+        const quantity = existItem ? existItem.quantity + 1 : 1;
         if (data.countInStock < quantity) {
-            enqueueSnackbar(' Out of stock', {variant: 'error'} );
+            setLoading(false)
+            enqueueSnackbar(' Out of stock', { variant: 'error' });
         } else {
-            dispatch({type : 'CART_ADD_ITEM', payload : {...product, quantity}})
-            router.push('/Cart')
+            dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } })
+            setLoading(false)
         }
     }
 
-    console.log(product.image)
+    const toCart = async (product, index) => {
+        setLoader(index)
+        closeSnackbar()
+        const existItem = state.cart.cartItems.find(x => x._id === product._id);
+        const quantity = existItem ? existItem.quantity + 1 : 1;
+        const { data } = await axios.get(`/api/products/${product._id}`);
+        if (data.countInStock < quantity) {
+            setLoader()
+            enqueueSnackbar('Product is out of stock', { variant: 'error' });
+        } else {
+            dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } })
+            setLoader()
+        }
+    }
+
     return (
         <Layouts title={product.name}>
-        <h1 className={styles.product}>PRODUCT INFO</h1>
+            <h1 className={styles.product}>PRODUCT INFO</h1>
             <div className={styles.container}>
                 <div className={styles.img}>
-                    <Image loader={()=>product.image} src={product.image} alt='image' width={200} height={250}></Image>
+                    <Image loader={() => product.image} src={product.image} alt='image' width={200} height={250}></Image>
                 </div>
                 <div className={styles.floater}>
                     <h3 className={styles.h3}>{product.name}</h3>
@@ -55,24 +73,24 @@ export default function ProductScreen(props) {
                     <p> CATEGORY : {product.category}</p>
                     <p>STATUS : {stock}</p>
                     <p> RATINGS : {product.ratings} <span>REVIEWS : {product.numOfReviews}</span></p>
-                    <button onClick={addToCart}  className={styles.btn}>add to cart</button>
+                    <button onClick={addToCart} className={loading ? styles.loading : styles.btn}>{loading ? 'Loading...' : 'add to cart'}</button>
                 </div>
             </div>
             <div className={styles.main}>
                 <h2 className={styles.h2}>You may also like :</h2>
                 <div className={styles.row}>
-                    {products.map((product) =>
+                    {products.map((product, index) =>
                         <div className={styles.contain} key={product.name}>
                             <Link href={`/product/${product.slug}`} >
                                 <a>
                                     <div className={styles.image}>
-                                        <Image loader={()=>product.image} src={product.image} alt='image' width={200} height={250}></Image>
+                                        <Image loader={() => product.image} src={product.image} alt='image' width={200} height={250}></Image>
                                     </div>
                                     <p className={styles.p1}>{product.name}</p>
                                     <p className={styles.p2}>N {product.price}</p>
                                 </a>
                             </Link>
-                            <button onClick={addToCart} className={styles.btn1}> add to cart</button>
+                            <button onClick={() => toCart(product, index)} className={loader === index ? styles.load : styles.btn1}> {loader === index ? 'Loading...' : 'add to cart'}</button>
                         </div>
                     )}
                 </div>
@@ -82,10 +100,10 @@ export default function ProductScreen(props) {
 }
 
 export async function getServerSideProps(context) {
-    const {params} = context;
-    const {slug} = params;
+    const { params } = context;
+    const { slug } = params;
     await db.connect();
-    const product = await Product.findOne({slug}).lean();
+    const product = await Product.findOne({ slug }).lean();
     const products = await Product.find({}).lean();
     await db.disconnect();
     return {

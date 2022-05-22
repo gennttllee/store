@@ -1,13 +1,14 @@
 import Layouts from "../components/Layouts";
 import db from '../utils/db'
 import Order from '../models/Order'
-import { useEffect, useContext } from "react";
+import { useEffect, useContext, useState } from "react";
 import Image from 'next/image';
 import {Store} from '../utils/Mystore';
 import {useRouter} from 'next/router';
 import axios from 'axios';
 import { useSnackbar } from 'notistack';
 import styles from '../styles/adminOrders.module.css'
+import Load from '../components/Load'
 
 
 export default function AdminOrders(props) {
@@ -17,6 +18,7 @@ export default function AdminOrders(props) {
     const {userInfo} = state;
     const { data } = props;
     const orders = JSON.parse(data);
+    const [loading, setLoading]= useState(false)
 
     useEffect(() => {
         if (!userInfo){
@@ -28,19 +30,22 @@ export default function AdminOrders(props) {
 
 
         const handleDelete = async (order) => {
+            setLoading(true)
             try {
                 closeSnackbar()
                 await axios.post('/api/orders/remover', { order })
                 window.location.reload(false);
                 enqueueSnackbar('successful', { variant: 'success' });
+                setLoading(false)
             } catch (err) {
+                setLoading(false)
                 enqueueSnackbar(err, { variant: 'error' });
             }
         }
 
     return (
         <Layouts>
-            <div>
+            {loading ? <Load /> :<div>
                 <h1 className={styles.h1}>Order History</h1>
                 {orders.length < 1 ? <h1>no orders yet</h1> :
                 orders.map((order) => <ul className={styles.ul} key={order.id}>
@@ -82,7 +87,7 @@ export default function AdminOrders(props) {
                     </table>
                 </ul>)}
                 <h2 className={styles.h1}>Total orders :<span className={styles.span}>{orders.length}</span></h2>
-            </div>
+            </div>}
         </Layouts>
     )
 }

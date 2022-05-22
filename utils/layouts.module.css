@@ -47,7 +47,7 @@
     padding: 5px;
     justify-content: space-between;
     align-items: center;
-    width: 40%;
+    width: 50%;
     list-style: none;
 }
 
@@ -59,10 +59,11 @@
 .select {
     border: none;
     background-color: transparent;
-    font-size: 1.2rem;
+    font-size: 1rem;
     text-align: center;
     color: antiquewhite;
     background-color: black;
+    width: 80%;
 }
 
 

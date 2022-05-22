@@ -10,6 +10,7 @@ export default function AddProducts() {
     const { dispatch, state } = useContext(Store)
     const { userInfo, cart } = state;
     const router = useRouter();
+    const [loading, setLoading]= useState(false)
 
 
     useEffect(() => {
@@ -17,9 +18,13 @@ export default function AddProducts() {
             router.push('/Login')
         }
         if (userInfo.isAdmin === false) {
-            router.push('/Loading')
+            router.push('/')
         }
     }, [userInfo]);
+
+    const submitMe =()=>{
+        setLoading(true)
+    }
 
 
     return (
@@ -46,7 +51,7 @@ export default function AddProducts() {
                         <option value='slippers'>slippers</option>
                     </select>
                     <br />
-                    <button className={styles.btn} type="submit">submit</button>
+                    <button onClick={submitMe} className={ loading ? styles.load :styles.btn} type="submit">{loading ? 'Loading...' : 'Submit'}</button>
                 </form>
             </div>
         </Layouts>

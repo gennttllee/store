@@ -1,7 +1,6 @@
 import Layouts from "../components/Layouts";
-import { useContext, useLayoutEffect } from 'react';
+import { useContext, useLayoutEffect, useState } from 'react';
 import { Store } from '../utils/Mystore';
-import Link from 'next/link';
 import Image from 'next/image';
 import axios from 'axios';
 import { useRouter } from 'next/router';
@@ -9,40 +8,44 @@ import db from '../utils/db';
 import Product from '../models/Product'
 import styles from '../styles/dashboard.module.css'
 import { useSnackbar } from 'notistack';
-
+import Load from '../components/Load';
 
 export default function Dashboard(props) {
     const { enqueueSnackbar, closeSnackbar } = useSnackbar();
     const { products } = props;
     const router = useRouter();
     const { state, dispatch } = useContext(Store)
-    const {userInfo} = state;
+    const { userInfo } = state;
+    const [loading, setLoading] = useState(false)
     useLayoutEffect(() => {
         if (!userInfo) {
             router.push('/Login')
         } else if (state.userInfo.isAdmin === false) {
             router.push('/History')
         }
-    },)
+    })
 
     const handleDelete = async (product) => {
+        setLoading(true)
         try {
             closeSnackbar();
             await axios.post('/api/products/remover', { product })
-            window.location.reload(false);
-            enqueueSnackbar('successful', { variant: 'error' });
+            setLoading(false)
+            enqueueSnackbar('successful', { variant: 'success' });
+            router.push('/Dashboard')
         } catch (err) {
+            setLoading(false)
             enqueueSnackbar(err, { variant: 'error' });
         }
     }
 
-    const producer =()=>{
+    const producer = () => {
         router.push('/AddProducts')
     }
 
     return (
         <Layouts>
-            <div>
+            {loading ? <Load /> : <div>
                 <h1 className={styles.h1}>Dashboard</h1>
                 <button className={styles.btn} onClick={producer}>add products</button>
                 {products.map((product) => <table className={styles.table} key={product._id}>
@@ -65,7 +68,7 @@ export default function Dashboard(props) {
                         <td><button className={styles.btn1} onClick={() => handleDelete(product)}>x</button></td>
                     </tr>
                 </table>)}
-            </div>
+            </div>}
         </Layouts>
     )
 }

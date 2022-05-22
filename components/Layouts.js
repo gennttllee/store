@@ -4,15 +4,19 @@ import Link from 'next/link';
 import Cookies from "js-cookie"
 import dynamic from 'next/dynamic'
 import { Store } from '../utils/Mystore'
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
+import Load from '../components/Load';
 
 function Layouts({ title, children }) {
     const router = useRouter();
     const { dispatch, state } = useContext(Store)
-    const {userInfo}= state;
+    const { userInfo } = state;
     const mark = state.cart.cartItems.reduce((a, c) => a + c.quantity * 1, 0)
+    const [loading, setLoading] = useState(false)
+
+
     const selectMe = (e) => {
         if (e.target.value === 'logout') {
             dispatch({ type: 'USER_LOGOUT' })
@@ -21,8 +25,10 @@ function Layouts({ title, children }) {
             Cookies.remove('shippingAddress')
             router.push('/Loading')
         } else if (e.target.value === 'profile') {
+            setLoading(true)
             router.push('/Profile')
         } else if (e.target.value === 'dashboard') {
+            setLoading(true)
             if (!userInfo.isAdmin) {
                 router.push('/History')
             } else {
@@ -72,7 +78,7 @@ function Layouts({ title, children }) {
                     </li>
                 </ul>
             </nav>
-            <main className={styles.main}>{children}</main>
+            {loading ? <Load /> : <main className={styles.main}>{children}</main>}
             <footer className={styles.footer}>
                 <p>All rights reserved</p>
             </footer>

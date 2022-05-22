@@ -1,9 +1,18 @@
 .btn {
-  width: 40%;
+  width: 12rem;
   height: 2.5rem;
-  font-size: 1.3rem;
+  font-size: 1rem;
   background-color: red;
   color: white;
+  border: none;
+}
+
+.load {
+  width: 12rem;
+  height: 2.5rem;
+  font-size: 1rem;
+  background-color:orange;
+  color: black;
   border: none;
 }
 
@@ -19,24 +28,10 @@
 .h1 {
   color: brown;
   text-align: center;
-  margin: 3rem 0 2rem 0;
+  margin: 3rem auto 1rem ;
 }
 
-.p {
-  text-align: left;
-  font-size: 1.3rem;
-  color: brown;
-  width: 100%;
-  margin: 1rem auto;
-}
-
-.spanner {
-  color: black;
-  font-size: 1.8rem;
-  text-transform: capitalize;
-}
-
-.span1 {
-  margin: 2rem;
-  text-transform: capitalize;
+.table{
+  text-align: center;
+  margin: 0 auto 2rem;
 }

@@ -14,6 +14,7 @@ export default function Profile() {
     const router = useRouter();
     const[status, setStatus] = useState();
     const myData = Cookies.get('shippingAddress') ? JSON.parse( Cookies.get('shippingAddress')) : ''
+    const [loading, setLoading]= useState(false)
 
     useEffect(() => {
         if (userInfo === 'boy') {
@@ -27,6 +28,7 @@ export default function Profile() {
     }, [userInfo]);
 
     const clicker =()=>{
+        setLoading(true)
         router.push('/AdminOrders')
     }
 
@@ -34,14 +36,34 @@ export default function Profile() {
     return (
         <Layouts>
             <div className={styles.div}>
-                <h1 className={styles.h1}>PROFILE</h1>
-                <h1 className={styles.p}><span className={styles.span1}>Name :</span>  <span className={styles.spanner}> {userInfo.name}</span></h1>
-                <div className={styles.p}><span className={styles.span1}>Status :</span> :<span className={styles.spanner}>  {status} </span></div>
-                <div className={styles.p}><span className={styles.span1}>Email :</span>  <span className={styles.spanner}> {userInfo.email}</span> </div>
-                <div className={styles.p}><span className={styles.span1}>Phone :</span> <span className={styles.spanner}> {myData ? myData.number : 'Not set' }</span> </div>
-                <div className={styles.p}><span className={styles.span1}>Address :</span>  <span className={styles.spanner}>{myData ? myData.address : 'Not set'}</span> </div>
-                <div className={styles.p}><span className={styles.span1}>City of Res :</span> <span className={styles.spanner}>{myData ? myData.city : 'Not set'}</span> </div>
-                {userInfo.isAdmin ? <button onClick={clicker} className={styles.btn}>Orders</button> : <p className={styles.h1}>Slides by ego</p>}
+            <h1 className={styles.h1}>PROFILE</h1>
+            <table className={styles.table}>
+                <tr>
+                    <th>Name :</th>
+                    <td>{userInfo.name}</td>
+                </tr>
+                <tr>
+                    <th>Status :</th>
+                    <td>{status}</td>
+                </tr>
+                <tr>
+                    <th>Email :</th>
+                    <td>{userInfo.email}</td>
+                </tr>
+                <tr>
+                    <th>Phone Number :</th>
+                    <td>{ myData ? myData.number : 'Not Set'}</td>
+                </tr>
+                <tr>
+                    <th>Address :</th>
+                    <td>{ myData ? myData.address : 'Not Set'}</td>
+                </tr>
+                <tr>
+                    <th>City Of Res :</th>
+                    <td>{ myData ? myData.city : 'Not Set'}</td>
+                </tr>
+            </table>
+                {userInfo.isAdmin ? <button onClick={clicker} className={loading ? styles.load : styles.btn}>{loading ? 'Loading...' : 'Orders'}</button> : <p className={styles.h1}>Slides by ego</p>}
             </div>
         </Layouts>
     )

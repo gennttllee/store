@@ -33,7 +33,7 @@ function Cart() {
                 <span className={`material-symbols-outlined ${styles.biggy}`}>
                     production_quantity_limits
                 </span>
-                <h3> Cart is empty please go shopping :<Link href='/'>
+                <h3> Cart is empty please go shopping :<Link href='/Loading'>
                     <a className={styles.anchor}>click here</a>
                 </Link></h3>
             </div> : <div className={styles.div}>
