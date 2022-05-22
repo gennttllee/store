@@ -44,7 +44,7 @@ function Layouts({ title, children }) {
                 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'></meta>
             </Head>
             <nav className={styles.navbar}>
-                <Link href='/'>
+                <Link href='/Loading'>
                     <a className={styles.brand}>
                         <Image src='/images/ego.jpeg' alt='Logo' width={50} height={40} />
                     </a>

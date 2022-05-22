@@ -26,33 +26,35 @@
 
 .btn1 {
     background-color: brown;
-    width: 100%;
-    height: 2.5rem;
+    width: 80%;
+    height: 2rem;
     color: white;
-    font-size: 2rem;
+    font-size: 1.3rem;
     border: none;
 }
 
 .td {
-    width: 15%;
+    width: 5%;
     color: brown;
 }
 
 .th1 {
     width: 15%;
     color: brown;
+    margin-right: 5px;
 }
 
 .th2 {
-    width: 30%;
+    width: 35%;
     color: brown;
 }
 
-.th4{
-    width: 10%;
+.th4 {
+    width: 5%;
     color: brown;
 }
 
-.th3{
+.th3 {
     color: brown;
+    width: 35%;
 }

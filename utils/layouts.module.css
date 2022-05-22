@@ -18,6 +18,7 @@
     justify-content: space-between;
     color: antiquewhite;
     height: 8%;
+    padding-right: 1rem;
 }
 
 .main {
@@ -44,7 +45,7 @@
 .ul {
     display: flex;
     padding: 5px;
-    justify-content: space-evenly;
+    justify-content: space-between;
     align-items: center;
     width: 40%;
     list-style: none;

@@ -22,11 +22,18 @@ handler.use(uploadFile);
 
 
 handler.post(async (req, res) => {
-    await db.connect();
-    const respect = await new Product({ name: req.body.name, slug: req.body.slug, category: req.body.category, gender: req.body.gender, price: req.body.price, countInStock: req.body.count, description: req.body.description, image: `/${req.file.filename}` });
-    await respect.save();
-    await db.disconnect();
-    res.redirect(307, '/Dashboard')
+    try {
+        await db.connect();
+        const respect = await new Product({
+            ...req.body,
+            image: `/${req.file.filename}`
+        });
+        await respect.save();
+        await db.disconnect();
+        res.redirect(307, '/Dashboard')
+    } catch (err) {
+        console.log(err.message)
+    }
 })
 
 export const config = {

@@ -56,7 +56,7 @@ export default function Dashboard(props) {
                     </tr>
                     <tr>
                         <td>
-                            <Image src={product.image} alt='image' width={60} height={50} />
+                            <Image src={product.image} alt='image' width={47} height={40} />
                         </td>
                         <td>{product.name}</td>
                         <td>{product.slug}</td>
