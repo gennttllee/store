@@ -29,6 +29,7 @@ function PlaceOrder() {
         }
     }, []);
 
+    let orderId;
     const checkout = async () => {
         setLoading(true);
         try {
@@ -44,8 +45,7 @@ function PlaceOrder() {
                     Authorization: `Bearer ${userInfo.token}`,
                 }
             });
-            const orderId = data.mainOrder._id
-            console.log(orderId)
+            orderId = data.mainOrder._id
             customerReceipt(orderId);
             adminReceipt();
             enqueueSnackbar('order successful', { variant: 'success' });
@@ -140,9 +140,10 @@ function PlaceOrder() {
         enqueueSnackbar('closed', { variant: 'error' });
     }
 
+    let textMe = loading ? 'Loading...' : 'Pay Now';
     const componentProps = {
         ...config,
-        text: 'Pay now',
+        text: textMe,
         onSuccess: (reference) => handlePaystackSuccessAction(reference),
         onClose: handlePaystackCloseAction,
     };
@@ -195,7 +196,7 @@ function PlaceOrder() {
                 <h3><span className={styles.h3}>Delivery</span> :{shippingPrice}</h3>
                 <h2><span className={styles.h3}>Total</span> : {totalPrice}</h2>
                 {visible ? <PaystackButton
-                    className={styles.btn}
+                    className={loading ? styles.load : styles.btn}
                     {...componentProps} /> : <button className={loading ? styles.load : styles.btn} onClick={checkout}>{loading ? 'Loading...' : 'Place Order'}</button>}
             </div>
         </Layouts>
