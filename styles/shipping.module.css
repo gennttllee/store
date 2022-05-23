@@ -30,6 +30,16 @@
     margin: 1rem auto 0;
 }
 
+.load {
+    width: 50%;
+    height: 2.5rem;
+    border: none;
+    background-color: orange;
+    color: black;
+    font-size: 1.3rem;
+    margin: 1rem auto 0;
+}
+
 .h1{
     color: brown;
 }

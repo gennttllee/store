@@ -69,9 +69,11 @@ export default function AddProducts() {
             });
             enqueueSnackbar('uploaded successfully', { variant: 'success' })
             setLoading(false)
+            setUpload(false)
         } catch (err){
             enqueueSnackbar(err.message, { variant: 'error' })
             setLoading(false)
+            setUpload(false)
         }
     }
 

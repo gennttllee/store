@@ -11,8 +11,10 @@ export default function Payment() {
     const { state, dispatch } = useContext(Store);
     const { cart } = state;
     const [payment, setPayment] = useState('')
+    const [loading, setLoading]= useState(false)
 
     useEffect(() => {
+        setLoading(false)
         if (!cart.shippingAddress) {
             router.push('/Shipping')
         } else {
@@ -21,8 +23,10 @@ export default function Payment() {
     }, []);
 
     const submit = () => {
+        setLoading(true)
         if (payment === '') {
             alert('please select a payment method')
+            setLoading(false)
         } else {
             dispatch({ type: 'SAVE_PAYMENT_METHOD', payload: payment });
             Cookies.set('paymentMethod', payment);
@@ -43,7 +47,7 @@ export default function Payment() {
                 <input className={styles.input} onChange={(e) => setPayment(e.target.value)} type='radio' name="payment" value='bank' checked={payment ==='bank'} ></input>
                 <label className={styles.label}>Bank Transfer</label>
                 <br />
-                <button className={styles.btn} onClick={submit}>Submit</button>
+                <button className={loading ? styles.load : styles.btn} onClick={submit}>{loading ? 'Loading...' : 'Submit'}</button>
                 <br />
                 <Link href="/Shipping">
                     <a className={styles.anchor}>Back</a>

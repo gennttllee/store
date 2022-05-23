@@ -49,7 +49,7 @@ export default function Home(props) {
       </div>
       <div className={styles.div}>
         <Link href='/Bags'>
-          <a>
+          <a onClick={clickMe}>
             <div className={styles.contain}>
               Click for bags
             </div>
@@ -59,7 +59,7 @@ export default function Home(props) {
           View all products
         </button>
         <Link href='/Slippers'>
-          <a>
+          <a onClick={clickMe}>
             <div className={styles.contain1}>
               Click for slippers
             </div>

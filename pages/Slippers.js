@@ -1,10 +1,10 @@
 import Card from '../components/Card';
 import Layouts from "../components/Layouts";
-import styles from '../styles/Home.module.css'
+import styles from '../styles/main.module.css'
 import db from '../utils/db';
 import Product from '../models/Product'
 import axios from 'axios';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { Store } from '../utils/Mystore';
 import { useSnackbar } from 'notistack';
 
@@ -15,48 +15,41 @@ export default function Slippers(props) {
 
     const { products } = props;
     const { dispatch, state } = useContext(Store);
+    const [loading, setLoading]= useState()
 
-    const bags = products.filter(item => {
-        return item.category === 'bags';
-    });
-    const dresses = products.filter(item => {
-        return item.category === 'dresses';
-    })
     const slippers = products.filter(item => {
         return item.category === 'slippers'
     })
-    const shopEgo = products.filter(item => {
-        return item.shop === 'slides by ego';
-    })
-    const pearl = products.filter(item => {
-        return item.shop === 'pearls couture';
-    })
 
-
-    const addToCart = async (product) => {
+    const addToCart = async (product, index) => {
+        setLoading(index)
         const existItem = state.cart.cartItems.find(x => x._id === product._id);
         const quantity = existItem ? existItem.quantity + 1 : 1;
         const { data } = await axios.get(`/api/products/${product._id}`);
         if (data.countInStock < quantity) {
             enqueueSnackbar('Product is out of stock', { variant: 'error' });
             closeSnackbar()
+            setLoading()
         } else {
             dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } })
+            setLoading()
         }
     }
 
 
     return <Layouts title='Slippers'>
         <div>
-            <h3>Slippers</h3>
-            <div className={styles.row}>
-                {slippers.map((product) => <Card
+            <h3 className={styles.h2}>Slippers</h3>
+            <div className={styles.main}>
+                {slippers.map((product, index) => <Card
                     key={product.name}
                     image={product.image}
                     name={product.name}
                     price={product.price}
                     link={`/product/${product.slug}`}
-                    click={() => addToCart(product)}
+                    click={() => addToCart(product, index)}
+                    btn = {loading === index ? styles.load : styles.btn}
+                    btnName = {loading === index ? 'Loading...' : 'add to cart'}
                 />)}
             </div>
         </div>

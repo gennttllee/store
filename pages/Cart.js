@@ -1,6 +1,6 @@
 import styles from '../styles/cart.module.css'
 import Layouts from '../components/Layouts';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { Store } from '../utils/Mystore';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -13,6 +13,7 @@ function Cart() {
     const { state, dispatch } = useContext(Store);
     const { cart, userInfo } = state;
     let len = cart.cartItems.length
+    const [loading, setLoading]= useState(false)
 
     const upDateCart = async (item, quantity) => {
         const { data } = await axios.get(`/api/products/${item._id}`);
@@ -24,6 +25,7 @@ function Cart() {
     }
 
     const checkout = () => {
+        setLoading(true)
         router.push('/Shipping');
     }
 
@@ -56,12 +58,12 @@ function Cart() {
                             {[...Array(item.countInStock).keys()].map((x) => <option key={x + 1} value={x + 1}> {x + 1}</option>)}
                         </select></td>
                         <td>{item.price}</td>
-                        <button className={styles.btn1} onClick={() => removeItem(item)}> del</button>
+                        <button className={styles.btn1} onClick={() => removeItem(item)}> X</button>
                     </tr>
                 </table>)}
                 <h2 className={styles.h2}>Items : {cart.cartItems.reduce((a, c) => a + c.quantity * 1, 0)} </h2>
                 <h1 className={styles.h3}>Amount : N{cart.cartItems.reduce((a, c) => a + c.quantity * c.price, 0)}</h1>
-                <button className={styles.btn} onClick={checkout}>Checkout</button>
+                <button className={loading ? styles.load : styles.btn} onClick={checkout}>{loading ? 'Loading...' : 'Checkout'}</button>
             </div>}
         </Layouts>
     )

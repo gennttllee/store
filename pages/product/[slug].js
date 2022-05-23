@@ -5,10 +5,11 @@ import Link from 'next/link';
 import db from '../../utils/db';
 import Product from '../../models/Product';
 import { Store } from '../../utils/Mystore';
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import { useSnackbar } from 'notistack';
+import Load from '../../components/Load';
 
 
 export default function ProductScreen(props) {
@@ -18,7 +19,14 @@ export default function ProductScreen(props) {
     const { product, products } = props;
     const [loader, setLoader] = useState()
     const [loading, setLoading] = useState()
+    const [load, setLoad] = useState(false)
     let stock = '';
+
+    useEffect(() => {
+        if (load=== true){
+            setLoad(false)
+        }
+    }, [router.query]);
 
     if (!product) {
         return <div>Product not found</div>
@@ -58,6 +66,10 @@ export default function ProductScreen(props) {
         }
     }
 
+    const clickMe = () => {
+        setLoad(true)
+    }
+
     return (
         <Layouts title={product.name}>
             <h1 className={styles.product}>PRODUCT INFO</h1>
@@ -78,11 +90,11 @@ export default function ProductScreen(props) {
             </div>
             <div className={styles.main}>
                 <h2 className={styles.h2}>You may also like :</h2>
-                <div className={styles.row}>
+                {load ? <Load /> : <div className={styles.row}>
                     {products.map((product, index) =>
                         <div className={styles.contain} key={product.name}>
                             <Link href={`/product/${product.slug}`} >
-                                <a>
+                                <a onClick={clickMe}>
                                     <div className={styles.image}>
                                         <Image loader={() => product.image} src={product.image} alt='image' width={200} height={250}></Image>
                                     </div>
@@ -93,7 +105,7 @@ export default function ProductScreen(props) {
                             <button onClick={() => toCart(product, index)} className={loader === index ? styles.load : styles.btn1}> {loader === index ? 'Loading...' : 'add to cart'}</button>
                         </div>
                     )}
-                </div>
+                </div>}
             </div>
         </Layouts>
     )

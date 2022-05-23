@@ -11,6 +11,7 @@ export default function Shipping() {
     const [address, setAddress] = useState();
     const [city, setCity] = useState()
     const [full, setFull] = useState()
+    const [loading, setLoading]= useState(false)
     const [number, setNumber] = useState()
     const router = useRouter();
     const { state, dispatch } = useContext(Store)
@@ -28,6 +29,7 @@ export default function Shipping() {
     })
 
     useEffect(() => {
+        setLoading(false)
         const myData = Cookies.get('shippingAddress');
         if (myData) {
             const data = JSON.parse(myData)
@@ -41,6 +43,7 @@ export default function Shipping() {
 
     const submitHandler = (e) => {
         e.preventDefault()
+        setLoading(true)
         dispatch({ type: 'SAVE_SHIPPING_ADDRESS', payload: { full, address, city, number } })
         Cookies.set('shippingAddress', JSON.stringify({ full, address, city, number }))
         router.push('/Payment')
@@ -55,7 +58,7 @@ export default function Shipping() {
                     <input className={styles.input1} onChange={(e) => setAddress(e.target.value)} type='text' placeholder='Address' value={address} required></input>
                     <input className={styles.input1} onChange={(e) => setCity(e.target.value)} type='text' placeholder='City' value={city} required></input>
                     <input className={styles.input1} onChange={(e) => setNumber(e.target.value)} type='tel' placeholder='Phone number' value={number} required></input>
-                    <button className={styles.btn} type='submit'>Submit</button>
+                    <button className={loading ? styles.load : styles.btn} type='submit'>{loading ? 'Loading...' : 'Submit'}</button>
                 </form>
             </div>
         </Layouts>
