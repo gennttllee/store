@@ -17,14 +17,18 @@ let uploadFile = upload.single('picture')
 handler.use(uploadFile);
 
 handler.post(async (req, res) => {
-    await db.connect();
-    const respect = await new Product({
-        ...req.body,
-        image: `/uploads/${req.file.filename}`
-    });
-    await respect.save();
-    await db.disconnect();
-    res.redirect(307, '/Loading')
+    try{
+        await db.connect();
+        const respect = await new Product({
+            ...req.body,
+            image: `/uploads/${req.file.filename}`
+        });
+        await respect.save();
+        await db.disconnect();
+        res.send('success')
+    } catch (err){
+        res.send(err.message)
+    }
 })
 
 export const config = {
