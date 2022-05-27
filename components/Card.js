@@ -19,8 +19,8 @@ export default function Card(props) {
                         <div>
                             <Image loader={() => props.image} src={props.image} alt='fashion' width={150} height={150}></Image>
                         </div>
-                        <p>{props.name}</p>
-                        <p><span>N</span> {props.price}</p>
+                        <p className={styles.name}>{props.name}</p>
+                        <p className={styles.price}><span className={styles.naira}>N</span> {props.price}</p>
                     </a>
                 </NextLink>
                 <button onClick={props.click} className={props.btn}>{props.btnName}</button>

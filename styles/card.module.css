@@ -4,30 +4,49 @@
     line-height: 1;
     background-color: white;
     position: relative;
-    height: 18rem;
+    height: 16rem;
     width: 9rem;
 }
 
-.btn{
+.btn {
     color: white;
     background-color: red;
     width: 100%;
     outline: none;
     border: none;
-    height:2rem;
+    height: 2rem;
     position: absolute;
     bottom: 0;
     margin: 1rem 0 0;
 }
 
-.load{
+.name {
+    margin: 0 auto;
+    text-align: center;
+}
+
+.price {
+    position: absolute;
+    bottom: 15%;
+    left: 40%;
+    margin-left: -10%;
+    margin-bottom: .1rem;
+    font-size: 1.3rem;
+}
+
+.naira {
+    text-decoration-style: double;
+    text-decoration-line: line-through;
+}
+
+.load {
     color: black;
     background-color: orange;
     width: 100%;
     outline: none;
     border: none;
-    height:2rem;
+    height: 2rem;
     position: absolute;
     bottom: 0;
     margin: 1rem 0 0;
-  }
+}

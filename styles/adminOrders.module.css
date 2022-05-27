@@ -2,7 +2,7 @@
     background-color: white;
     padding: 6px;
     box-shadow: 1px 1px 9px 2px rgba(128, 128, 128, 0.352);
-    margin: 1rem auto;
+    margin: 2rem auto;
     width: 100%;
     text-align: left;
     list-style: inside;
@@ -20,6 +20,7 @@
 
 .h3{
     color: brown;
+    margin: 0;
 }
 
 .th{
@@ -43,15 +44,25 @@
 
 .btn{
     width: 100%;
-    background-color: brown;
-    color: white;
+    background-color: antiquewhite;
+    color: brown;
     border: none;
     height: 2rem;
     font-size: 1.3rem;
     outline: none;
-    border-radius: 1rem;
+    margin: .7rem 0 -1rem;
 }
 
 .span{
     color: black;
+}
+
+.li{
+    list-style: none;
+    margin: 0;
+}
+
+.li1{
+    list-style: none;
+    margin: 0 0 .5rem;
 }

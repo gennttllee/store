@@ -49,32 +49,30 @@ export default function AdminOrders(props) {
                 <h1 className={styles.h1}>Order History</h1>
                 {orders.length < 1 ? <h1>no orders yet</h1> :
                 orders.map((order) => <ul className={styles.ul} key={order.id}>
-                    <li>{order.createdAt}</li>
-                    <ul>
-                        <h3> <span className={styles.h3}>Customer :</span> {order.shippingAddress.full}</h3>
+                    <h3 className={styles.li}> <span className={styles.h3}>Date :</span> {order.createdAt}</h3>
+                    <h3 className={styles.li}>  <span className={styles.h3}>Order-id :</span> {order._id}</h3>
+                        <h3 className={styles.li1}> <span className={styles.h3}>Customer :</span> {order.shippingAddress.full}</h3>
                         {order.orderItems.map((item) => <table className={styles.table} key={item.id}>
                             <tr>
                                 <th className={styles.th}>image</th>
                                 <th className={styles.th1}>product</th>
                                 <th className={styles.th2}>price</th>
-                                <th className={styles.th2}>quantity</th>
+                                <th className={styles.th2}>Qty</th>
                             </tr>
                             <tr>
-                                <td><Image src={item.image} alt='image' width={70} height={50} /></td>
+                                <td><Image src={item.image} alt='image' width={60} height={50} /></td>
                                 <td>{item.name}</td>
                                 <td>{item.price}</td>
                                 <td>{item.quantity}</td>
                             </tr>
                         </table>)}
-                    </ul>
                     <table className={styles.table}>
                     <tr>
                                 <th className={styles.th2}> Address</th>
                                 <th className={styles.th2}>M.O.P</th>
                                 <th className={styles.th2}>delivery</th>
-                                <th className={styles.th2}>items price</th>
+                                <th className={styles.th2}>price</th>
                                 <th className={styles.th2}>Total</th>
-                                <th className={styles.th4} >action</th>
                             </tr>
                             <tr>
                                 <td>{order.shippingAddress.address}</td>
@@ -82,9 +80,9 @@ export default function AdminOrders(props) {
                                 <td>{order.shippingPrice}</td>
                                 <td>{order.itemsPrice}</td>
                                 <td>{order.totalPrice}</td>
-                                <td><button className={styles.btn} onClick={() => handleDelete(order)}>X</button></td>
                             </tr>
                     </table>
+                    <button className={styles.btn} onClick={() => handleDelete(order)}>delete order</button>
                 </ul>)}
                 <h2 className={styles.h1}>Total orders :<span className={styles.span}>{orders.length}</span></h2>
             </div>}

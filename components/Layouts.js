@@ -78,7 +78,9 @@ function Layouts({ title, children }) {
                     </li>
                 </ul>
             </nav>
-            {loading ? <Load /> : <main className={styles.main}>{children}</main>}
+            <div className={styles.main}>
+            {loading ? <Load /> : <main >{children}</main>}
+            </div>
             <footer className={styles.footer}>
                 <p>All rights reserved</p>
             </footer>

@@ -16,10 +16,12 @@
     height: 3rem;
     border: none;
     padding-left: 1rem;
+    outline: 2px solid orange;
 }
 
 .input:focus {
-    outline-color: orange;
+    outline-color: red;
+    border-color: red;
 }
 
 .btn {

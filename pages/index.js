@@ -51,7 +51,7 @@ export default function Home(props) {
         <Link href='/Bags'>
           <a onClick={clickMe}>
             <div className={styles.contain}>
-              Click for bags
+              <p className={styles.p}>click for bags</p>
             </div>
           </a>
         </Link>
@@ -61,7 +61,7 @@ export default function Home(props) {
         <Link href='/Slippers'>
           <a onClick={clickMe}>
             <div className={styles.contain1}>
-              Click for slippers
+            <p className={styles.p}>click for slippers</p>
             </div>
           </a>
         </Link>
@@ -74,10 +74,10 @@ export default function Home(props) {
                 <Link  href={`/product/${product.slug}`} >
                   <a onClick={clickMe}>
                     <div className={styles.imagers}>
-                      <Image loader={() => product.image} src={product.image} alt='image' width={200} height={250}></Image>
+                      <Image loader={() => product.image} src={product.image} alt='image' width={150} height={200}></Image>
                     </div>
                     <p className={styles.pp1}>{product.name}</p>
-                    <p className={styles.pp2}>N {product.price}</p>
+                    <p className={styles.pp2}><span className={styles.span}>N</span> {product.price}</p>
                   </a>
                 </Link>
                 <button onClick={() => addToCart(product, index)} className= { loader === index ? styles.load : styles.btn1}> {loader === index ? 'Loading...' : 'add to cart'}</button>

@@ -13,7 +13,7 @@ function Cart() {
     const { state, dispatch } = useContext(Store);
     const { cart, userInfo } = state;
     let len = cart.cartItems.length
-    const [loading, setLoading]= useState(false)
+    const [loading, setLoading] = useState(false)
 
     const upDateCart = async (item, quantity) => {
         const { data } = await axios.get(`/api/products/${item._id}`);
@@ -29,6 +29,7 @@ function Cart() {
         router.push('/Shipping');
     }
 
+
     return (
         <Layouts>
             {len < 1 ? <div className={styles.div1}>
@@ -40,29 +41,30 @@ function Cart() {
                 </Link></h3>
             </div> : <div className={styles.div}>
                 <h1 className={styles.h1}>SHOPPING CART</h1>
-                {cart.cartItems.map((item) => <table className={styles.table} key={item._id}>
-                    <tr className={styles.tr}>
-                        <th className={styles.th}> image</th>
-                        <th className={styles.th1}> name</th>
-                        <th className={styles.th2}>Qty</th>
-                        <th className={styles.th2}>price</th>
-                        <th className={styles.th2}>action</th>
-                    </tr>
-                    <tr>
-                        <td> <Image loader={()=>item.image} src={item.image} alt='my' width={70} height={50} /></td>
-                        <td>{item.name}</td>
-                        <td> <select className={styles.select} onChange={(e) =>
-                            upDateCart(item, e.target.value)
-                        } >
-                            <option value={item.quantity} > {item.quantity}</option>
-                            {[...Array(item.countInStock).keys()].map((x) => <option key={x + 1} value={x + 1}> {x + 1}</option>)}
-                        </select></td>
-                        <td>{item.price}</td>
-                        <button className={styles.btn1} onClick={() => removeItem(item)}> X</button>
-                    </tr>
-                </table>)}
+                {cart.cartItems.map((item) => <ul className={styles.ul} key={item._id}>
+                    <table className={styles.table}>
+                        <tr className={styles.tr}>
+                            <th className={styles.th}> image</th>
+                            <th className={styles.th1}> name</th>
+                            <th className={styles.th2}>Qty</th>
+                            <th className={styles.th2}>price</th>
+                        </tr>
+                        <tr>
+                            <td> <Image loader={() => item.image} src={item.image} alt='my' width={60} height={50} /></td>
+                            <td>{item.name}</td>
+                            <td> <select className={styles.select} onChange={(e) =>
+                                upDateCart(item, e.target.value)
+                            } >
+                                <option value={item.quantity} > {item.quantity}</option>
+                                {[...Array(item.countInStock).keys()].map((x) => <option key={x + 1} value={x + 1}> {x + 1}</option>)}
+                            </select></td>
+                            <td> <span className={styles.naira}>N</span> {item.price}</td>
+                        </tr>
+                    </table>
+                    <button className={styles.btn1} onClick={() => removeItem(item)}> remove item</button>
+                </ul>)}
                 <h2 className={styles.h2}>Items : {cart.cartItems.reduce((a, c) => a + c.quantity * 1, 0)} </h2>
-                <h1 className={styles.h3}>Amount : N{cart.cartItems.reduce((a, c) => a + c.quantity * c.price, 0)}</h1>
+                <h1 className={styles.h3}>Amount : <span className={styles.naira}>N</span>{cart.cartItems.reduce((a, c) => a + c.quantity * c.price, 0)}</h1>
                 <button className={loading ? styles.load : styles.btn} onClick={checkout}>{loading ? 'Loading...' : 'Checkout'}</button>
             </div>}
         </Layouts>

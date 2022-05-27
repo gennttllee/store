@@ -20,10 +20,11 @@ export default function ProductScreen(props) {
     const [loader, setLoader] = useState()
     const [loading, setLoading] = useState()
     const [load, setLoad] = useState(false)
+    const [show, setShow] = useState(false)
     let stock = '';
 
     useEffect(() => {
-        if (load=== true){
+        if (load === true) {
             setLoad(false)
         }
     }, [router.query]);
@@ -72,41 +73,45 @@ export default function ProductScreen(props) {
 
     return (
         <Layouts title={product.name}>
-            <h1 className={styles.product}>PRODUCT INFO</h1>
-            <div className={styles.container}>
-                <div className={styles.img}>
-                    <Image loader={() => product.image} src={product.image} alt='image' width={200} height={250}></Image>
+            {show ? <div className={styles.show}>
+            <button className={styles.back} onClick={()=> setShow(false)}>back</button>
+                <Image loader={() => product.image} src={product.image} alt='image' width={500} height={600}></Image>
+            </div> : <div>
+                <h1 className={styles.product}>PRODUCT INFO</h1>
+                <div className={styles.container}>
+                    <div onClick={()=> setShow(true)} className={styles.img}>
+                        <Image loader={() => product.image} src={product.image} alt='image' width={200} height={250}></Image>
+                    </div>
+                    <div className={styles.floater}>
+                        <h3 className={styles.h3}>{product.name}</h3>
+                        <p className={styles.p}> PRICE : <span className={styles.span}>N</span> {product.price}</p>
+                        <p className={styles.p}> DESCRIPTION : {product.description}</p>
+                        <p className={styles.p}> SEX : {product.gender}</p>
+                        <p className={styles.p}> CATEGORY : {product.category}</p>
+                        <p className={styles.p}>STATUS : {stock}</p>
+                        <button onClick={addToCart} className={loading ? styles.loading : styles.btn}>{loading ? 'Loading...' : 'add to cart'}</button>
+                    </div>
                 </div>
-                <div className={styles.floater}>
-                    <h3 className={styles.h3}>{product.name}</h3>
-                    <p> PRICE :  N{product.price}</p>
-                    <p> DESCRIPTION : {product.description}</p>
-                    <p> SEX : {product.gender}</p>
-                    <p> CATEGORY : {product.category}</p>
-                    <p>STATUS : {stock}</p>
-                    <p> RATINGS : {product.ratings} <span>REVIEWS : {product.numOfReviews}</span></p>
-                    <button onClick={addToCart} className={loading ? styles.loading : styles.btn}>{loading ? 'Loading...' : 'add to cart'}</button>
+                <div className={styles.main}>
+                    <h2 className={styles.h2}>You may also like :</h2>
+                    {load ? <Load /> : <div className={styles.row}>
+                        {products.map((product, index) =>
+                            <div className={styles.contain} key={product.name}>
+                                <Link href={`/product/${product.slug}`} >
+                                    <a onClick={clickMe}>
+                                        <div className={styles.image}>
+                                            <Image loader={() => product.image} src={product.image} alt='image' width={200} height={250}></Image>
+                                        </div>
+                                        <p className={styles.p1}>{product.name}</p>
+                                        <p className={styles.p2}> <span className={styles.span}>N</span> {product.price}</p>
+                                    </a>
+                                </Link>
+                                <button onClick={() => toCart(product, index)} className={loader === index ? styles.load : styles.btn1}> {loader === index ? 'Loading...' : 'add to cart'}</button>
+                            </div>
+                        )}
+                    </div>}
                 </div>
-            </div>
-            <div className={styles.main}>
-                <h2 className={styles.h2}>You may also like :</h2>
-                {load ? <Load /> : <div className={styles.row}>
-                    {products.map((product, index) =>
-                        <div className={styles.contain} key={product.name}>
-                            <Link href={`/product/${product.slug}`} >
-                                <a onClick={clickMe}>
-                                    <div className={styles.image}>
-                                        <Image loader={() => product.image} src={product.image} alt='image' width={200} height={250}></Image>
-                                    </div>
-                                    <p className={styles.p1}>{product.name}</p>
-                                    <p className={styles.p2}>N {product.price}</p>
-                                </a>
-                            </Link>
-                            <button onClick={() => toCart(product, index)} className={loader === index ? styles.load : styles.btn1}> {loader === index ? 'Loading...' : 'add to cart'}</button>
-                        </div>
-                    )}
-                </div>}
-            </div>
+            </div>}
         </Layouts>
     )
 }

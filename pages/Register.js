@@ -49,9 +49,13 @@ export default function Register() {
             <div className={styles.div}>
                 <form className={styles.form} onSubmit={submitHandler}>
                 <h1 className={styles.h1}>Register</h1>
-                    <input className={styles.input} onChange={(e) => setName(e.target.value)} type='text' placeholder='Name' required></input>
+                <label className={styles.label}>First name</label>
+                    <input className={styles.input} onChange={(e) => setName(e.target.value)} type='text' placeholder='first name' required></input>
+                    <label className={styles.label}>Email address</label>
                     <input className={styles.input} onChange={(e) => setEmail(e.target.value)} type='email' placeholder='email' required></input>
+                    <label className={styles.label}>Password</label>
                     <input className={styles.input} onChange={(e) => setPassword(e.target.value)} type='password' minLength='8' placeholder='password' required></input>
+                    <label className={styles.label}>Confirm password</label>
                     <input className={styles.input} onChange={(e) => setConfirm(e.target.value)} type='password' minLength='8'  placeholder=' Confirm password' required></input>
                     <button className={ loading ? styles.load : styles.btn} type='submit'>{loading ? 'Loading...' : 'Register'}</button>
                 </form>

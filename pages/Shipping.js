@@ -54,9 +54,13 @@ export default function Shipping() {
             <div className={styles.div}>
                 <h1 className={styles.h1}>SHIPPING INFO</h1>
                 <form className={styles.form} onSubmit={submitHandler}>
+                <label className={styles.label}>Full name</label>
                     <input className={styles.input1} onChange={(e) => setFull(e.target.value)} type='text' placeholder='Full name' value={full} required></input>
+                    <label className={styles.label}>Address</label>
                     <input className={styles.input1} onChange={(e) => setAddress(e.target.value)} type='text' placeholder='Address' value={address} required></input>
+                    <label className={styles.label}>City</label>
                     <input className={styles.input1} onChange={(e) => setCity(e.target.value)} type='text' placeholder='City' value={city} required></input>
+                    <label className={styles.label}>Phone number</label>
                     <input className={styles.input1} onChange={(e) => setNumber(e.target.value)} type='tel' placeholder='Phone number' value={number} required></input>
                     <button className={loading ? styles.load : styles.btn} type='submit'>{loading ? 'Loading...' : 'Submit'}</button>
                 </form>

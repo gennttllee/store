@@ -1,50 +1,63 @@
 .table {
     width: 100%;
     text-align: left;
+}
+
+.ul {
+    width: 100%;
+    background-color: white;
     box-shadow: 1px 5px 5px 1px rgba(0, 0, 0, 0.144);
     margin: 15px 0;
     padding: 5px;
-    background-color: white;
+    position: relative;
+    height: 8rem;
 }
 
-.biggy{
- font-size: 6rem;
- margin: 30% auto 0;
+.biggy {
+    font-size: 6rem;
+    margin: 30% auto 0;
 }
 
-.anchor{
+.anchor {
     color: blue;
 }
 
-.div1{
+.div1 {
     text-align: center;
+    height: 80vh;
 }
 
 .th {
-    width: 20%;
     color: brown;
 }
 
-.th2{
-    color:brown;
+.th2 {
+    color: brown;
+    width: 13%;
 }
 
 .th1 {
-    width: 30%;
     color: brown;
+    width: 52%;
 }
 
-.h2{
+.naira {
+    color: green;
+    text-decoration-line: line-through;
+    text-decoration-style: double;
+}
+
+.h2 {
     text-align: left;
-    margin: 2rem 1rem 1rem ;
+    margin: 2rem 1rem 1rem;
 }
 
-.h3{
+.h3 {
     text-align: left;
     margin: 1rem 1rem 2rem;
 }
 
-.btn{
+.btn {
     width: 12rem;
     text-align: center;
     height: 2.5rem;
@@ -54,7 +67,7 @@
     font-size: 1.3rem;
 }
 
-.load{
+.load {
     width: 12rem;
     text-align: center;
     height: 2.5rem;
@@ -64,35 +77,38 @@
     font-size: 1.3rem;
 }
 
-.btn1{
-    width: 80%;
+.btn1 {
+    width: 100%;
     text-align: center;
     height: 2rem;
     margin: 10px 0 0;
     border: none;
-    background-color: red;
-    color: white;
+    background-color: antiquewhite;
+    color:brown;
     font-size: 1.3rem;
+    position: absolute;
+    bottom: 0;
+    display: block;
 }
 
-.select{
+.select {
     border: none;
     font-size: 1.3rem;
 }
 
-.select:focus{
+.select:focus {
     border: none;
     outline: none;
 }
 
-.h1{
-    margin: 15px auto ;
+.h1 {
+    margin: 15px auto;
     text-align: center;
     font-weight: bold;
     color: brown;
 }
 
-.div{
+.div {
     padding: 5px;
     text-align: center;
 }

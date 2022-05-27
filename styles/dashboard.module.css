@@ -5,6 +5,8 @@
     margin: 1rem auto;
     width: 100%;
     text-align: left;
+    position: relative;
+    height: 7.5rem;
 }
 
 .h1 {
@@ -25,10 +27,13 @@
 }
 
 .btn1 {
-    background-color: brown;
-    width: 80%;
+    position: absolute;
+    bottom: 0;
+    background-color: antiquewhite;
+    display: block;
+    width: 100%;
     height: 2rem;
-    color: white;
+    color: brown;
     font-size: 1.3rem;
     border: none;
 }

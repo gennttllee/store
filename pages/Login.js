@@ -54,10 +54,10 @@ export default function Login() {
             <div className={styles.div}>
                 <form className={styles.form} onSubmit={submitHandler}>
                 <h1 className={styles.h1}>Login</h1>
+                <label className={styles.label}>Email address</label>
                     <input className={styles.input1} onChange={(e) => setEmail(e.target.value)} type='email' placeholder='email' required></input>
-                    <br />
+                    <label className={styles.label}>Password</label>
                     <input className={styles.input1} onChange={(e) => setPassword(e.target.value)} type='password' placeholder='password' required></input>
-                    <br />
                     <button className={ loading? styles.load :styles.btn} type='submit'>{loading ? 'Loading...' : 'Login'}</button>
                 </form>
                 <p>Dont have an account ? <Link href='/Register'>

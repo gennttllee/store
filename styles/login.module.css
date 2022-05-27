@@ -3,11 +3,15 @@
     height: 3rem;
     margin: 1rem;
     border: none;
+    outline: solid;
+    outline-width: 2px;
+    outline-color: orange;
     padding-left: 1rem;
 }
 
 .input1:focus {
-    outline-color: orange;
+    outline-color: red;
+    border-color: red;
 }
 
 .div {
@@ -17,17 +21,26 @@
 }
 
 .btn {
-    width: 50%;
+    width: 13rem;
     height: 2.5rem;
     border: none;
     background-color: red;
     color: white;
     font-size: 1.3rem;
     margin: 1rem auto 0;
+    display: block;
+}
+
+.label{
+    display: block;
+    text-align: left;
+    margin: 0 15% -1rem;
+    color: brown;
 }
 
 .load {
-    width: 50%;
+    display: block;
+    width: 13rem;
     height: 2.5rem;
     border: none;
     background-color: orange;

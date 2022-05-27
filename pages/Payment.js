@@ -5,8 +5,10 @@ import { useRouter } from 'next/router';
 import Cookies from 'js-cookie'
 import { Link } from "@mui/material";
 import styles from '../styles/payment.module.css';
+import { useSnackbar } from 'notistack';
 
 export default function Payment() {
+    const { enqueueSnackbar, closeSnackbar } = useSnackbar();
     const router = useRouter();
     const { state, dispatch } = useContext(Store);
     const { cart } = state;
@@ -25,7 +27,7 @@ export default function Payment() {
     const submit = () => {
         setLoading(true)
         if (payment === '') {
-            alert('please select a payment method')
+            enqueueSnackbar('Please select a payment method', { variant: 'error' });
             setLoading(false)
         } else {
             dispatch({ type: 'SAVE_PAYMENT_METHOD', payload: payment });

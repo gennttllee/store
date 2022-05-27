@@ -16,11 +16,35 @@
 }
 
 @keyframes mate {
-  5% {background-image: url('../public/images/green-slip.jpeg');background-size: cover; background-position: center;}
-  25% {background-image: url('../public/images/blue-bag.jpeg'); background-size: cover; background-position: center;}
-  50% {background-image: url('../public/images/brown-slip.jpeg'); background-size: cover;background-position: center;}
-  75% {background-image: url('../public/images/green-bag-one.jpeg'); background-size: cover; background-position: center;}
-  100% {background-image: url('../public/images/ego.jpeg'); background-size: cover; background-position: center;}
+  5% {
+    background-image: url('../public/images/green-slip.jpeg');
+    background-size: cover;
+    background-position: center;
+  }
+
+  25% {
+    background-image: url('../public/images/blue-bag.jpeg');
+    background-size: cover;
+    background-position: center;
+  }
+
+  50% {
+    background-image: url('../public/images/brown-slip.jpeg');
+    background-size: cover;
+    background-position: center;
+  }
+
+  75% {
+    background-image: url('../public/images/green-bag-one.jpeg');
+    background-size: cover;
+    background-position: center;
+  }
+
+  100% {
+    background-image: url('../public/images/ego.jpeg');
+    background-size: cover;
+    background-position: center;
+  }
 }
 
 .contain5 {
@@ -31,11 +55,12 @@
   text-align: center;
   margin: 3rem auto 0;
   font-size: 1.7em;
+  color: black;
+  background-color: transparent;
 }
 
 .contain {
   width: 80%;
-  position: relative;
   background-color: rgba(0, 0, 0, 0.354);
   background-image: url("../public/images/green-bag-one.jpeg");
   background-size: cover;
@@ -43,10 +68,17 @@
   background-blend-mode: darken;
   height: 20rem;
   margin: 1rem auto;
-  padding-top: 25%;
   color: antiquewhite;
   font-size: 2rem;
   border-radius: 1rem;
+  display: flex;
+  justify-content: center;
+}
+
+.p {
+  align-self: center;
+  margin: 0;
+  padding: 0;
 }
 
 .contain1 {
@@ -58,41 +90,23 @@
   background-blend-mode: darken;
   height: 20rem;
   margin: 4rem auto 0;
-  padding-top: 25%;
   color: antiquewhite;
   font-size: 2rem;
   border-radius: 1rem;
-}
-.contain2 {
-  width: 80%;
-  background-color: rgba(0, 0, 0, 0.354);
-  background-image: url("../public/images/brown-slip.jpeg");
-  background-size: cover;
-  background-position: center;
-  background-blend-mode: darken;
-  height: 20rem;
-  margin: 4rem auto 0;
-  padding-top: 25%;
-  color: antiquewhite;
-  font-size: 2rem;
-  border-radius: 1rem;
+  display: flex;
+  justify-content: center;
 }
 
-
-.mains{
+.mains {
   margin: 2rem 0 1rem;
-  padding: .5rem 1rem ;
+  padding: .5rem 1rem;
   box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.118);
 }
 
-.btn {
-  width: 40%;
-  height: 2rem;
-  background-color: red;
-  color: white;
-  outline: none;
-  border: none;
-  font-size: 1rem;
+.span {
+  color: green;
+  text-decoration-style: double;
+  text-decoration-line: line-through;
 }
 
 .row {
@@ -104,54 +118,77 @@
 .contains {
   margin: 0 1rem 1rem;
   box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.118);
-  line-height: 1;
   background-color: white;
-  position: relative;
   height: 18rem;
   width: 9rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  text-align: center;
 }
 
 .imagers {
-  width: 7.5rem;
-  height: 5rem;
+  width: 7rem;
 }
 
-
-.btn1{
-  color: white;
-  background-color: red;
-  width: 100%;
-  outline: none;
-  border: none;
-  height:2rem;
-  position: absolute;
-  bottom: 0;
-  margin: 1rem 0 0;
-}
-
-.load{
-  color: black;
-  background-color: orange;
-  width: 100%;
-  outline: none;
-  border: none;
-  height:2rem;
-  position: absolute;
-  bottom: 0;
-  margin: 1rem 0 0;
-}
-
-.pp1{
-  position: absolute;
-  top: 47%;
-  padding: 0 5px;
+.pp1 {
   text-align: center;
-  padding: 0 10px;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
-.pp2{
+.pp2 {
+  text-align: center;
+  margin-bottom: 0;
+  font-size: 1.3rem;
   position: absolute;
-  bottom: 10%;
-  left: 15%;
-  font-size: 1.5rem;
+  bottom: 13%;
+  left: 50%;
+  margin: 0 -25% 0;
+}
+
+.btn1 {
+  background-color: red;
+  color: white;
+  border: none;
+  height: 2rem;
+}
+
+.load {
+  background-color: orange;
+  color: black;
+  border: none;
+  height: 2rem;
+}
+
+@media screen and (min-width : 900px) {
+  .div{
+    display: flex;
+    align-items: center;
+    margin: 0;
+    text-align: center;
+    justify-content: space-evenly;
+  }
+
+  .contain5{
+    width: fit-content;
+    height: fit-content;
+    margin: 0 ;
+  }
+
+  .contain{
+    width: 20rem;
+  }
+
+  .contain1{
+    width: 20rem;
+    align-self: center;
+    margin: 0;
+}
+
+.diver{
+  height:55vh;
+}
+
 }

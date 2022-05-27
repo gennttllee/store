@@ -2,7 +2,10 @@
     width: 70%;
     height: 3rem;
     margin: 1rem;
-    border: none;
+    border:none;
+    outline: solid;
+    outline-color: orange;
+    outline-width: 2px;
     padding-left: 1rem;
     font-size: 1.3rem;
 }
@@ -13,7 +16,6 @@
     font-size: 1.3rem;
 }
 
-
 .text {
     width: 70%;
     height: 5rem;
@@ -21,6 +23,14 @@
     border: none;
     padding: 1rem;
     font-size: 1.3rem;
+    outline: solid;
+    outline-color: orange;
+    outline-width: 2px;
+}
+
+.text:focus{
+    outline-color:red;
+    border-color: red;
 }
 
 .radio {
@@ -40,7 +50,8 @@
 }
 
 .input1:focus {
-    outline-color: orange;
+    outline-color:red;
+    border-color: red;
 }
 
 .div {
@@ -59,18 +70,36 @@
     margin: 1rem auto 0;
 }
 
+.btn1 {
+    background-color: red;
+    color: white;
+    border: none;
+    height: 2rem;
+    width: 5rem;
+    text-align: center;
+}
+
+.load1 {
+    background-color: orange;
+    color: black;
+    border: none;
+    height: 2rem;
+    width: 5rem;
+    text-align: center;
+}
+
 .load {
     width: 50%;
     height: 2.5rem;
     border: none;
     background-color: orange;
-    color:black;
+    color: black;
     font-size: 1.3rem;
     margin: 1rem auto 0;
 }
 
 .h1 {
     color: brown;
-    padding-top: 4rem;
+    padding-top: 3rem;
     margin: 0;
 }

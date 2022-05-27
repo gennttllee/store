@@ -81,9 +81,9 @@ export default function AddProducts() {
         <Layouts>
             <div className={styles.div}>
                 <h1 className={styles.h1}>ADD PRODUCTS</h1>
-                <form onSubmit={uploadImage}>
+                <form className={styles.form} onSubmit={uploadImage}>
                     <input  className={styles.input} name="file" type="file" />
-                    <button className={loading ? styles.load : styles.btn} type="submit">{loading ? 'Loading...' : 'Upload'}</button>
+                    <button className={loading ? styles.load1 : styles.btn1} type="submit">{loading ? 'Loading...' : 'Upload'}</button>
                 </form>
                 {upload ? <Image src={image} alt='image' width={200} height={200} /> : ''}
                 <form onSubmit={handleSubmit} className={styles.form} >.

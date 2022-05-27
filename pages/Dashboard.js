@@ -48,26 +48,27 @@ export default function Dashboard(props) {
             {loading ? <Load /> : <div>
                 <h1 className={styles.h1}>Dashboard</h1>
                 <button className={styles.btn} onClick={producer}>add products</button>
-                {products.map((product) => <table className={styles.table} key={product._id}>
-                    <tr>
-                        <th className={styles.th1}>image</th>
-                        <th className={styles.th2}> name</th>
-                        <th className={styles.th3}> slug</th>
-                        <th className={styles.th4}>qty</th>
-                        <th className={styles.th4}>price</th>
-                        <th className={styles.td}>action</th>
-                    </tr>
-                    <tr>
-                        <td>
-                            <Image src={product.image} alt='image' width={47} height={40} />
-                        </td>
-                        <td>{product.name}</td>
-                        <td>{product.slug}</td>
-                        <td>{product.countInStock}</td>
-                        <td>{product.price}</td>
-                        <td><button className={styles.btn1} onClick={() => handleDelete(product)}>x</button></td>
-                    </tr>
-                </table>)}
+                {products.map((product) => <ul className={styles.table} key={product._id}>
+                    <table>
+                        <tr>
+                            <th className={styles.th1}>image</th>
+                            <th className={styles.th2}> name</th>
+                            <th className={styles.th3}> slug</th>
+                            <th className={styles.th4}>qty</th>
+                            <th className={styles.th4}>price</th>
+                        </tr>
+                        <tr>
+                            <td>
+                                <Image src={product.image} alt='image' width={47} height={40} />
+                            </td>
+                            <td>{product.name}</td>
+                            <td>{product.slug}</td>
+                            <td>{product.countInStock}</td>
+                            <td>{product.price}</td>
+                        </tr>
+                    </table>
+                        <button className={styles.btn1} onClick={() => handleDelete(product)}>delete product</button>
+                </ul>)}
             </div>}
         </Layouts>
     )
