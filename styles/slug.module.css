@@ -26,13 +26,15 @@
 .container {
     display: flex;
     flex-direction: column;
-    padding: 1rem;
+    padding: .5rem;
     width: 100%;
     box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.118);
 }
 
 .floater {
     margin: 0;
+    width: 100%;
+    padding: 0;
 }
 
 .img {
@@ -48,9 +50,23 @@
     text-decoration-line: line-through;
 }
 
-.p {
-    margin: 5px auto;
+.table{
+    text-align: left;
+    width: 100%;
 }
+
+.th{
+    width: 30%;
+    color: brown;
+    border-width: 0 5px 0 0;
+    border-color: brown;
+    border-style: solid;
+}
+
+.td{
+   padding-left: 10%;
+}
+
 
 .h3 {
     margin: 0;
@@ -71,6 +87,7 @@
     border: none;
     font-size: 1rem;
     margin: 1rem 0 0;
+    text-align: center;
 }
 
 .loading {
@@ -133,7 +150,7 @@
     font-size: 1.3rem;
     position: absolute;
     bottom: 13%;
-    left: 50%;
+    left: 45%;
     margin:0 -25% 0;
 }
 
@@ -162,9 +179,11 @@
     .floater{
         margin: 0 2rem;
         text-align: left;
+        width: 50%;
     }
 
-    .p{
-        margin: .7rem 0;
+    .table{
+        text-align: left;
+        width: 100%;
     }
 }

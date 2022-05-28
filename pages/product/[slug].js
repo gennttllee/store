@@ -74,21 +74,41 @@ export default function ProductScreen(props) {
     return (
         <Layouts title={product.name}>
             {show ? <div className={styles.show}>
-            <button className={styles.back} onClick={()=> setShow(false)}>back</button>
+                <button className={styles.back} onClick={() => setShow(false)}>back</button>
                 <Image loader={() => product.image} src={product.image} alt='image' width={500} height={600}></Image>
             </div> : <div>
                 <h1 className={styles.product}>PRODUCT INFO</h1>
                 <div className={styles.container}>
-                    <div onClick={()=> setShow(true)} className={styles.img}>
+                    <div onClick={() => setShow(true)} className={styles.img}>
                         <Image loader={() => product.image} src={product.image} alt='image' width={200} height={250}></Image>
                     </div>
                     <div className={styles.floater}>
-                        <h3 className={styles.h3}>{product.name}</h3>
-                        <p className={styles.p}> PRICE : <span className={styles.span}>N</span> {product.price}</p>
-                        <p className={styles.p}> DESCRIPTION : {product.description}</p>
-                        <p className={styles.p}> SEX : {product.gender}</p>
-                        <p className={styles.p}> CATEGORY : {product.category}</p>
-                        <p className={styles.p}>STATUS : {stock}</p>
+                        <table className={styles.table}>
+                            <tr className={styles.tr}>
+                                <th className={styles.th}>NAME</th>
+                                <td className={styles.td}>{product.name}</td>
+                            </tr>
+                            <tr>
+                                <th className={styles.th}>PRICE</th>
+                                <td className={styles.td}><span className={styles.span}>N</span>{product.price}</td>
+                            </tr>
+                            <tr>
+                                <th className={styles.th}>DESCRIPTION</th>
+                                <td className={styles.td}>{product.description}</td>
+                            </tr>
+                            <tr>
+                                <th className={styles.th}>SEX</th>
+                                <td className={styles.td}>{product.gender}</td>
+                            </tr>
+                            <tr>
+                                <th className={styles.th}>CATEGORY</th>
+                                <td className={styles.td}>{product.category}</td>
+                            </tr>
+                            <tr>
+                                <th className={styles.th}>STATUS</th>
+                                <td className={styles.td}>{stock}</td>
+                            </tr>
+                        </table>
                         <button onClick={addToCart} className={loading ? styles.loading : styles.btn}>{loading ? 'Loading...' : 'add to cart'}</button>
                     </div>
                 </div>

@@ -7,7 +7,7 @@
 
 .diver {
   margin: 0.2rem -1rem 0;
-  background-image: url('../public/images/ego.jpeg');
+  background-image: url('/images/ego.jpeg');
   height: 20rem;
   position: relative;
   animation: mate;
@@ -17,31 +17,31 @@
 
 @keyframes mate {
   5% {
-    background-image: url('../public/images/green-slip.jpeg');
+    background-image: url('/images/green-slip.jpeg');
     background-size: cover;
     background-position: center;
   }
 
   25% {
-    background-image: url('../public/images/blue-bag.jpeg');
+    background-image: url('/images/blue-bag.jpeg');
     background-size: cover;
     background-position: center;
   }
 
   50% {
-    background-image: url('../public/images/brown-slip.jpeg');
+    background-image: url('/images/brown-slip.jpeg');
     background-size: cover;
     background-position: center;
   }
 
   75% {
-    background-image: url('../public/images/green-bag-one.jpeg');
+    background-image: url('/images/green-bag-one.jpeg');
     background-size: cover;
     background-position: center;
   }
 
   100% {
-    background-image: url('../public/images/ego.jpeg');
+    background-image: url('/images/ego.jpeg');
     background-size: cover;
     background-position: center;
   }
@@ -62,7 +62,7 @@
 .contain {
   width: 80%;
   background-color: rgba(0, 0, 0, 0.354);
-  background-image: url("../public/images/green-bag-one.jpeg");
+  background-image: url("/images/green-bag-one.jpeg");
   background-size: cover;
   background-position: center;
   background-blend-mode: darken;
@@ -84,7 +84,7 @@
 .contain1 {
   width: 80%;
   background-color: rgba(0, 0, 0, 0.354);
-  background-image: url("../public/images/brown-slip.jpeg");
+  background-image: url("/images/brown-slip.jpeg");
   background-size: cover;
   background-position: center;
   background-blend-mode: darken;
@@ -144,7 +144,7 @@
   font-size: 1.3rem;
   position: absolute;
   bottom: 13%;
-  left: 50%;
+  left: 45%;
   margin: 0 -25% 0;
 }
 
@@ -189,6 +189,8 @@
 
 .diver{
   height:55vh;
+  width: 80%;
+  margin: 0 auto;
 }
 
 }

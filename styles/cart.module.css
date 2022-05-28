@@ -8,8 +8,7 @@
     background-color: white;
     box-shadow: 1px 5px 5px 1px rgba(0, 0, 0, 0.144);
     margin: 15px 0;
-    padding: 5px;
-    position: relative;
+    padding: 5px 5px 0;
     height: 8rem;
 }
 
@@ -29,11 +28,16 @@
 
 .th {
     color: brown;
+    width: 18%;
 }
 
 .th2 {
     color: brown;
     width: 13%;
+}
+.th3 {
+    color: brown;
+    width: 20%;
 }
 
 .th1 {
@@ -86,14 +90,13 @@
     background-color: antiquewhite;
     color:brown;
     font-size: 1.3rem;
-    position: absolute;
-    bottom: 0;
     display: block;
 }
 
 .select {
     border: none;
     font-size: 1.3rem;
+    background-color: transparent;
 }
 
 .select:focus {

@@ -9,6 +9,7 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Load from '../components/Load';
 
+
 function Layouts({ title, children }) {
     const router = useRouter();
     const { dispatch, state } = useContext(Store)
@@ -79,10 +80,43 @@ function Layouts({ title, children }) {
                 </ul>
             </nav>
             <div className={styles.main}>
-            {loading ? <Load /> : <main >{children}</main>}
+                {loading ? <Load /> : <main >{children}</main>}
             </div>
             <footer className={styles.footer}>
-                <p>All rights reserved</p>
+                <p className={styles.p}>@ 2022 All rights reserved by slides by ego </p>
+                <div className={styles.divIcons}>
+                    <Link href='/'>
+                        <a>
+                            <i className={`fa-brands fa-instagram ${styles.icon}`}></i>
+                        </a>
+                    </Link>
+                    <Link href='/'>
+                        <a>
+                            <i className={`fa-brands fa-facebook-f ${styles.icon}`}></i>
+                        </a>
+                    </Link>
+                    <Link href='/'>
+                        <a>
+                            <i className={`fa-brands fa-twitter ${styles.icon}`}></i>
+                        </a>
+                    </Link>
+                    <Link href='https://wa.me/message/AY7AA5N2OIJSN1'>
+                        <a target='_blank'>
+                            <i className={`fa-brands fa-whatsapp ${styles.icon}`}></i>
+                        </a>
+                    </Link>
+                </div>
+                <table className={styles.table}>
+                    <tr>
+                    <td><Image src='/images/verve.png' alt='image' width={80} height={60}/></td>
+                        <td><Image src='/images/pay.png' alt='image' width={80} height={60}/></td>
+                        <td><Image src='/images/master.png' alt='image' width={80} height={60}/></td>
+                        <td><Image src='/images/visa.jpg' alt='image' width={80} height={60}/></td>
+                    </tr>
+                </table>
+                <p>Created and powered by <Link href='https://www.mwprofile.com/'>
+                    <a target='_blank'><spa className={styles.mark}>Mark Williams</spa></a>
+                </Link></p>
             </footer>
         </div>
     )

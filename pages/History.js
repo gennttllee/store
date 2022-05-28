@@ -7,6 +7,7 @@ import Order from '../models/Order'
 import Image from 'next/image';
 import styles from '../styles/history.module.css'
 
+
 export default function History(props) {
     const router = useRouter();
     const { state, dispatch } = useContext(Store)
@@ -25,39 +26,37 @@ export default function History(props) {
         <Layouts>
             <div>
                 <h1 className={styles.h1}>HISTORY</h1>
-                {myHistory.map((item) => <ul key={item._id}>
-                    <li className={styles.li}>
-                        {item.orderItems.map((order) => <table className={styles.table} key={order._id}>
-                            <tr>
-                                <th className={styles.th}>image</th>
-                                <th className={styles.th1}>name</th>
-                                <th className={styles.th2} >Quantity</th>
-                                <th className={styles.th2}>price</th>
-                            </tr>
-                            <tr>
-                                <td><Image src={order.image} alt='image' width={60} height={40} /></td>
-                                <td>{order.name}</td>
-                                <td>{order.quantity}</td>
-                                <td>{order.price}</td>
-                            </tr>
-                        </table>)}
-                        <table className={styles.table}>
-                            <tr className={styles.tr}>
-                                <th>Date</th>
-                                <th>Mop</th>
-                                <th>Delivery</th>
-                                <th>items price</th>
-                                <th>total</th>
-                            </tr>
-                            <tr>
-                                <td> {item.createdAt}</td>
-                                <td>{item.paymentMethod}</td>
-                                <td>{item.shippingPrice}</td>
-                                <td>{item.itemsPrice}</td>
-                                <td> {item.totalPrice}</td>
-                            </tr>
-                        </table>
-                    </li>
+                {myHistory.map((item) => <ul className={styles.li} key={item._id}>
+                <h4 className={styles.h4}><span className={styles.span}>Date : </span>{item.createdAt}</h4>
+                <h4 className={styles.h4}><span className={styles.span}>Order-id : </span>{item._id}</h4>
+                    {item.orderItems.map((order) => <table className={styles.table} key={order._id}>
+                        <tr>
+                            <th className={styles.th}>image</th>
+                            <th className={styles.th1}>name</th>
+                            <th className={styles.th2} >Qty</th>
+                            <th className={styles.th3}>price</th>
+                        </tr>
+                        <tr>
+                            <td><Image src={order.image} alt='image' width={50} height={40} /></td>
+                            <td>{order.name}</td>
+                            <td>{order.quantity}</td>
+                            <td><span className={styles.span1}>N</span>{order.price}</td>
+                        </tr>
+                    </table>)}
+                    <table className={styles.table}>
+                        <tr className={styles.tr}>
+                            <th>Mop</th>
+                            <th>Delivery</th>
+                            <th>items price</th>
+                            <th>total</th>
+                        </tr>
+                        <tr>
+                            <td>{item.paymentMethod}</td>
+                            <td><span className={styles.span1}>N</span>{item.shippingPrice}</td>
+                            <td><span className={styles.span1}>N</span>{item.itemsPrice}</td>
+                            <td> <span className={styles.span1}>N</span>{item.totalPrice}</td>
+                        </tr>
+                    </table>
                 </ul>)}
                 <h2 className={styles.h1}>Total orders: <span className={styles.spanner}>{myHistory.length}</span></h2>
             </div>

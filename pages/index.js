@@ -51,7 +51,7 @@ export default function Home(props) {
         <Link href='/Bags'>
           <a onClick={clickMe}>
             <div className={styles.contain}>
-              <p className={styles.p}>click for bags</p>
+              <p className={styles.p}>Shop For Bags</p>
             </div>
           </a>
         </Link>
@@ -61,7 +61,7 @@ export default function Home(props) {
         <Link href='/Slippers'>
           <a onClick={clickMe}>
             <div className={styles.contain1}>
-            <p className={styles.p}>click for slippers</p>
+            <p className={styles.p}>Shop For Slippers</p>
             </div>
           </a>
         </Link>

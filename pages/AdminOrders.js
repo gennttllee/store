@@ -49,9 +49,9 @@ export default function AdminOrders(props) {
                 <h1 className={styles.h1}>Order History</h1>
                 {orders.length < 1 ? <h1>no orders yet</h1> :
                 orders.map((order) => <ul className={styles.ul} key={order.id}>
-                    <h3 className={styles.li}> <span className={styles.h3}>Date :</span> {order.createdAt}</h3>
-                    <h3 className={styles.li}>  <span className={styles.h3}>Order-id :</span> {order._id}</h3>
-                        <h3 className={styles.li1}> <span className={styles.h3}>Customer :</span> {order.shippingAddress.full}</h3>
+                    <h4 className={styles.li}> <span className={styles.h3}>Date :</span> {order.createdAt}</h4>
+                    <h4 className={styles.li}>  <span className={styles.h3}>Order-id :</span> {order._id}</h4>
+                        <h4 className={styles.li1}> <span className={styles.h3}>Customer :</span> {order.shippingAddress.full}</h4>
                         {order.orderItems.map((item) => <table className={styles.table} key={item.id}>
                             <tr>
                                 <th className={styles.th}>image</th>

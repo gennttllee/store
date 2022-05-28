@@ -47,10 +47,10 @@ function Cart() {
                             <th className={styles.th}> image</th>
                             <th className={styles.th1}> name</th>
                             <th className={styles.th2}>Qty</th>
-                            <th className={styles.th2}>price</th>
+                            <th className={styles.th3}>price</th>
                         </tr>
                         <tr>
-                            <td> <Image loader={() => item.image} src={item.image} alt='my' width={60} height={50} /></td>
+                            <td> <Image loader={() => item.image} src={item.image} alt='my' width={50} height={40} /></td>
                             <td>{item.name}</td>
                             <td> <select className={styles.select} onChange={(e) =>
                                 upDateCart(item, e.target.value)

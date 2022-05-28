@@ -23,7 +23,7 @@
 }
 
 .main {
-    margin: 2.3rem 0 10%;
+    margin: 2.3rem 0 3rem;
     padding: 1rem;
     height: 82%;
     position: relative;
@@ -31,14 +31,38 @@
 
 .footer {
     position: relative;
-    margin-bottom: -1rem;
     bottom: 0;
     color: black;
     background-color: antiquewhite;
     width: 100%;
     text-align: center;
     z-index: 5;
-    height: fit-content;
+    padding: 1rem;
+}
+
+.table{
+    width: 100%;
+    margin: 1.5rem auto ;
+}
+
+.p{
+    margin: 1rem auto 0;
+}
+
+.icon{
+    font-size: 2rem;
+    margin:0 1rem ;
+    color: brown;
+}
+
+.mark{
+    color:red;
+    font-size: 1.2rem;
+    text-decoration: underline;
+}
+
+.divIcons{
+    margin: 1rem auto;
 }
 
 .bigboy {
@@ -72,4 +96,11 @@
 
 .select:focus {
     outline: none;
+}
+
+@media screen and (min-width : 800px) {
+    .table{
+        width: 50%;
+        margin: 2rem auto 1rem;
+    }
 }
