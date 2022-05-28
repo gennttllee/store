@@ -2,10 +2,9 @@
     background-color: white;
     padding: 5px;
     box-shadow: 1px 1px 9px 2px rgba(128, 128, 128, 0.352);
-    margin: 1rem auto;
+    margin: 1.5rem auto;
     width: 100%;
     text-align: left;
-    position: relative;
     height: 7.5rem;
 }
 
@@ -27,8 +26,6 @@
 }
 
 .btn1 {
-    position: absolute;
-    bottom: 0;
     background-color: antiquewhite;
     display: block;
     width: 100%;
@@ -36,6 +33,7 @@
     color: brown;
     font-size: 1.3rem;
     border: none;
+    margin: .5rem auto 0;
 }
 
 .td {
@@ -59,7 +57,17 @@
     color: brown;
 }
 
+.th5 {
+    width: 15%;
+    color: brown;
+}
+
+.naira{
+    text-decoration-line:line-through ;
+    text-decoration-style: double;
+}
+
 .th3 {
     color: brown;
-    width: 35%;
+    width: 30%;
 }

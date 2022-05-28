@@ -1,7 +1,8 @@
 .div{
     text-align: center;
     margin: 2rem auto 0;
-    height: 75vh;
+    height: 100%;
+    padding: 1rem;
 }
 
 .image{

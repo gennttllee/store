@@ -55,7 +55,7 @@ export default function Dashboard(props) {
                             <th className={styles.th2}> name</th>
                             <th className={styles.th3}> slug</th>
                             <th className={styles.th4}>qty</th>
-                            <th className={styles.th4}>price</th>
+                            <th className={styles.th5}>price</th>
                         </tr>
                         <tr>
                             <td>
@@ -64,7 +64,7 @@ export default function Dashboard(props) {
                             <td>{product.name}</td>
                             <td>{product.slug}</td>
                             <td>{product.countInStock}</td>
-                            <td>{product.price}</td>
+                            <td><span className={styles.naira}>N</span>{product.price}</td>
                         </tr>
                     </table>
                         <button className={styles.btn1} onClick={() => handleDelete(product)}>delete product</button>
