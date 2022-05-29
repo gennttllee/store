@@ -64,7 +64,7 @@ function Cart() {
                                 {sizes.map(i => <option key={i.index}>{i}</option>)}
                             </select></td>}
                             <td> <select className={styles.select} onChange={(e) =>
-                                upDateCart(item, e.target.value)
+                                upDateCart(item, parseInt(e.target.value))
                             } >
                                 <option value={item.quantity} > {item.quantity}</option>
                                 {[...Array(item.countInStock).keys()].map((x) => <option key={x + 1} value={x + 1}> {x + 1}</option>)}

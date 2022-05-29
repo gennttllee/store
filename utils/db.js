@@ -18,7 +18,6 @@ async function connect() {
     }
     const db = await mongoose.connect(URI, {
         useUnifiedTopology: true,
-
     });
     console.log('new connection');
     connection.isConnected = db.connections[0].readyState;
@@ -28,6 +27,7 @@ async function disconnect() {
     if (connection.isConnected) {
         await mongoose.disconnect();
         connection.isConnected = false;
+        console.log('disconnected');
     }
 };
 
