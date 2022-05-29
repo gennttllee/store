@@ -28,6 +28,12 @@
     font-size: 1.3rem;
 }
 
+.naira{
+    color: green;
+    text-decoration-line: line-through;
+    text-decoration-style: double;
+}
+
 .load{
     width: 12rem;
     text-align: center;
@@ -48,6 +54,11 @@
 }
 
 .th {
+    width: 17%;
+    color: brown;
+}
+
+.th9 {
     width: 20%;
     color: brown;
 }
@@ -57,6 +68,6 @@
 }
 
 .th1 {
-    width: 30%;
+    width: 40%;
     color: brown;
 }

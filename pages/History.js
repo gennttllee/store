@@ -33,12 +33,14 @@ export default function History(props) {
                         <tr>
                             <th className={styles.th}>image</th>
                             <th className={styles.th1}>name</th>
+                            {order.size &&  <th className={styles.th2}>Size</th>}
                             <th className={styles.th2} >Qty</th>
                             <th className={styles.th3}>price</th>
                         </tr>
                         <tr>
                             <td><Image src={order.image} alt='image' width={50} height={40} /></td>
                             <td>{order.name}</td>
+                            {order.size && <td>{order.size}</td>}
                             <td>{order.quantity}</td>
                             <td><span className={styles.span1}>N</span>{order.price}</td>
                         </tr>

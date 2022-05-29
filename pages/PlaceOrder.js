@@ -29,6 +29,7 @@ function PlaceOrder() {
         }
     }, []);
 
+
     let orderId;
     const checkout = async () => {
         setLoading(true);
@@ -80,7 +81,7 @@ function PlaceOrder() {
         let templateParam = {
             name: shippingAddress.full,
             message: 'PURCHASE RECEIPT',
-            order : orderId ,
+            order: orderId,
             quantity: quantity,
             itemsPrice: itemsPrice,
             telephone: shippingAddress.number,
@@ -104,7 +105,7 @@ function PlaceOrder() {
         let templateParams = {
             name: shippingAddress.full,
             message: 'PURCHASE RECEIPT',
-            order : orderId ,
+            order: orderId,
             quantity: quantity,
             itemsPrice: itemsPrice,
             telephone: shippingAddress.number,
@@ -155,9 +156,9 @@ function PlaceOrder() {
                 <h3 className={styles.h3}>Customer Info</h3>
                 <table className={styles.table} >
                     <tr className={styles.tr}>
-                        <th className={styles.th}> full name</th>
-                        <th className={styles.th1}> Telephone</th>
-                        <th className={styles.th2}>address</th>
+                        <th className={styles.th9}> full name</th>
+                        <th className={styles.th2}> Telephone</th>
+                        <th className={styles.th1}>address</th>
                         <th className={styles.th2}>city</th>
                     </tr>
                     <tr>
@@ -182,19 +183,21 @@ function PlaceOrder() {
                         <th className={styles.th}> image</th>
                         <th className={styles.th1}> name</th>
                         <th className={styles.th2}>Qty</th>
+                        {item.size ? <th className={styles.th2}>Size</th> : <th className={styles.th2}>Color</th>}
                         <th className={styles.th2}>price</th>
                     </tr>
                     <tr>
-                        <td> <Image loader={() => item.image} src={item.image} alt='my' width={70} height={50} /></td>
+                        <td> <Image loader={() => item.image} src={item.image} alt='my' width={60} height={50} /></td>
                         <td>{item.name}</td>
                         <td> {item.quantity}</td>
-                        <td>{item.price}</td>
+                    {item.size ?     <td> {item.size}</td> : <td>{item.color}</td>}
+                        <td> <span className={styles.naira}>N</span>{item.price}</td>
                     </tr>
                 </table>)}
                 <h3><span className={styles.h3}>Items</span> : {cart.cartItems.reduce((a, c) => a + c.quantity * 1, 0)} </h3>
-                <h3 ><span className={styles.h3}>Amount</span> : N {itemsPrice}</h3>
-                <h3><span className={styles.h3}>Delivery</span> :{shippingPrice}</h3>
-                <h2><span className={styles.h3}>Total</span> : {totalPrice}</h2>
+                <h3 ><span className={styles.h3}>Amount</span> :  <span className={styles.naira}>N</span>{itemsPrice}</h3>
+                <h3><span className={styles.h3}>Delivery</span> : <span className={styles.naira}>N</span>{shippingPrice}</h3>
+                <h2><span className={styles.h3}>Total</span> :  <span className={styles.naira}>N</span>{totalPrice}</h2>
                 {visible ? <PaystackButton
                     className={loading ? styles.load : styles.btn}
                     {...componentProps} /> : <button className={loading ? styles.load : styles.btn} onClick={checkout}>{loading ? 'Loading...' : 'Place Order'}</button>}

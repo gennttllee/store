@@ -56,13 +56,15 @@ export default function AdminOrders(props) {
                             <tr>
                                 <th className={styles.th}>image</th>
                                 <th className={styles.th1}>product</th>
+                               {item.size &&  <th className={styles.th2}>Size</th>}
                                 <th className={styles.th2}>price</th>
                                 <th className={styles.th2}>Qty</th>
                             </tr>
                             <tr>
-                                <td><Image src={item.image} alt='image' width={60} height={50} /></td>
+                                <td><Image src={item.image} alt='image' width={50} height={40} /></td>
                                 <td>{item.name}</td>
-                                <td>{item.price}</td>
+                                {item.size && <td>{item.size}</td>}
+                                <td><span className={styles.naira}>N</span>{item.price}</td>
                                 <td>{item.quantity}</td>
                             </tr>
                         </table>)}
@@ -77,9 +79,9 @@ export default function AdminOrders(props) {
                             <tr>
                                 <td>{order.shippingAddress.address}</td>
                                 <td>{order.paymentMethod}</td>
-                                <td>{order.shippingPrice}</td>
-                                <td>{order.itemsPrice}</td>
-                                <td>{order.totalPrice}</td>
+                                <td><span className={styles.naira}>N</span>{order.shippingPrice}</td>
+                                <td><span className={styles.naira}>N</span>{order.itemsPrice}</td>
+                                <td><span className={styles.naira}>N</span>{order.totalPrice}</td>
                             </tr>
                     </table>
                     <button className={styles.btn} onClick={() => handleDelete(order)}>delete order</button>

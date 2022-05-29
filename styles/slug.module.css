@@ -90,6 +90,12 @@
     text-align: center;
 }
 
+.select{
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+
 .loading {
     width: 7rem;
     height: 2rem;

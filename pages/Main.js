@@ -3,7 +3,6 @@ import Layouts from "../components/Layouts";
 import styles from '../styles/main.module.css'
 import db from '../utils/db';
 import Product from '../models/Product'
-import axios from 'axios';
 import { useContext, useState } from 'react';
 import { Store } from '../utils/Mystore';
 import { useSnackbar } from 'notistack';
@@ -25,46 +24,61 @@ export default function Main(props) {
 
     const addToCart = async (product, index) => {
         setLoading(index)
+        const size = 41
         const existItem = state.cart.cartItems.find(x => x._id === product._id);
-        const quantity = existItem ? existItem.quantity + 1 : 1;
-        const { data } = await axios.get(`/api/products/${product._id}`);
-        if (data.countInStock < quantity) {
+        const quantity = existItem ? parseInt(existItem.quantity) + 1 : 1;
+        if (product.countInStock < quantity) {
             enqueueSnackbar('Product is out of stock', { variant: 'error' });
             closeSnackbar()
             setLoading()
         } else {
-            dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } })
-            setLoading()
+            if (product.category === 'slippers' || product.category === "shoes") {
+                dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity, size } })
+                setLoading()
+            } else {
+                dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity, size: '' } })
+                setLoading()
+            }
         }
     }
 
     const addToCart1 = async (product, i) => {
         setLoading(i)
+        const size = 41
         const existItem = state.cart.cartItems.find(x => x._id === product._id);
-        const quantity = existItem ? existItem.quantity + 1 : 1;
-        const { data } = await axios.get(`/api/products/${product._id}`);
-        if (data.countInStock < quantity) {
+        const quantity = existItem ? parseInt(existItem.quantity) + 1 : 1;
+        if (product.countInStock < quantity) {
             enqueueSnackbar('Product is out of stock', { variant: 'error' });
             closeSnackbar()
             setLoading()
         } else {
-            dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } })
-            setLoading()
+            if (product.category === 'slippers' || product.category === "shoes") {
+                dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity, size } })
+                setLoading()
+            } else {
+                dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity, size: '' } })
+                setLoading()
+            }
         }
     }
 
     const addToCart2 = async (product) => {
         setLoading(product)
+        const size = 41
         const existItem = state.cart.cartItems.find(x => x._id === product._id);
-        const quantity = existItem ? existItem.quantity + 1 : 1;
-        const { data } = await axios.get(`/api/products/${product._id}`);
-        if (data.countInStock < quantity) {
+        const quantity = existItem ? parseInt(existItem.quantity) + 1 : 1;
+        if (product.countInStock < quantity) {
             enqueueSnackbar('Product is out of stock', { variant: 'error' });
             closeSnackbar()
             setLoading()
         } else {
-            dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } })
-            setLoading()
+            if (product.category === 'slippers' || product.category === "shoes") {
+                dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity, size } })
+                setLoading()
+            } else {
+                dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity, size: '' } })
+                setLoading()
+            }
         }
     }
 

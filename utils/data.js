@@ -1,3 +1,4 @@
+
 import bcrypt from 'bcryptjs';
 
 const data = {
@@ -9,9 +10,9 @@ const data = {
             isAdmin: true,
         },
         {
-            name: 'harry',
-            email: 'harry@gmail.com',
-            password: bcrypt.hashSync('123456'),
+            name: 'Gloria',
+            email: 'slidesbyego@gmail.com',
+            password: bcrypt.hashSync('independent1'),
             isAdmin: true,
         },
     ],
@@ -24,6 +25,7 @@ const data = {
             description: 'Adora bag with glittery accessories',
             image: '/images/blue-bag.jpeg',
             price: 6000,
+            color : 'blue',
             countInStock: 7,
         },
         {
@@ -34,6 +36,8 @@ const data = {
             description: 'Manny (Birkenstock slippers)',
             image: '/images/brown-slip.jpeg',
             price: 6000,
+            color : 'brown',
+            size : [37, 38, 39, 40, 41, 41, 42, 43, 44, 45, 46, 47],
             countInStock: 9,
         },
         {
@@ -44,6 +48,7 @@ const data = {
             description: 'Belinda mini bag for every occasion',
             image: '/images/green-bag-one.jpeg',
             price: 8000,
+            color : 'green',
             countInStock: 9,
         },
         {
@@ -54,6 +59,8 @@ const data = {
             description: 'Ruka ladies pair',
             image: '/images/green-slip.jpeg',
             price: 5000,
+            color : 'green',
+            size : [37, 38, 39, 40, 41, 41, 42, 43, 44, 45, 46, 47],
             countInStock: 9,
         },
     ],

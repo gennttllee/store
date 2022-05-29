@@ -7,7 +7,6 @@ import { Store } from '../utils/Mystore';
 import db from '../utils/db';
 import Product from '../models/Product'
 import { useSnackbar } from 'notistack';
-import axios from 'axios';
 import { useRouter } from 'next/router'
 import Load from '../components/Load'
 
@@ -23,14 +22,19 @@ export default function Home(props) {
     setLoader(index)
     closeSnackbar()
     const existItem = state.cart.cartItems.find(x => x._id === product._id);
-    const quantity = existItem ? existItem.quantity + 1 : 1;
-    const { data } = await axios.get(`/api/products/${product._id}`);
-    if (data.countInStock < quantity) {
+    const quantity = existItem ? parseInt(existItem.quantity) + 1 : 1;
+    const size = 41
+    if (product.countInStock < quantity) {
       setLoader()
       enqueueSnackbar('Product is out of stock', { variant: 'error' });
     } else {
-      dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } })
-      setLoader()
+        if (product.category === 'slippers' || product.category === "shoes"){
+          dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity, size } })
+          setLoader()
+        } else {
+          dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity, size : '' } })
+          setLoader()
+        }
     }
   }
 
@@ -87,7 +91,6 @@ export default function Home(props) {
         </div>
       </div>
     </div>}
-    {closeSnackbar()}
   </Layouts>
 };
 

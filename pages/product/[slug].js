@@ -6,7 +6,6 @@ import db from '../../utils/db';
 import Product from '../../models/Product';
 import { Store } from '../../utils/Mystore';
 import { useContext, useState, useEffect } from 'react';
-import axios from 'axios';
 import { useRouter } from 'next/router';
 import { useSnackbar } from 'notistack';
 import Load from '../../components/Load';
@@ -14,13 +13,14 @@ import Load from '../../components/Load';
 
 export default function ProductScreen(props) {
     const { enqueueSnackbar, closeSnackbar } = useSnackbar();
-    let router = useRouter();;
+    let router = useRouter();
     const { dispatch, state } = useContext(Store);
     const { product, products } = props;
     const [loader, setLoader] = useState()
     const [loading, setLoading] = useState()
     const [load, setLoad] = useState(false)
     const [show, setShow] = useState(false)
+    const [size, setSize] = useState()
     let stock = '';
 
     useEffect(() => {
@@ -38,37 +38,50 @@ export default function ProductScreen(props) {
         window.alert('out of stock')
     }
 
-    const addToCart = async () => {
+    const addToCart = async (product) => {
         setLoading(true)
-        const { data } = await axios.get(`/api/products/${product._id}`);
         const existItem = state.cart.cartItems.find(x => x._id === product._id);
-        const quantity = existItem ? existItem.quantity + 1 : 1;
-        if (data.countInStock < quantity) {
+        const quantity = existItem ? parseInt(existItem.quantity) + 1 : 1;
+        if (product.countInStock < quantity) {
             setLoading(false)
             enqueueSnackbar(' Out of stock', { variant: 'error' });
         } else {
-            dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } })
-            setLoading(false)
+            if (product.category === 'slippers' || product.category === "shoes") {
+                dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity, size } })
+                setLoading(false)
+            } else {
+                dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity, size: '' } })
+                setLoading(false)
+            }
         }
     }
 
     const toCart = async (product, index) => {
         setLoader(index)
         closeSnackbar()
+        const size =41
         const existItem = state.cart.cartItems.find(x => x._id === product._id);
-        const quantity = existItem ? existItem.quantity + 1 : 1;
-        const { data } = await axios.get(`/api/products/${product._id}`);
-        if (data.countInStock < quantity) {
+        const quantity = existItem ? parseInt(existItem.quantity) + 1 : 1;
+        if (product.countInStock < quantity) {
             setLoader()
             enqueueSnackbar('Product is out of stock', { variant: 'error' });
         } else {
-            dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } })
-            setLoader()
+            if (product.category === 'slippers' || product.category === "shoes") {
+                dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity, size } })
+                setLoader()
+            } else {
+                dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity, size: '' } })
+                setLoader()
+            }
         }
     }
 
     const clickMe = () => {
         setLoad(true)
+    }
+
+    const mySize = (e) => {
+        setSize(e.target.value)
     }
 
     return (
@@ -93,6 +106,10 @@ export default function ProductScreen(props) {
                                 <td className={styles.td}><span className={styles.span}>N</span>{product.price}</td>
                             </tr>
                             <tr>
+                                <th className={styles.th}>COLOR</th>
+                                <td className={styles.td}>{product.color}</td>
+                            </tr>
+                            <tr>
                                 <th className={styles.th}>DESCRIPTION</th>
                                 <td className={styles.td}>{product.description}</td>
                             </tr>
@@ -100,6 +117,14 @@ export default function ProductScreen(props) {
                                 <th className={styles.th}>SEX</th>
                                 <td className={styles.td}>{product.gender}</td>
                             </tr>
+                            {product.size.length > 1  &&  <tr>
+                                <th className={styles.th}>SIZE</th>
+                                {product.size.length > 1 && <td className={styles.td}>
+                                    <select className={styles.select} onChange={mySize}>
+                                        {product.size.map(item => <option key={item.index}>{item}</option>)}
+                                    </select>
+                                </td>}
+                            </tr>}
                             <tr>
                                 <th className={styles.th}>CATEGORY</th>
                                 <td className={styles.td}>{product.category}</td>
@@ -109,7 +134,7 @@ export default function ProductScreen(props) {
                                 <td className={styles.td}>{stock}</td>
                             </tr>
                         </table>
-                        <button onClick={addToCart} className={loading ? styles.loading : styles.btn}>{loading ? 'Loading...' : 'add to cart'}</button>
+                        <button onClick={() => addToCart(product)} className={loading ? styles.loading : styles.btn}>{loading ? 'Loading...' : 'add to cart'}</button>
                     </div>
                 </div>
                 <div className={styles.main}>

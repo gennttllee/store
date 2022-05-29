@@ -15,9 +15,15 @@ function Cart() {
     let len = cart.cartItems.length
     const [loading, setLoading] = useState(false)
 
+    const sizes = [37, 38, 39, 40, 41, 41, 42, 43, 44, 45, 46, 47]
+
     const upDateCart = async (item, quantity) => {
         const { data } = await axios.get(`/api/products/${item._id}`);
         dispatch({ type: 'CART_ADD_ITEM', payload: { ...item, quantity } })
+    }
+
+    const mySize = (item, size) => {
+        dispatch({ type: 'CART_ADD_ITEM', payload: { ...item, size } })
     }
 
     const removeItem = (item) => {
@@ -46,12 +52,17 @@ function Cart() {
                         <tr className={styles.tr}>
                             <th className={styles.th}> image</th>
                             <th className={styles.th1}> name</th>
+                            {item.size && <th className={styles.th2}>Size</th>}
                             <th className={styles.th2}>Qty</th>
                             <th className={styles.th3}>price</th>
                         </tr>
                         <tr>
                             <td> <Image loader={() => item.image} src={item.image} alt='my' width={50} height={40} /></td>
                             <td>{item.name}</td>
+                            {item.size && <td> <select value={item.size} onChange={(e) => mySize(item, e.target.value)} className={styles.select}>
+                                <option value={item.size}>{item.size}</option>
+                                {sizes.map(i => <option key={i.index}>{i}</option>)}
+                            </select></td>}
                             <td> <select className={styles.select} onChange={(e) =>
                                 upDateCart(item, e.target.value)
                             } >

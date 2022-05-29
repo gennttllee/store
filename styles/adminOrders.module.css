@@ -18,13 +18,20 @@
     text-align: center;
 }
 
+.naira{
+    color: green;
+    text-decoration-line: line-through;
+    text-decoration-style: double;
+}
+
 .h3{
     color: brown;
     margin: 0;
+    font-weight: bold;
 }
 
 .th{
-    width: 20%;
+    width: 15%;
     color: brown;
 }
 
@@ -60,9 +67,11 @@
 .li{
     list-style: none;
     margin: 0;
+    font-weight: normal;
 }
 
 .li1{
     list-style: none;
     margin: 0 0 .5rem;
+    font-weight: normal;
 }

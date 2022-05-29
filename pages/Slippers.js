@@ -3,7 +3,6 @@ import Layouts from "../components/Layouts";
 import styles from '../styles/main.module.css'
 import db from '../utils/db';
 import Product from '../models/Product'
-import axios from 'axios';
 import { useContext, useState } from 'react';
 import { Store } from '../utils/Mystore';
 import { useSnackbar } from 'notistack';
@@ -24,15 +23,20 @@ export default function Slippers(props) {
     const addToCart = async (product, index) => {
         setLoading(index)
         const existItem = state.cart.cartItems.find(x => x._id === product._id);
-        const quantity = existItem ? existItem.quantity + 1 : 1;
-        const { data } = await axios.get(`/api/products/${product._id}`);
-        if (data.countInStock < quantity) {
+        const quantity = existItem ? parseInt(existItem.quantity) + 1 : 1;
+        const size = 41
+        if (product.countInStock < quantity) {
             enqueueSnackbar('Product is out of stock', { variant: 'error' });
             closeSnackbar()
             setLoading()
         } else {
-            dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } })
-            setLoading()
+            if (product.category === 'slippers' || product.category === "shoes") {
+                dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity, size } })
+                setLoading()
+            } else {
+                dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity, size: '' } })
+                setLoading()
+            }
         }
     }
 

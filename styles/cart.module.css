@@ -28,21 +28,21 @@
 
 .th {
     color: brown;
-    width: 18%;
+    width: 14%;
 }
 
 .th2 {
     color: brown;
-    width: 13%;
+    width: 10%;
 }
 .th3 {
     color: brown;
-    width: 20%;
+    width: 25%;
 }
 
 .th1 {
     color: brown;
-    width: 52%;
+    width: 45%;
 }
 
 .naira {
@@ -95,7 +95,7 @@
 
 .select {
     border: none;
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     background-color: transparent;
 }
 
