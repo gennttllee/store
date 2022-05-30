@@ -53,7 +53,7 @@ export default function Dashboard(props) {
                         <tr>
                             <th className={styles.th1}>image</th>
                             <th className={styles.th2}> name</th>
-                            <th className={styles.th3}> slug</th>
+                            <th className={styles.th5}>Color</th>
                             <th className={styles.th4}>qty</th>
                             <th className={styles.th5}>price</th>
                         </tr>
@@ -62,12 +62,12 @@ export default function Dashboard(props) {
                                 <Image src={product.image} alt='image' width={47} height={40} />
                             </td>
                             <td>{product.name}</td>
-                            <td>{product.slug}</td>
+                            <td>{product.color}</td>
                             <td>{product.countInStock}</td>
                             <td><span className={styles.naira}>N</span>{product.price}</td>
                         </tr>
                     </table>
-                        <button className={styles.btn1} onClick={() => handleDelete(product)}>delete product</button>
+                    <button className={styles.btn1} onClick={() => handleDelete(product)}>delete product</button>
                 </ul>)}
             </div>}
         </Layouts>

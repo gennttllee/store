@@ -16,6 +16,14 @@
     text-align: center;
     padding: 1px 0 0;
     height: 80vh;
+    position: relative;
+    animation: movers;
+    animation-duration: 1s;
+}
+
+@keyframes movers {
+    from { opacity: 0};
+    to { opacity: 1};
 }
 
 .label{

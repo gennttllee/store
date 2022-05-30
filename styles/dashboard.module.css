@@ -6,6 +6,14 @@
     width: 100%;
     text-align: left;
     height: 7.5rem;
+    position: relative;
+    animation: mover;
+    animation-duration: 1s;
+}
+
+@keyframes mover {
+    from {background-color: transparent; opacity: 0};
+    to { opacity: 1};
 }
 
 .h1 {
@@ -48,7 +56,6 @@
 }
 
 .th2 {
-    width: 35%;
     color: brown;
 }
 

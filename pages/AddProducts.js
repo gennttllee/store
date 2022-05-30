@@ -120,6 +120,8 @@ export default function AddProducts() {
                     <label className={styles.label}>Male</label>
                     <input onChange={(e) => setGender(e.target.value)} className={styles.radio} type="radio" name='gender' value='female'></input>
                     <label className={styles.label}>female</label>
+                    <input onChange={(e) => setGender(e.target.value)} className={styles.radio} type="radio" name='gender' value='unisex'></input>
+                    <label className={styles.label}>Unisex</label>
                     <br />
                     <label className={styles.label1}>select sizes</label>
                     <div className={styles.diver}>

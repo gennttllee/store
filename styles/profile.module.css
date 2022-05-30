@@ -35,4 +35,12 @@
 .table{
   text-align: center;
   margin: 0 auto 2rem;
+  position: relative;
+  animation: movers;
+  animation-duration: 2s;
+}
+
+@keyframes movers {
+  from {left: -1rem; opacity: 0};
+  to {left: 0; opacity: 1};
 }

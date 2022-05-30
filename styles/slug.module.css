@@ -29,12 +29,28 @@
     padding: .5rem;
     width: 100%;
     box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.118);
+    position: relative;
+    animation: mover;
+    animation-duration: 1s;
+}
+
+@keyframes mover {
+    from {background-color: transparent; opacity: 0};
+    to { opacity: 1};
+}
+
+@keyframes movers {
+    from {left: -10rem; opacity: 0};
+    to {left: 0; opacity: 1};
 }
 
 .floater {
     margin: 0;
     width: 100%;
     padding: 0;
+    position: relative;
+    animation: movers;
+    animation-duration: 1s;
 }
 
 .img {

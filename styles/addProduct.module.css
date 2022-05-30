@@ -34,15 +34,15 @@
 }
 
 .radio {
-    width: 2rem;
-    height: 2rem;
-    margin: 1rem 1rem 0 0;
+    width: 1.4rem;
+    height: 1.4rem;
+    margin: 1rem 0 0;
     accent-color: brown;
 }
 
 .label {
-    font-size: 1.5rem;
-    margin: 1rem 0 0;
+    font-size: 1.4rem;
+    margin: 1rem 1rem 0 0;
 }
 
 .diver{
@@ -82,6 +82,14 @@
     text-align: center;
     text-align: center;
     padding: 1px 0 0;
+    position: relative;
+    animation: movers;
+    animation-duration: 1s;
+}
+
+@keyframes movers {
+    from {  opacity: 0};
+    to { opacity: 1};
 }
 
 .btn {
@@ -101,9 +109,11 @@
     height: 2rem;
     width: 5rem;
     text-align: center;
+    margin: 0 0 0 -4rem;
 }
 
 .load1 {
+    margin: 0 0 0 -4rem;
     background-color: orange;
     color: black;
     border: none;

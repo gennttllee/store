@@ -9,6 +9,14 @@
     box-shadow: 1px 5px 5px 1px rgba(0, 0, 0, 0.144);
     margin: 2rem  0;
     padding: 5px 5px ;
+    position: relative;
+    animation: mover;
+    animation-duration: 1s;
+}
+
+@keyframes mover {
+    from {background-color: transparent; opacity: 0};
+    to { opacity: 1};
 }
 
 .biggy {
