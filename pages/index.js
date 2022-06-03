@@ -46,7 +46,7 @@ export default function Home(props) {
   const clickMe =()=>{
     setLoading(true)
   }
-
+  closeSnackbar();
   return <Layouts>
     {loading ? <Load /> : <div>
       <div className={styles.diver}>
