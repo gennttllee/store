@@ -83,6 +83,7 @@ export default function ProductScreen(props) {
     const mySize = (e) => {
         setSize(e.target.value)
     }
+    
 
     return (
         <Layouts title={product.name}>

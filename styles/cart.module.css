@@ -14,6 +14,17 @@
     animation-duration: 1s;
 }
 
+.back{
+    background-color: red;
+    border: none;
+    color: white;
+    width: 7rem;
+    height: 2rem;
+    font-size: 1.2rem;
+    margin: 0 .1rem .5rem ;
+    display: block;
+}
+
 @keyframes mover {
     from {background-color: transparent; opacity: 0};
     to { opacity: 1};

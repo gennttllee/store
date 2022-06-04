@@ -14,6 +14,8 @@ function Cart() {
     const { cart, userInfo } = state;
     let len = cart.cartItems.length
     const [loading, setLoading] = useState(false)
+    const [visible, setVisible] = useState();
+    const [load, setLoad] = useState(false)
 
     const sizes = [37, 38, 39, 40, 41, 41, 42, 43, 44, 45, 46, 47]
 
@@ -35,6 +37,11 @@ function Cart() {
         router.push('/Shipping');
     }
 
+    const selectMe =(item)=>{
+        setVisible(item.image);
+        setLoad(true)
+    }
+
 
     return (
         <Layouts>
@@ -47,6 +54,10 @@ function Cart() {
                 </Link></h3>
             </div> : <div className={styles.div}>
                 <h1 className={styles.h1}>SHOPPING CART</h1>
+                {load ? <div>
+                    <button className={styles.back} onClick={() => setLoad(false)}>back</button>
+                <Image loader={() => visible} src={visible} alt='image' width={500} height={600}></Image>
+                </div> : <div>
                 {cart.cartItems.map((item) => <ul className={styles.ul} key={item._id}>
                     <table className={styles.table}>
                         <tr className={styles.tr}>
@@ -57,7 +68,7 @@ function Cart() {
                             <th className={styles.th3}>price</th>
                         </tr>
                         <tr>
-                            <td> <Image loader={() => item.image} src={item.image} alt='my' width={50} height={40} /></td>
+                            <td onClick={()=> selectMe(item)}> <Image loader={() => item.image} src={item.image} alt='my' width={50} height={40} /></td>
                             <td>{item.name}</td>
                             {item.size && <td> <select value={item.size} onChange={(e) => mySize(item, e.target.value)} className={styles.select}>
                                 <option value={item.size}>{item.size}</option>
@@ -74,6 +85,7 @@ function Cart() {
                     </table>
                     <button className={styles.btn1} onClick={() => removeItem(item)}> remove item</button>
                 </ul>)}
+                </div>}
                 <h2 className={styles.h2}>Items : {cart.cartItems.reduce((a, c) => a + c.quantity * 1, 0)} </h2>
                 <h1 className={styles.h3}>Amount : <span className={styles.naira}>N</span>{cart.cartItems.reduce((a, c) => a + c.quantity * c.price, 0)}</h1>
                 <button className={loading ? styles.load : styles.btn} onClick={checkout}>{loading ? 'Loading...' : 'Checkout'}</button>
