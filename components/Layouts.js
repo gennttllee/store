@@ -106,10 +106,10 @@ function Layouts({ title, children }) {
                 </div>
                 <table className={styles.table}>
                     <tr>
-                    <td><Image src='/images/verve.png' alt='image' width={80} height={60}/></td>
-                        <td><Image src='/images/pay.png' alt='image' width={80} height={60}/></td>
-                        <td><Image src='/images/master.png' alt='image' width={80} height={60}/></td>
-                        <td><Image src='/images/visa.jpg' alt='image' width={80} height={60}/></td>
+                    <td><Image src='/images/verve.png' alt='image' width={70} height={50}/></td>
+                        <td><Image src='/images/pay.png' alt='image' width={70} height={50}/></td>
+                        <td><Image src='/images/master.png' alt='image' width={70} height={50}/></td>
+                        <td><Image src='/images/visa.jpg' alt='image' width={70} height={50}/></td>
                     </tr>
                 </table>
                 <p>Created and powered by <Link href='https://www.mwprofile.com/'>

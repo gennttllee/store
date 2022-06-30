@@ -3,6 +3,7 @@
     text-align: left;
 }
 
+
 .ul {
     width: 100%;
     background-color: white;
@@ -46,7 +47,7 @@
 
 .th {
     color: brown;
-    width: 14%;
+    width: 16%;
 }
 
 .th2 {
@@ -94,7 +95,7 @@
     text-align: center;
     height: 2.5rem;
     border: none;
-    background-color: orange;
+    background-color: antiquewhite;
     color: black;
     font-size: 1.3rem;
 }

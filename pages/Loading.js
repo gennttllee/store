@@ -18,7 +18,6 @@ export default function Loading() {
             <div className={styles.div}>
                 <h3>Loading...</h3>
                 <div className={styles.image}>
-                    <Image src='/images/ego.jpeg' alt='image' width={150} height={150} />
                 </div>
             </div>
         </Layouts>

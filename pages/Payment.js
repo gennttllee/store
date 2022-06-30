@@ -13,7 +13,7 @@ export default function Payment() {
     const { state, dispatch } = useContext(Store);
     const { cart } = state;
     const [payment, setPayment] = useState('')
-    const [loading, setLoading]= useState(false)
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
         setLoading(false)
@@ -40,15 +40,23 @@ export default function Payment() {
         <Layouts>
             <div className={styles.div}>
                 <h1 className={styles.h1}>Payment Method</h1>
-                <input className={styles.input} onChange={(e) => setPayment(e.target.value)} type='radio' name="payment" value='cash' checked={payment === 'cash'}></input>
-                <label className={styles.label}>Cash on delivery</label>
-                <br />
-                <input className={styles.input} onChange={(e) => setPayment(e.target.value)} type='radio' name="payment" value='debit' checked={payment ==='debit'} ></input>
-                <label className={styles.label}> Debit card</label>
-                <br />
-                <input className={styles.input} onChange={(e) => setPayment(e.target.value)} type='radio' name="payment" value='bank' checked={payment ==='bank'} ></input>
-                <label className={styles.label}>Bank Transfer</label>
-                <br />
+                <div className={styles.div}>
+                    <div className={styles.child}>
+                        <input className={styles.input} onChange={(e) => setPayment(e.target.value)} type='radio' name="payment" value='cash' checked={payment === 'cash'}></input>
+                        <label className={styles.label}>Cash on delivery</label>
+                    </div>
+
+                    <div className={styles.child}>
+                        <input className={styles.input} onChange={(e) => setPayment(e.target.value)} type='radio' name="payment" value='debit' checked={payment === 'debit'} ></input>
+                        <label className={styles.label}> Debit card</label>
+                    </div>
+
+                    <div className={styles.child}>
+                        <input className={styles.input} onChange={(e) => setPayment(e.target.value)} type='radio' name="payment" value='bank' checked={payment === 'bank'} ></input>
+                        <label className={styles.label}>Bank Transfer</label>
+                    </div>
+
+                </div>
                 <button className={loading ? styles.load : styles.btn} onClick={submit}>{loading ? 'Loading...' : 'Submit'}</button>
                 <br />
                 <Link href="/Shipping">

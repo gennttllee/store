@@ -107,8 +107,6 @@ export default function Main(props) {
                     price={product.price}
                     link={`/product/${product.slug}`}
                     click={() => addToCart1(product, i)}
-                    btn = {loading === i ? styles.load : styles.btn}
-                    btnName = {loading === i ? 'Loading...' : 'add to cart'}
                 />)}
             </div>
             <h3 className={styles.h2}>Slippers</h3>
@@ -120,8 +118,7 @@ export default function Main(props) {
                     price={product.price}
                     link={`/product/${product.slug}`}
                     click={() => addToCart2(product)}
-                    btn = {loading === product ? styles.load : styles.btn}
-                    btnName = {loading === product ? 'Loading...' : 'add to cart'}
+                    
                 />)}
             </div>
         </div>

@@ -25,7 +25,6 @@ export default function Card(props) {
                 </NextLink>
                 <button onClick={props.click} className={styles.mark}>
                 <span className='fas fa-shopping-cart'></span>
-                <span className={`fas fa-heart`}></span>
                 </button>
             </div>}
         </div>

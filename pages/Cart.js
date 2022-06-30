@@ -67,7 +67,7 @@ function Cart() {
                             <th className={styles.th2}>Qty</th>
                             <th className={styles.th3}>price</th>
                         </tr>
-                        <tr>
+                        <tr className={styles.tr}>
                             <td onClick={()=> selectMe(item)}> <Image loader={() => item.image} src={item.image} alt='my' width={50} height={40} /></td>
                             <td>{item.name}</td>
                             {item.size && <td> <select value={item.size} onChange={(e) => mySize(item, e.target.value)} className={styles.select}>

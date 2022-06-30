@@ -55,7 +55,7 @@ export default function Home(props) {
         <Link href='/Bags'>
           <a onClick={clickMe}>
             <div className={styles.contain}>
-              <p className={styles.p}>Shop For Bags</p>
+              <button className={styles.p}> Bags</button>
             </div>
           </a>
         </Link>
@@ -65,7 +65,7 @@ export default function Home(props) {
         <Link href='/Slippers'>
           <a onClick={clickMe}>
             <div className={styles.contain1}>
-            <p className={styles.p}>Shop For Slippers</p>
+            <button className={styles.p}> Slippers</button>
             </div>
           </a>
         </Link>
@@ -86,7 +86,6 @@ export default function Home(props) {
                 </Link>
                 <button onClick={() => addToCart(product, index)} className= {styles.mark}>
                 <span className='fas fa-shopping-cart'></span>
-                <span className={`fas fa-heart`}></span>
                 </button>
               </div>
             )}

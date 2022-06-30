@@ -28,7 +28,6 @@
     flex-direction: column;
     padding: .5rem;
     width: 100%;
-    box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.118);
     position: relative;
     animation: mover;
     animation-duration: 1s;
@@ -91,7 +90,6 @@
 .main {
     margin: 2rem 0 1rem;
     padding: .5rem 1rem;
-    box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.118);
 }
 
 .btn {
@@ -131,7 +129,6 @@
 
 .contain {
     margin: 0 1rem 1rem;
-    box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.118);
     background-color: white;
     height: 18rem;
     width: 9rem;
@@ -188,8 +185,9 @@
     .container{
         display: flex;
         flex-direction: row;
-        justify-content: flex-start;
+        justify-content: center;
         text-align: left;
+        align-items: center;
     }
 
     .img{

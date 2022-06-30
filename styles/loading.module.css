@@ -1,18 +1,26 @@
 .div{
     text-align: center;
     margin: 2rem auto 0;
-    height: 60vh;
+    height: 50vh;
+    width: 100%;
     padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content : center;
+    align-items: center;
+    color : brown;
 }
 
 .image{
-    position: relative;
     animation: rotate;
     animation-duration: .4s;
     animation-iteration-count: infinite;
     border-radius: 100%;
     border-style: solid;
-    width: fit-content;
+    border-color : brown;
+    border-width : 2px 2px 2px 0 ;
+    width: 7rem;
+    height : 7rem;
     overflow: hidden;
     margin: 0 auto;
 }

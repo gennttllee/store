@@ -1,7 +1,7 @@
 .main{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
+    justify-content: center;
 }
 
 .h2{
@@ -9,27 +9,3 @@
     margin: 2rem auto .1rem;
     color:brown;
 }
-
-.btn{
-    color: white;
-    background-color: red;
-    width: 100%;
-    outline: none;
-    border: none;
-    height:2rem;
-    position: absolute;
-    bottom: 0;
-    margin: 1rem 0 0;
-}
-
-.load{
-    color: black;
-    background-color: orange;
-    width: 100%;
-    outline: none;
-    border: none;
-    height:2rem;
-    position: absolute;
-    bottom: 0;
-    margin: 1rem 0 0;
-  }
