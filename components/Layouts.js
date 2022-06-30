@@ -60,9 +60,7 @@ function Layouts({ title, children }) {
                     <li className={styles.li}>
                         <Link href='/Cart'>
                             <a>
-                                <span className={`material-symbols-outlined ${styles.bigboy}`}>
-                                    production_quantity_limits
-                                </span>
+                            <span className='fas fa-shopping-cart'></span>
                                 : <span className={styles.spanner}>{mark}</span>
                             </a>
                         </Link>

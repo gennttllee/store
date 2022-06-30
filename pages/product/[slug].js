@@ -15,7 +15,7 @@ export default function ProductScreen(props) {
     const { enqueueSnackbar, closeSnackbar } = useSnackbar();
     let router = useRouter();
     const { dispatch, state } = useContext(Store);
-    const { product, products } = props;
+    const { product } = props;
     const [loader, setLoader] = useState()
     const [loading, setLoading] = useState()
     const [load, setLoad] = useState(false)
@@ -35,7 +35,7 @@ export default function ProductScreen(props) {
         stock = 'In-stock'
     } else {
         stock = 'out-of-stock'
-        window.alert('out of stock')
+        enqueueSnackbar(' Out of stock', { variant: 'error' });
     }
 
     const addToCart = async (product) => {
@@ -52,26 +52,6 @@ export default function ProductScreen(props) {
             } else {
                 dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity, size: '' } })
                 setLoading(false)
-            }
-        }
-    }
-
-    const toCart = async (product, index) => {
-        setLoader(index)
-        closeSnackbar()
-        const size =41
-        const existItem = state.cart.cartItems.find(x => x._id === product._id);
-        const quantity = existItem ? parseInt(existItem.quantity) + 1 : 1;
-        if (product.countInStock < quantity) {
-            setLoader()
-            enqueueSnackbar('Product is out of stock', { variant: 'error' });
-        } else {
-            if (product.category === 'slippers' || product.category === "shoes") {
-                dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity, size } })
-                setLoader()
-            } else {
-                dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity, size: '' } })
-                setLoader()
             }
         }
     }
@@ -138,25 +118,6 @@ export default function ProductScreen(props) {
                         <button onClick={() => addToCart(product)} className={loading ? styles.loading : styles.btn}>{loading ? 'Loading...' : 'add to cart'}</button>
                     </div>
                 </div>
-                <div className={styles.main}>
-                    <h2 className={styles.h2}>You may also like :</h2>
-                    {load ? <Load /> : <div className={styles.row}>
-                        {products.map((product, index) =>
-                            <div className={styles.contain} key={product.name}>
-                                <Link href={`/product/${product.slug}`} >
-                                    <a onClick={clickMe}>
-                                        <div className={styles.image}>
-                                            <Image loader={() => product.image} src={product.image} alt='image' width={200} height={250}></Image>
-                                        </div>
-                                        <p className={styles.p1}>{product.name}</p>
-                                        <p className={styles.p2}> <span className={styles.span}>N</span> {product.price}</p>
-                                    </a>
-                                </Link>
-                                <button onClick={() => toCart(product, index)} className={loader === index ? styles.load : styles.btn1}> {loader === index ? 'Loading...' : 'add to cart'}</button>
-                            </div>
-                        )}
-                    </div>}
-                </div>
             </div>}
         </Layouts>
     )
@@ -167,12 +128,10 @@ export async function getServerSideProps(context) {
     const { slug } = params;
     await db.connect();
     const product = await Product.findOne({ slug }).lean();
-    const products = await Product.find({}).lean();
     await db.disconnect();
     return {
         props: {
             product: db.convertDocToObj(product),
-            products: products.map(db.convertDocToObj),
         },
     };
 }

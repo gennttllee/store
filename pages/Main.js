@@ -95,7 +95,6 @@ export default function Main(props) {
                     link={`/product/${product.slug}`}
                     click={() => addToCart(product, index)}
                     btn = {loading === index ? styles.load : styles.btn}
-                    btnName = {loading === index ? 'Loading...' : 'add to cart'}
                 />
                 )}
             </div>

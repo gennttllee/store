@@ -76,15 +76,18 @@ export default function Home(props) {
             {products.map((product, index) =>
               <div className={styles.contains} key={product.name}>
                 <Link  href={`/product/${product.slug}`} >
-                  <a onClick={clickMe}>
+                  <a className={styles.link} onClick={clickMe}>
                     <div className={styles.imagers}>
-                      <Image loader={() => product.image} src={product.image} alt='image' width={150} height={200}></Image>
+                      <Image loader={() => product.image} src={product.image} alt='image' width={300} height={250}></Image>
                     </div>
                     <p className={styles.pp1}>{product.name}</p>
                     <p className={styles.pp2}><span className={styles.span}>N</span> {product.price}</p>
                   </a>
                 </Link>
-                <button onClick={() => addToCart(product, index)} className= { loader === index ? styles.load : styles.btn1}> {loader === index ? 'Loading...' : 'add to cart'}</button>
+                <button onClick={() => addToCart(product, index)} className= {styles.mark}>
+                <span className='fas fa-shopping-cart'></span>
+                <span className={`fas fa-heart`}></span>
+                </button>
               </div>
             )}
           </div>

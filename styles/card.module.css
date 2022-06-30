@@ -1,52 +1,53 @@
 .card {
-    margin: 1.5rem 1rem 1rem;
-    box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.118);
-    line-height: 1;
-    background-color: white;
-    position: relative;
-    height: 16rem;
-    width: 9rem;
+width: fit-content;
+height: fit-content;
 }
 
-.btn {
-    color: white;
-    background-color: red;
-    width: 100%;
-    outline: none;
+.link{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    height: 90%;
+  }
+
+  .mark {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: transparent;
+    color: black;
     border: none;
-    height: 2rem;
-    position: absolute;
-    bottom: 0;
-    margin: 1rem 0 0;
-}
+    height: 10%;
+    width: 100%;
+  }
+
+  .imagers {
+    width: 9rem;
+  }
 
 .name {
-    margin: 0 auto;
+    margin: 0;
     text-align: center;
 }
 
 .price {
-    position: absolute;
-    bottom: 15%;
-    left: 50%;
-    margin-left: -25%;
-    margin-bottom: .1rem;
     font-size: 1.3rem;
+    margin: 0 0 1rem;
 }
 
 .naira {
     text-decoration-style: double;
     text-decoration-line: line-through;
+    color: green;
 }
 
-.load {
-    color: black;
-    background-color: orange;
-    width: 100%;
-    outline: none;
-    border: none;
-    height: 2rem;
-    position: absolute;
-    bottom: 0;
-    margin: 1rem 0 0;
+.div{
+    margin: 1rem auto 1rem;
+    text-align: center;
+    width: 10rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 15rem;
 }

@@ -98,9 +98,7 @@
 }
 
 .mains {
-  margin: 2rem 0 1rem;
-  padding: .5rem 1rem;
-  box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.118);
+  margin: 2rem auto 1rem;
 }
 
 .span {
@@ -117,19 +115,23 @@
 
 .contains {
   margin: 0 1rem 1rem;
-  box-shadow: 0px 2px 5px 1px rgba(0, 0, 0, 0.118);
-  background-color: white;
-  height: 18rem;
-  width: 9rem;
+  text-align: center;
+  width: 10rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  position: relative;
-  text-align: center;
+  height: 15rem;
+}
+
+.link{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 90%;
 }
 
 .imagers {
-  width: 7rem;
+  width: 9rem;
 }
 
 .pp1 {
@@ -140,27 +142,21 @@
 
 .pp2 {
   text-align: center;
-  margin-bottom: 0;
-  font-size: 1.3rem;
-  position: absolute;
-  bottom: 13%;
-  left: 45%;
-  margin: 0 -25% 0;
+  font-size: 1.2rem;
+  margin: 0 0 1rem;
 }
 
-.btn1 {
-  background-color: red;
-  color: white;
-  border: none;
-  height: 2rem;
-}
-
-.load {
-  background-color: orange;
+.mark {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: transparent;
   color: black;
   border: none;
-  height: 2rem;
+  height: 10%;
+  width: 100%;
 }
+
 
 @media screen and (min-width : 900px) {
   .div{
