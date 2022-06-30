@@ -16,7 +16,12 @@ export default function Home(props) {
   const { enqueueSnackbar, closeSnackbar } = useSnackbar();
   const router = useRouter()
   const [loading, setLoading] = useState(false)
-  const [loader, setLoader] = useState()
+  const [loader, setLoader] = useState();
+  const [link, setLink] = useState('/Bags')
+  const [sly, setSly] = useState(styles.contain)
+  const [cat, setCat]= useState('bag')
+
+
 
   const addToCart = async (product, index) => {
     setLoader(index)
@@ -28,13 +33,13 @@ export default function Home(props) {
       setLoader()
       enqueueSnackbar('Product is out of stock', { variant: 'error' });
     } else {
-        if (product.category === 'slippers' || product.category === "shoes"){
-          dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity, size } })
-          setLoader()
-        } else {
-          dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity, size : '' } })
-          setLoader()
-        }
+      if (product.category === 'slippers' || product.category === "shoes") {
+        dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity, size } })
+        setLoader()
+      } else {
+        dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity, size: '' } })
+        setLoader()
+      }
     }
   }
 
@@ -43,13 +48,42 @@ export default function Home(props) {
     router.push('/Main')
   }
 
-  const clickMe =()=>{
+  const clickMe = () => {
     setLoading(true)
   }
   closeSnackbar();
+
+  const clicked =()=>{
+    if (sly === styles.contain){
+      setSly(styles.contain1)
+      setLink('/Slippers')
+      setCat('Slippers')
+    } else {
+      setSly(styles.contain)
+      setLink('/Bags')
+      setCat('bags')
+    }
+  }
+
+
   return <Layouts>
     {loading ? <Load /> : <div>
       <div className={styles.diver}>
+        <div className={styles.visible}>
+          <h1 className={styles.h1}>The only store that gets your fashion needs right</h1>
+          <div className={styles.slide}>
+            <Link href={link}>
+              <a onClick={clickMe}>
+                <div className={sly}>
+                <button className={styles.p}>{cat}</button>
+                </div>
+              </a>
+            </Link>
+            <button className={styles.ict} onClick={clicked}>
+            <span className="fa-solid fa-greater-than"></span>
+            </button>
+          </div>
+        </div>
       </div>
       <div className={styles.div}>
         <Link href='/Bags'>
@@ -65,7 +99,7 @@ export default function Home(props) {
         <Link href='/Slippers'>
           <a onClick={clickMe}>
             <div className={styles.contain1}>
-            <button className={styles.p}> Slippers</button>
+              <button className={styles.p}> Slippers</button>
             </div>
           </a>
         </Link>
@@ -75,7 +109,7 @@ export default function Home(props) {
           <div className={styles.row}>
             {products.map((product, index) =>
               <div className={styles.contains} key={product.name}>
-                <Link  href={`/product/${product.slug}`} >
+                <Link href={`/product/${product.slug}`} >
                   <a className={styles.link} onClick={clickMe}>
                     <div className={styles.imagers}>
                       <Image loader={() => product.image} src={product.image} alt='image' width={300} height={250}></Image>
@@ -84,8 +118,8 @@ export default function Home(props) {
                     <p className={styles.pp2}><span className={styles.span}>N</span> {product.price}</p>
                   </a>
                 </Link>
-                <button onClick={() => addToCart(product, index)} className= {styles.mark}>
-                <span className='fas fa-shopping-cart'></span>
+                <button onClick={() => addToCart(product, index)} className={styles.mark}>
+                  <span className='fas fa-shopping-cart'></span>
                 </button>
               </div>
             )}
