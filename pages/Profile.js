@@ -14,10 +14,9 @@ export default function Profile() {
     const router = useRouter();
     const [status, setStatus] = useState();
     const myData = Cookies.get('shippingAddress') ? JSON.parse(Cookies.get('shippingAddress')) : ''
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState()
 
     useEffect(() => {
-        console.log(myData)
         if (userInfo === 'boy') {
             router.push('/Login')
         }
@@ -28,11 +27,18 @@ export default function Profile() {
         }
     }, [userInfo]);
 
-    const clicker = () => {
-        setLoading(true)
+    const clicker = (item) => {
+        setLoading(item)
     }
 
-
+    const logout =()=>{
+        setLoading(3)
+        dispatch({type : 'USER_LOGOUT'})
+        Cookies.remove('userInfo')
+        Cookies.remove('cartItems')
+        Cookies.remove('shippingAddress')
+        router.push('/Loading')
+    }
 
     return (
         <Layouts>
@@ -60,18 +66,19 @@ export default function Profile() {
                             <h3 className={styles.normal}>{userInfo.name}</h3>
                             <h3 className={styles.normal}>{status}</h3>
                             <h3 className={styles.normal}>{userInfo.email}</h3>
-                            <h3 className={styles.normal}>{myData ? myData.phone : 'Not set'}</h3>
+                            <h3 className={styles.normal}>{myData ? myData.number : 'Not set'}</h3>
                             <h3 className={styles.normal}>{myData ? myData.address : 'Not set'}</h3>
                             <h3 className={styles.normal}>{myData ? myData.city : 'Not set'}</h3>
                         </div>
                     </div>
                 </div>
                 <Link href={userInfo.isAdmin ? '/AdminOrders' : '/History'}>
-                    <a onClick={clicker} className={styles.link}>{loading ? 'loading...' : 'History'} <span className={`fa fa-arrow-right-long ${styles.arrows}`}></span></a>
+                    <a onClick={()=>clicker(1)} className={styles.link}>{loading === 1 ? 'loading...' : 'History'} <span className={`fa fa-arrow-right-long ${styles.arrows}`}></span></a>
                 </Link>
                 {userInfo.isAdmin && <Link href= '/Dashboard'>
-                    <a onClick={clicker} className={styles.link}>{loading ? 'loading...' : 'Products'} <span className={`fa fa-arrow-right-long ${styles.arrows}`}></span></a>
+                    <a onClick={()=>clicker(2)} className={styles.link}>{loading === 2 ? 'loading...' : 'Products'} <span className={`fa fa-arrow-right-long ${styles.arrows}`}></span></a>
                 </Link>}
+                <button onClick={logout} className={styles.link}>{loading === 3 ? 'Loading...' : 'Logout'}</button>
             </div>
         </Layouts>
     )

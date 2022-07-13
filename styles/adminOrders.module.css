@@ -8,6 +8,29 @@
     list-style: inside;
 }
 
+.div{
+    width: 70%;
+    margin: 0 auto;
+}
+
+.home{
+    width: 100%;
+    margin: 0 auto 3rem;
+    background-color: rgba(128, 128, 128, 0.087);
+    height: 3rem;
+}
+
+
+.child{
+    width: 70%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    font-size: 1.3rem;
+    gap: 2rem;
+}
+
 .table{
     width: 100%;
 }
@@ -25,24 +48,19 @@
 }
 
 .h3{
-    color: brown;
     margin: 0;
     font-weight: bold;
 }
 
 .th{
     width: 15%;
-    color: brown;
+
 }
 
 .th1{
-    color: brown;
     width: 50%;
 }
 
-.th2{
-    color: brown;
-}
 
 .th4{
     width: 10%;
@@ -74,4 +92,15 @@
     list-style: none;
     margin: 0 0 .5rem;
     font-weight: normal;
+}
+
+@media screen and (max-width : 1000px) {
+    .child{
+        width: 100%;
+        padding: 0 1rem;
+    }
+
+    .div{
+        width: 100%;
+    }
 }

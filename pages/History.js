@@ -33,7 +33,7 @@ export default function History(props) {
                     <p>{userInfo.name} purchase history</p>
                 </div>
             </div>
-            <div>
+            <div className={styles.div}>
                 {myHistory.map((item) => <ul className={styles.li} key={item._id}>
                     <h4 className={styles.h4}><span className={styles.span}>Date : </span>{item.createdAt}</h4>
                     <h4 className={styles.h4}><span className={styles.span}>Order-id : </span>{item._id}</h4>
