@@ -1,46 +1,73 @@
-.btn {
-  width: 12rem;
-  height: 2.5rem;
-  font-size: 1rem;
-  background-color: red;
-  color: white;
-  border: none;
+.home {
+  width: 100%;
+  margin: 0 auto 3rem;
+  background-color: rgba(128, 128, 128, 0.087);
+  height: 3rem;
 }
 
-.load {
-  width: 12rem;
-  height: 2.5rem;
-  font-size: 1rem;
-  background-color: antiquewhite;
+.flexed {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+
+.child {
+  width: 70%;
+  height: 100%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  font-size: 1.3rem;
+  gap: 2rem;
+}
+
+.link {
+  margin: 1rem 0;
+  width: fit-content;
+  padding: 0 1.5rem;
+  display: flex;
+  font-size: 1.2rem;
+  gap: 1rem;
+  height: 3rem;
+  align-items: center;
   color: black;
+  background-color: rgba(128, 128, 128, 0.087);
   border: none;
 }
 
-.btn:active {
-  border: none;
-  outline: none;
+.arrows {
+  font-size: 1.9rem;
+  color: black;
 }
 
-.div{
-    text-align: center;
-    height: 60vh;
+.user {
+  font-size: 3rem;
+  border-radius: 100%;
+  background-color: rgba(128, 128, 128, 0.172);
+  padding: 2rem;
 }
 
-.h1 {
-  color: brown;
-  text-align: center;
-  margin: 3rem auto 1rem ;
+.div {
+  width: 70%;
+  margin: 0 auto;
 }
 
-.table{
-  text-align: center;
-  margin: 0 auto 2rem;
-  position: relative;
-  animation: movers;
-  animation-duration: 2s;
+
+.normal {
+  font-weight: normal;
 }
 
-@keyframes movers {
-  from {left: -1rem; opacity: 0};
-  to {left: 0; opacity: 1};
+
+@media screen and (max-width : 1000px) {
+  .child {
+    width: 100%;
+    padding: 0 1rem;
+  }
+
+  .div {
+    width: 100%;
+    padding: 0 1rem;
+  }
+
 }

@@ -134,12 +134,12 @@
 .length {
     background-color: #dd1630;
     color: white;
-    height: 1.7rem;
+    height: 1.5rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 1.7rem;
-    margin: -.9rem 0 0;
+    width: 1.5rem;
+    margin: -.9rem 0 0 -.9rem;
     border-radius: 100%;
     font-size: 1.1rem;
 }

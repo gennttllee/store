@@ -1,4 +1,4 @@
-
+import Link from 'next/link';
 import { useState, useContext, useEffect } from 'react';
 import { Store } from '../utils/Mystore';
 import { useRouter } from "next/router"
@@ -12,58 +12,66 @@ export default function Profile() {
     const { dispatch, state } = useContext(Store)
     const { userInfo, cart } = state;
     const router = useRouter();
-    const[status, setStatus] = useState();
-    const myData = Cookies.get('shippingAddress') ? JSON.parse( Cookies.get('shippingAddress')) : ''
-    const [loading, setLoading]= useState(false)
+    const [status, setStatus] = useState();
+    const myData = Cookies.get('shippingAddress') ? JSON.parse(Cookies.get('shippingAddress')) : ''
+    const [loading, setLoading] = useState(false)
 
     useEffect(() => {
+        console.log(myData)
         if (userInfo === 'boy') {
             router.push('/Login')
         }
-        if (userInfo.isAdmin === true){
+        if (userInfo.isAdmin === true) {
             setStatus('Admin')
         } else {
             setStatus('Customer')
         }
     }, [userInfo]);
 
-    const clicker =()=>{
+    const clicker = () => {
         setLoading(true)
-        router.push('/AdminOrders')
     }
+
 
 
     return (
         <Layouts>
+            <div className={styles.home}>
+                <div className={styles.child}>
+                    <Link href='/Loading'>
+                        <a>Home</a>
+                    </Link>
+                    <p>{userInfo.name} profile</p>
+                </div>
+            </div>
             <div className={styles.div}>
-            <h1 className={styles.h1}>PROFILE</h1>
-            <table className={styles.table}>
-                <tr>
-                    <th>Name :</th>
-                    <td>{userInfo.name}</td>
-                </tr>
-                <tr>
-                    <th>Status :</th>
-                    <td>{status}</td>
-                </tr>
-                <tr>
-                    <th>Email :</th>
-                    <td>{userInfo.email}</td>
-                </tr>
-                <tr>
-                    <th>Phone Number :</th>
-                    <td>{ myData ? myData.number : 'Not Set'}</td>
-                </tr>
-                <tr>
-                    <th>Address :</th>
-                    <td>{ myData ? myData.address : 'Not Set'}</td>
-                </tr>
-                <tr>
-                    <th>City Of Res :</th>
-                    <td>{ myData ? myData.city : 'Not Set'}</td>
-                </tr>
-            </table>
-                {userInfo.isAdmin ? <button onClick={clicker} className={loading ? styles.load : styles.btn}>{loading ? 'Loading...' : 'Orders'}</button> : <p className={styles.h1}>Slides by ego</p>}
+                <div>
+                    <span className={`fa fa-user ${styles.user}`}></span>
+                    <div className={styles.flexed}>
+                        <div>
+                            <h3>name</h3>
+                            <h3>Status</h3>
+                            <h3>Email Address</h3>
+                            <h3>Phone Number</h3>
+                            <h3>Address</h3>
+                            <h3>City Of Residence</h3>
+                        </div>
+                        <div>
+                            <h3 className={styles.normal}>{userInfo.name}</h3>
+                            <h3 className={styles.normal}>{status}</h3>
+                            <h3 className={styles.normal}>{userInfo.email}</h3>
+                            <h3 className={styles.normal}>{myData ? myData.phone : 'Not set'}</h3>
+                            <h3 className={styles.normal}>{myData ? myData.address : 'Not set'}</h3>
+                            <h3 className={styles.normal}>{myData ? myData.city : 'Not set'}</h3>
+                        </div>
+                    </div>
+                </div>
+                <Link href={userInfo.isAdmin ? '/AdminOrders' : '/History'}>
+                    <a onClick={clicker} className={styles.link}>{loading ? 'loading...' : 'History'} <span className={`fa fa-arrow-right-long ${styles.arrows}`}></span></a>
+                </Link>
+                {userInfo.isAdmin && <Link href= '/Dashboard'>
+                    <a onClick={clicker} className={styles.link}>{loading ? 'loading...' : 'Products'} <span className={`fa fa-arrow-right-long ${styles.arrows}`}></span></a>
+                </Link>}
             </div>
         </Layouts>
     )

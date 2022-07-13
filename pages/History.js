@@ -5,6 +5,7 @@ import { Store } from '../utils/Mystore';
 import db from '../utils/db'
 import Order from '../models/Order'
 import Image from 'next/image';
+import Link from 'next/link';
 import styles from '../styles/history.module.css'
 
 
@@ -24,16 +25,23 @@ export default function History(props) {
     console.log(myHistory)
     return (
         <Layouts>
+            <div className={styles.home}>
+                <div className={styles.child}>
+                    <Link href='/Loading'>
+                        <a>Home</a>
+                    </Link>
+                    <p>{userInfo.name} purchase history</p>
+                </div>
+            </div>
             <div>
-                <h1 className={styles.h1}>HISTORY</h1>
                 {myHistory.map((item) => <ul className={styles.li} key={item._id}>
-                <h4 className={styles.h4}><span className={styles.span}>Date : </span>{item.createdAt}</h4>
-                <h4 className={styles.h4}><span className={styles.span}>Order-id : </span>{item._id}</h4>
+                    <h4 className={styles.h4}><span className={styles.span}>Date : </span>{item.createdAt}</h4>
+                    <h4 className={styles.h4}><span className={styles.span}>Order-id : </span>{item._id}</h4>
                     {item.orderItems.map((order) => <table className={styles.table} key={order._id}>
                         <tr>
                             <th className={styles.th}>image</th>
                             <th className={styles.th1}>name</th>
-                            {order.size &&  <th className={styles.th2}>Size</th>}
+                            {order.size && <th className={styles.th2}>Size</th>}
                             <th className={styles.th2} >Qty</th>
                             <th className={styles.th3}>price</th>
                         </tr>

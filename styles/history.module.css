@@ -5,6 +5,23 @@
     list-style: none;
 }
 
+.home{
+    width: 100%;
+    margin: 0 auto 3rem;
+    background-color: rgba(128, 128, 128, 0.087);
+    height: 3rem;
+}
+
+.child{
+    width: 70%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    font-size: 1.3rem;
+    gap: 2rem;
+}
+
 .h1{
     color: brown;
     text-align: center;
@@ -61,4 +78,12 @@
 .span1{
     text-decoration-style: double;
     text-decoration-line: line-through;
+}
+
+@media screen and (max-width : 1000px) {
+    .child{
+        width: 100%;
+        padding: 0 1rem;
+    }
+
 }
