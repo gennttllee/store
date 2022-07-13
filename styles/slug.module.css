@@ -29,7 +29,8 @@
 }
 
 .select {
-    display: block;
+    display: flex;
+    justify-content: center;
     margin: 1rem 0;
     width: 4rem;
     background-color: #dd1630;

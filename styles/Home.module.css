@@ -58,15 +58,18 @@
 }
 
 .select {
-  display: block;
+  display: flex;
+  justify-content: center;
+  text-align: center;
   margin: 1rem 0;
   width: 4rem;
   background-color: #dd1630;
   color: white;
   border: none;
   height: 3rem;
-  text-align: center;
   outline: none;
+  border-radius: 0;
+  -webkit-appearance: none;
 }
 
 .options {
