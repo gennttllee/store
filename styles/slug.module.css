@@ -38,6 +38,8 @@
     height: 3rem;
     text-align: center;
     outline: none;
+    border-radius: 0;
+    -webkit-appearance: none;
 }
 
 .options {
