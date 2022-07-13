@@ -29,8 +29,6 @@
 }
 
 .select {
-    display: flex;
-    justify-content: center;
     margin: 1rem 0;
     width: 4rem;
     background-color: #dd1630;
@@ -42,6 +40,8 @@
     border-radius: 0;
     text-align: center;
     -webkit-appearance: none;
+    text-align-last:center;
+    -moz-text-align-last: center;
 }
 
 .options {

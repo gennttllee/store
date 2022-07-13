@@ -98,6 +98,8 @@
   -webkit-appearance: none;
   height: 3rem;
   outline: none;
+  text-align-last:center;
+  -moz-text-align-last: center;
 }
 
 .options {
