@@ -10,6 +10,7 @@ import Cookies from 'js-cookie';
 import { useSnackbar } from 'notistack';
 import { PaystackButton } from 'react-paystack';
 import emailjs from '@emailjs/browser';
+import Link from 'next/link';
 
 
 function PlaceOrder() {
@@ -149,11 +150,20 @@ function PlaceOrder() {
         onClose: handlePaystackCloseAction,
     };
 
+
     return (
         <Layouts>
+            <div className={styles.home}>
+                <div className={styles.child}>
+                    <Link href='/Loading'>
+                        <a>Home</a>
+                    </Link>
+                    <p>Order Summary</p>
+                </div>
+            </div>
             <div className={styles.div}>
                 <h1 className={styles.h1}>Order summary</h1>
-                <h3 className={styles.h3}>Customer Info</h3>
+                <h3 className={styles.h2}>Customer Info</h3>
                 <table className={styles.table} >
                     <tr className={styles.tr}>
                         <th className={styles.th9}> full name</th>
@@ -168,7 +178,7 @@ function PlaceOrder() {
                         <td>{cart.shippingAddress.city}</td>
                     </tr>
                 </table>
-                <h3 className={styles.h3}>Payment Info</h3>
+                <h3 className={styles.h2}>Payment Info</h3>
                 <table className={styles.table} >
                     <tr>
                         <th className={styles.th2}>Payment Method</th>
@@ -177,7 +187,7 @@ function PlaceOrder() {
                         <td>{cart.paymentMethod}</td>
                     </tr>
                 </table>
-                <h3 className={styles.h3}>Order info</h3>
+                <h3 className={styles.h2}>Order info</h3>
                 {cart.cartItems.map((item) => <table className={styles.table} key={item._id}>
                     <tr className={styles.tr}>
                         <th className={styles.th}> image</th>
@@ -190,14 +200,14 @@ function PlaceOrder() {
                         <td> <Image loader={() => item.image} src={item.image} alt='my' width={60} height={50} /></td>
                         <td>{item.name}</td>
                         <td> {item.quantity}</td>
-                    {item.size ?     <td> {item.size}</td> : <td>{item.color}</td>}
+                        {item.size ? <td> {item.size}</td> : <td>{item.color}</td>}
                         <td> <span className={styles.naira}>N</span>{item.price}</td>
                     </tr>
                 </table>)}
-                <h3><span className={styles.h3}>Items</span> : {cart.cartItems.reduce((a, c) => a + c.quantity * 1, 0)} </h3>
-                <h3 ><span className={styles.h3}>Amount</span> :  <span className={styles.naira}>N</span>{itemsPrice}</h3>
-                <h3><span className={styles.h3}>Delivery</span> : <span className={styles.naira}>N</span>{shippingPrice}</h3>
-                <h2><span className={styles.h3}>Total</span> :  <span className={styles.naira}>N</span>{totalPrice}</h2>
+                <h3 className={styles.h3}> Items : {cart.cartItems.reduce((a, c) => a + c.quantity * 1, 0)} </h3>
+                <h3 className={styles.h3}>Amount :  <span className={styles.naira}>N</span>{itemsPrice}</h3>
+                <h3 className={styles.h3}> Delivery : <span className={styles.naira}>N</span>{shippingPrice}</h3>
+                <h2 className={styles.h3}> Total :  <span className={styles.naira}>N</span>{totalPrice}</h2>
                 {visible ? <PaystackButton
                     className={loading ? styles.load : styles.btn}
                     {...componentProps} /> : <button className={loading ? styles.load : styles.btn} onClick={checkout}>{loading ? 'Loading...' : 'Place Order'}</button>}

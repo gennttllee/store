@@ -9,7 +9,7 @@ import { useSnackbar } from 'notistack';
 import styles from '../styles/register.module.css'
 
 export default function Register() {
-    const {enqueueSnackbar, closeSnackbar} = useSnackbar();
+    const { enqueueSnackbar, closeSnackbar } = useSnackbar();
     const router = useRouter();
     const { dispatch, state } = useContext(Store)
     const [email, setEmail] = useState();
@@ -23,14 +23,14 @@ export default function Register() {
         e.preventDefault()
         closeSnackbar()
         if (confirm !== password) {
-            enqueueSnackbar('Password does not match', {variant: 'error'} );
+            enqueueSnackbar('Password does not match', { variant: 'error' });
         } else {
             setLoading(true)
             try {
                 const { data } = await axios.post('/api/users/register', { email, password, name });
                 dispatch({ type: 'USER_LOGIN', payload: data })
                 Cookies.set('userInfo', JSON.stringify(data))
-                enqueueSnackbar('Registered successfully', {variant: 'success'} );
+                enqueueSnackbar('Registered successfully', { variant: 'success' });
                 setLoading(false)
                 if (state.cart.cartItems.length >= 1) {
                     router.push('/Shipping');
@@ -39,25 +39,29 @@ export default function Register() {
                 }
             } catch (error) {
                 setLoading(false)
-                enqueueSnackbar(error.message, {variant: 'error'} );
+                enqueueSnackbar(error.message, { variant: 'error' });
             };
         }
     };
 
     return (
         <Layouts title='register'>
+            <div className={styles.home}>
+                <div className={styles.child}>
+                    <Link href='/Loading'>
+                        <a>Home</a>
+                    </Link>
+                    <p>Create an account</p>
+                </div>
+            </div>
             <div className={styles.div}>
                 <form className={styles.form} onSubmit={submitHandler}>
-                <h1 className={styles.h1}>Register</h1>
-                <label className={styles.label}>First name</label>
-                    <input className={styles.input} onChange={(e) => setName(e.target.value)} type='text' placeholder='first name' required></input>
-                    <label className={styles.label}>Email address</label>
-                    <input className={styles.input} onChange={(e) => setEmail(e.target.value)} type='email' placeholder='email' required></input>
-                    <label className={styles.label}>Password</label>
-                    <input className={styles.input} onChange={(e) => setPassword(e.target.value)} type='password' minLength='8' placeholder='password' required></input>
-                    <label className={styles.label}>Confirm password</label>
-                    <input className={styles.input} onChange={(e) => setConfirm(e.target.value)} type='password' minLength='8'  placeholder=' Confirm password' required></input>
-                    <button className={ loading ? styles.load : styles.btn} type='submit'>{loading ? 'Loading...' : 'Register'}</button>
+                    <h1 className={styles.h1}>Create an account</h1>
+                    <input className={styles.input} onChange={(e) => setName(e.target.value)} type='text' placeholder='First name' required></input>
+                    <input className={styles.input} onChange={(e) => setEmail(e.target.value)} type='email' placeholder='Email' required></input>
+                    <input className={styles.input} onChange={(e) => setPassword(e.target.value)} type='password' minLength='8' placeholder='Password' required></input>
+                    <input className={styles.input} onChange={(e) => setConfirm(e.target.value)} type='password' minLength='8' placeholder=' Confirm password' required></input>
+                    <button className={loading ? styles.load : styles.btn} type='submit'>{loading ? 'Loading...' : 'Register'}</button>
                 </form>
                 <p>Already have an account ? <Link href='/Login'>
                     <a className={styles.anchor}>Login here</a>

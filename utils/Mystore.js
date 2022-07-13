@@ -9,7 +9,8 @@ const initialState = {
       shippingAddress: Cookies.get('shippingAddress') ? JSON.parse(Cookies.get('shippingAddress')) : {},
       paymentMethod: Cookies.get('paymentMethod') ? Cookies.get('paymentMethod') : ''
    },
-   userInfo: Cookies.get('userInfo') ? JSON.parse(Cookies.get('userInfo')) : ''
+   userInfo: Cookies.get('userInfo') ? JSON.parse(Cookies.get('userInfo')) : '',
+   favorites: Cookies.get('favorites') ? JSON.parse(Cookies.get('favorites')) : [],
 };
 
 
@@ -22,6 +23,13 @@ function reducer(state, action) {
             : [...state.cart.cartItems, newItem];
          Cookies.set('cartItems', JSON.stringify(cartItems))
          return { ...state, cart: { ...state.cart, cartItems } };
+      }
+      case 'ADD_FAVORITES': {
+         const newItem = action.payload;
+         const existItem = state.favorites.find((item) => item._id == newItem._id);
+         const cartItems = existItem ? state.favorites.filter(item => item._id !== existItem._id) : [...state.favorites, newItem];
+         Cookies.set('favorites', JSON.stringify(cartItems))
+         return { ...state, favorites:  cartItems};
       }
       case 'CART_REMOVE_ITEM': {
          const cartItems = state.cart.cartItems.filter(item => item._id !== action.payload._id);

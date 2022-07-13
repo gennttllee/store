@@ -8,7 +8,6 @@ import { Store } from '../../utils/Mystore';
 import { useContext, useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { useSnackbar } from 'notistack';
-import Load from '../../components/Load';
 
 
 export default function ProductScreen(props) {
@@ -18,16 +17,10 @@ export default function ProductScreen(props) {
     const { product } = props;
     const [loader, setLoader] = useState()
     const [loading, setLoading] = useState()
-    const [load, setLoad] = useState(false)
     const [show, setShow] = useState(false)
     const [size, setSize] = useState()
     let stock = '';
 
-    useEffect(() => {
-        if (load === true) {
-            setLoad(false)
-        }
-    }, [router.query]);
 
     if (!product) {
         return <div>Product not found</div>
@@ -63,62 +56,64 @@ export default function ProductScreen(props) {
     const mySize = (e) => {
         setSize(e.target.value)
     }
-    
+
+    const finder = (product) => {
+        const req = state.cart.cartItems.find(item => {
+            return item._id === product._id
+        })
+
+        if (req) {
+            return req.quantity
+        } else {
+            return 0;
+        }
+    }
+
 
     return (
         <Layouts title={product.name}>
-            {show ? <div className={styles.show}>
-                <button className={styles.back} onClick={() => setShow(false)}>back</button>
-                <Image loader={() => product.image} src={product.image} alt='image' width={500} height={600}></Image>
-            </div> : <div>
-                <h1 className={styles.product}>PRODUCT INFO</h1>
-                <div className={styles.container}>
-                    <div onClick={() => setShow(true)} className={styles.img}>
-                        <Image loader={() => product.image} src={product.image} alt='image' width={200} height={250}></Image>
+            <div className={styles.home}>
+                <div className={styles.child}>
+                    <Link href='/Loading'>
+                        <a>Home</a>
+                    </Link>
+                    <p>{product.name}</p>
+                </div>
+            </div>
+            <div className={styles.shade}>
+                <div className={styles.center}>
+                    <Image src={product.image} width={500} height={600} alt='image' />
+                </div>
+                <div className={styles.column}>
+                    <div>
+                        <h1 className={styles.h1}>{product.name}</h1>
+                        <p>{product.description}</p>
+                        <p> <span className={styles.naira}>N</span>{product.price}</p>
+                        <p> Color : {product.color}</p>
+                        <p>Category : {product.category}</p>
+                        <p>hurry up only {product.countInStock} items left in stock</p>
+                        <div>
+                            <span className={`fa-brands fa-instagram ${styles.icon3}`}></span>
+                            <span className={`fa-brands fa-facebook ${styles.icon4}`}></span>
+                            <span className={`fa-brands fa-twitter ${styles.icon5}`}></span>
+                            <span className={`fa-brands fa-whatsapp ${styles.icon6}`}></span>
+                        </div>
+
                     </div>
-                    <div className={styles.floater}>
-                        <table className={styles.table}>
-                            <tr className={styles.tr}>
-                                <th className={styles.th}>NAME</th>
-                                <td className={styles.td}>{product.name}</td>
-                            </tr>
-                            <tr>
-                                <th className={styles.th}>PRICE</th>
-                                <td className={styles.td}><span className={styles.span}>N</span>{product.price}</td>
-                            </tr>
-                            <tr>
-                                <th className={styles.th}>COLOR</th>
-                                <td className={styles.td}>{product.color}</td>
-                            </tr>
-                            <tr>
-                                <th className={styles.th}>DESCRIPTION</th>
-                                <td className={styles.td}>{product.description}</td>
-                            </tr>
-                            <tr>
-                                <th className={styles.th}>SEX</th>
-                                <td className={styles.td}>{product.gender}</td>
-                            </tr>
-                            {product.size.length > 1  &&  <tr>
-                                <th className={styles.th}>SIZE</th>
-                                {product.size.length > 1 && <td className={styles.td}>
-                                    <select className={styles.select} onChange={mySize}>
-                                        {product.size.map(item => <option key={item.index}>{item}</option>)}
-                                    </select>
-                                </td>}
-                            </tr>}
-                            <tr>
-                                <th className={styles.th}>CATEGORY</th>
-                                <td className={styles.td}>{product.category}</td>
-                            </tr>
-                            <tr>
-                                <th className={styles.th}>STATUS</th>
-                                <td className={styles.td}>{stock}</td>
-                            </tr>
-                        </table>
-                        <button onClick={() => addToCart(product)} className={loading ? styles.loading : styles.btn}>{loading ? 'Loading...' : 'add to cart'}</button>
+                    <div>
+                        <div className={styles.flex}>
+                            <p>Size :</p>
+                            {product.size && <select className={styles.select}>
+                                {product.size.map((item, index) => <option className={styles.options} key={index}>{item}</option>)}
+                            </select>}
+                        </div>
+                        <div className={styles.dam}>
+                            <p className={styles.ola}>{finder(product)}</p>
+                            <button className={styles.btn9} onClick={() => addToCart(product)}>add to cart</button>
+                        </div>
                     </div>
                 </div>
-            </div>}
+            </div>
         </Layouts>
     )
 }

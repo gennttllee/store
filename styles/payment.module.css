@@ -1,52 +1,75 @@
 .input{
+    display: block;
     width: 2rem;
     height: 2rem;
-    margin: 1rem 1rem 1rem 0;
-    accent-color: brown;
+    margin: 1rem 0;
+    accent-color: #dd1630;
+}
+
+.home{
+    width: 100%;
+    margin: 0 auto 3rem;
+    background-color: rgba(128, 128, 128, 0.087);
+    height: 3rem;
+}
+
+.made{
+    width: 70%;
+    height: 100%;
+    justify-content: flex-start;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    font-size: 1.3rem;
+    gap: 2rem;
 }
 
 .label{
     font-size: 1.5rem;
+    display: block;
 }
 
 .btn{
-    background-color: red;
+    background-color: #dd1630;
     border: none;
     width: 18rem;
-    height: 2.5rem;
+    height: 3rem;
     font-size: 1.3rem;
     color: white;
     margin: 2rem auto 1rem;
 }
 
 .load{
-    background-color: antiquewhite;
+    background-color: rgba(128, 128, 128, 0.087);
     border: none;
     width: 18rem;
-    height: 2.5rem;
+    height: 3rem;
     font-size: 1.3rem;
     color: black;
     margin: 2rem auto 1rem;
 }
 
 .child{
+    text-align: left;
     display: flex;
     justify-content: flex-start;
-    width: 70%;
-    margin: 0 auto;
+    width: 100%;
+    margin:  0 ;
     align-items: center;
-    padding-left: 10%;
+    gap: 2rem;
 }
-
 
 .div{
     text-align: center;
     width: 100%;
 }
 
-.h1{
-    color: brown;
-    padding-top: 3rem;
+.div1{
+    width: 17rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .anchor{
@@ -54,9 +77,10 @@
     font-weight: bold;
 }
 
-@media screen and (min-width : 800px) {
-    .child{
-        width: 60%;
-        padding-left: 20%;
+
+@media screen and (max-width : 1000px) {
+    .made{
+        width: 100%;
+        padding: 0 1rem;
     }
 }

@@ -1,52 +1,182 @@
+.span {
+  display: flex;
+  justify-content: space-between;
+  z-index: 2;
+}
+
 .card {
-width: 10rem;
+  position: relative;
+  transition: all ease 1s;
 }
 
-.link{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    height: 90%;
-  }
-
-  .mark {
-    align-items: center;
-    background-color: transparent;
-    color: black;
-    border: none;
-    height: 10%;
-    width: 100%;
-    font-size: 1.4rem;
-  }
-
-  .imagers {
-    width: 9rem;
-  }
-
-.name {
-    margin: 0;
-    text-align: center;
-
-}
-
-.price {
-    font-size: 1.3rem;
-    margin: 0 0 1rem;
+.p {
+  background-color: rgba(128, 128, 128, 0.157);
+  width: fit-content;
+  padding: .4rem 2rem;
+  text-transform: uppercase;
 }
 
 .naira {
-    text-decoration-style: double;
-    text-decoration-line: line-through;
-    color: green;
+  color: green;
+  text-decoration-style: double;
+  text-decoration-line: line-through;
 }
 
-.div{
-    margin: 1.5rem auto ;
-    text-align: center;
-    width: 10rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 15rem;
+.name {
+  margin: 1rem 0 .5rem;
+}
+
+.price {
+  margin: 0;
+  font-weight: light;
+  font-size: 1.3rem;
+}
+
+.heart {
+  font-size: 1.3rem;
+  margin-top: 1.4rem;
+  padding: 0;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.size {
+  text-transform: capitalize;
+}
+
+.fave {
+  z-index: 2;
+  background-color: transparent;
+  border: none;
+}
+
+.hate {
+  font-size: 1.3rem;
+  margin-top: 1.4rem;
+  padding: 0;
+  color: #dd1630;
+}
+
+.die {
+  display: none;
+}
+
+.eye {
+  display: block;
+  text-align: center;
+  margin: 1rem auto 70%;
+  background-color: #dd1630;
+  color: white;
+  border: none;
+  outline: none;
+  font-size: 1.5rem;
+  padding: .7rem;
+  border-radius: 100%;
+}
+
+.wrapper {
+  background-color: white;
+  padding: .5rem;
+}
+
+.select {
+  display: block;
+  margin: 1rem 0;
+  width: 4rem;
+  background-color: #dd1630;
+  color: white;
+  border: none;
+  height: 3rem;
+  text-align: center;
+  outline: none;
+}
+
+.options {
+  background-color: white;
+  color: black;
+}
+
+.options:checked {
+  background-color: #dd1630;
+  color: white;
+}
+
+
+
+.dilly {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  margin: 1rem 0;
+  position: absolute;
+  top: 40%;
+  height: fit-content;
+  z-index: 1;
+  transition: all ease 1s;
+  animation: scaler;
+  animation-duration: .4s;
+}
+
+@keyframes scaler {
+  from {
+    transform: scale(0.7)
+  }
+
+  ;
+
+  to {
+    transform: scale(1)
+  }
+
+  ;
+}
+
+.dilly1 {
+  display: none;
+  transition: all ease 1s;
+}
+
+.btn9 {
+  background-color: #dd1630;
+  color: white;
+  height: 3rem;
+  border: none;
+  width: 70%;
+  float: right;
+  text-transform: uppercase;
+}
+
+.dam {
+  display: flex;
+  justify-content: space-between;
+}
+
+.ola {
+  background-color: rgba(128, 128, 128, 0.229);
+  height: 3rem;
+  width: 24%;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+@media screen and (max-width : 600px) {
+  .dilly1 {
+    width: 100%;
+    margin: 1rem 0;
+    display: block;
+    transition: all ease 1s;
+  }
+
+  .eye {
+    display: none;
+  }
 }

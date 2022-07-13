@@ -6,6 +6,9 @@ import Product from '../models/Product'
 import { useContext, useState } from 'react';
 import { Store } from '../utils/Mystore';
 import { useSnackbar } from 'notistack';
+import Link from 'next/link';
+import Load from '../components/Load';
+import {useRouter} from 'next/router';
 
 
 export default function Bags(props) {
@@ -13,49 +16,78 @@ export default function Bags(props) {
     closeSnackbar()
     const { products } = props;
     const { dispatch, state } = useContext(Store);
-    const [loading, setLoading] = useState()
+    const [load, setLoad] = useState()
+    const router = useRouter();
 
     const bags = products.filter(item => {
         return item.category === 'bags';
     });
 
     const addToCart = async (product, index) => {
-        setLoading(index)
         const existItem = state.cart.cartItems.find(x => x._id === product._id);
         const quantity = existItem ? parseInt(existItem.quantity) + 1 : 1;
         const size = 41
         if (product.countInStock < quantity) {
             enqueueSnackbar('Product is out of stock', { variant: 'error' });
             closeSnackbar()
-            setLoading()
         } else {
             if (product.category === 'slippers' || product.category === "shoes") {
                 dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity, size } })
-                setLoading()
             } else {
                 dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity, size: '' } })
-                setLoading()
             }
         }
     }
 
+    const finder = (product) => {
+        const req = state.cart.cartItems.find(item => {
+            return item._id === product._id
+        })
+
+        if (req) {
+            return req.quantity
+        } else {
+            return 0;
+        }
+    }
+
+    const favorites = (product) => {
+        dispatch({ type: 'ADD_FAVORITES', payload: product })
+    }
+
+    const pained = (product, index) => {
+        setLoad(index)
+        router.push(`/product/${product.slug}`)
+    }
+
 
     return <Layouts>
-        <div>
-            <h3 className={styles.h2}>Bags</h3>
-            <div className={styles.main}>
-                {bags.map((product, index) => <Card
-                    key={product.name}
-                    image={product.image}
-                    name={product.name}
-                    price={product.price}
-                    link={`/product/${product.slug}`}
-                    click={() => addToCart(product, index)}
-                    btn={loading === index ? styles.load : styles.btn}
-                    btnName={loading === index ? 'Loading...' : 'add to cart'}
-                />)}
+        <div className={styles.home}>
+            <div className={styles.child}>
+                <Link href='/Loading'>
+                    <a>Home</a>
+                </Link>
+                <p>Bags</p>
             </div>
         </div>
+        <section className={styles.container1}>
+            <div className={styles.float}>
+                {bags.map((product, index) => load === index ? <Load /> : <Card
+                    key={product._id}
+                    index={index}
+                    icon={`fa fa-heart ${Object.values(state.favorites).includes(product) ? styles.hate : styles.heart}`}
+                    link={`/product/${product.slug}`}
+                    image={product.image}
+                    name={product.name}
+                    clickedMe={() => favorites(product)}
+                    shadow={() => pained(product, index)}
+                    pain={finder(product)}
+                    price={product.price}
+                    size={product.size}
+                    click={() => addToCart(product, index)}
+                />)}
+            </div>
+        </section>
     </Layouts>
 };
 

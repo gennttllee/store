@@ -1,34 +1,46 @@
 .h1{
-    margin: 1rem auto ;
+    margin: 0  0 2rem;
     font-weight: bold;
-    color: brown;
-    text-transform: uppercase;
-    margin-bottom: 1rem;
+}
+
+.home{
+    width: 100%;
+    margin: 0 auto 2rem;
+    background-color: rgba(128, 128, 128, 0.087);
+    height: 3rem;
+}
+
+.child{
+    width: 70%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    font-size: 1.3rem;
+    gap: 2rem;
 }
 
 .h3{
-    color:rgb(121, 90, 50);
-    text-align: left;
-    margin-bottom: -5px;
-    margin-top: 1rem;
+    width: 100%;
+    display: block;
+    text-align: center;
+    margin: 1rem auto;
+    font-weight: normal;
 }
 
 .div{
-    padding: 5px;
-    text-align: center;
-}
-
-@keyframes movers {
-    from { opacity: 0};
-    to { opacity: 1};
+    width: 70%;
+    margin: 0 auto;
 }
 
 .btn{
+    display: block;
     width: 12rem;
+    margin: 0 auto;
     text-align: center;
-    height: 2.5rem;
+    height: 3rem;
     border: none;
-    background-color: red;
+    background-color: #dd1630;
     color: white;
     font-size: 1.3rem;
 }
@@ -40,11 +52,13 @@
 }
 
 .load{
+    display: block;
     width: 12rem;
+    margin: 0 auto;
     text-align: center;
-    height: 2.5rem;
+    height: 3rem;
     border: none;
-    background-color: antiquewhite;
+    background-color: rgba(128, 128, 128, 0.087);
     color: black;
     font-size: 1.3rem;
 }
@@ -52,30 +66,38 @@
 .table {
     width: 100%;
     text-align: left;
-    box-shadow: 1px 5px 5px 1px rgba(0, 0, 0, 0.144);
+    box-shadow: 1px 3px 3px 1px rgba(0, 0, 0, 0.073);
     margin: 15px 0;
     padding: 5px;
-    background-color: white;
-    position: relative;
-    animation: movers;
-    animation-duration: 2s;
 }
 
 .th {
     width: 17%;
-    color: brown;
+    font-weight: normal;
 }
 
 .th9 {
     width: 20%;
-    color: brown;
+    font-weight: normal;
 }
 
 .th2{
-    color: brown;
+    font-weight: normal;
 }
 
 .th1 {
     width: 40%;
-    color: brown;
+    font-weight: normal;
+}
+
+@media screen and (max-width : 1000px) {
+    .child{
+        width: 100%;
+        padding: 0 1rem;
+    }
+
+    .div{
+        width: 100%;
+        padding: 0 1rem;
+    }
 }

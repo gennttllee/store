@@ -1,11 +1,79 @@
-.main{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+.home {
+    width: 100%;
+    margin: 0 auto 3rem;
+    background-color: rgba(128, 128, 128, 0.087);
+    height: 3rem;
 }
 
-.h2{
+.biggy {
+    display: block;
     text-align: center;
-    margin: 2rem auto .1rem;
-    color:brown;
+    font-size: 6rem;
+    margin: 30% auto 0;
+}
+
+.anchor{
+    color: blue;
+}
+
+
+.div1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.float {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+    grid-gap: 1.5rem;
+}
+
+.heart {
+    font-size: 1.3rem;
+    margin-top: 1.4rem;
+    padding: 0;
+    z-index: 2;
+}
+
+.hate {
+    font-size: 1.3rem;
+    margin-top: 1.4rem;
+    padding: 0;
+    color: #dd1630;
+    z-index: 2;
+}
+
+.child {
+    width: 70%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    font-size: 1.3rem;
+    gap: 2rem;
+}
+
+.container1 {
+    margin: 1rem auto 5rem;
+    width: 70%;
+}
+
+@media screen and (max-width : 600px) {
+    .float {
+        grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+    }
+}
+
+
+@media screen and (max-width : 1000px) {
+    .child {
+        width: 100%;
+        padding: 0 1rem;
+    }
+
+    .container1 {
+        width: 100%;
+        padding: 0 1rem;
+    }
 }

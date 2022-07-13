@@ -1,37 +1,77 @@
 .table {
     width: 100%;
-    text-align: left;
 }
+
+.home {
+    width: 100%;
+    margin: 0 auto 3rem;
+    background-color: rgba(128, 128, 128, 0.087);
+    height: 3rem;
+}
+
+.child {
+    width: 70%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    font-size: 1.3rem;
+    gap: 2rem;
+}
+
+.div {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.container {}
 
 
 .ul {
-    width: 100%;
-    background-color: white;
-    box-shadow: 1px 5px 5px 1px rgba(0, 0, 0, 0.144);
-    margin: 2rem  0;
-    padding: 5px 5px ;
-    position: relative;
-    animation: mover;
-    animation-duration: 1s;
+    display: flex;
+    justify-content: space-between;
+    padding: 3rem 0;
+    border: 1px solid rgba(128, 128, 128, 0.4);
+    border-width:  0 0 1px ;
+    margin: 0;
 }
 
-.back{
-    background-color: red;
+.images {
+    display: flex;
+    justify-content: flex-start;
+    gap: 2rem;
+    align-items: center;
+    width: 70%;
+}
+
+.tiny {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.para {
+    align-self: flex-end;
+}
+
+.h1 {
+    margin: 0 0;
+}
+
+.back {
+    background-color: #dd1630;
     border: none;
     color: white;
     width: 7rem;
     height: 2rem;
     font-size: 1.2rem;
-    margin: 0 .1rem .5rem ;
+    margin: 0 .1rem .5rem;
     display: block;
 }
 
-@keyframes mover {
-    from {background-color: transparent; opacity: 0};
-    to { opacity: 1};
-}
-
 .biggy {
+    display: block;
+    text-align: center;
     font-size: 6rem;
     margin: 30% auto 0;
 }
@@ -41,51 +81,40 @@
 }
 
 .div1 {
-    text-align: center;
-    height: 80vh;
-}
-
-.th {
-    color: brown;
-    width: 16%;
-}
-
-.th2 {
-    color: brown;
-    width: 10%;
-}
-.th3 {
-    color: brown;
-    width: 25%;
-}
-
-.th1 {
-    color: brown;
-    width: 45%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .naira {
     color: green;
     text-decoration-line: line-through;
     text-decoration-style: double;
+    margin-left: 1rem;
+}
+
+.span1{
+    margin-left: 1rem;
 }
 
 .h2 {
     text-align: left;
-    margin: 2rem 1rem 1rem;
+    font-size: 1.3rem;
+    margin: 2rem 1rem 1rem 0;
 }
 
 .h3 {
+    font-size: 1.3rem;
     text-align: left;
-    margin: 1rem 1rem 2rem;
+    margin: 1rem 1rem 2rem 0;
 }
 
 .btn {
     width: 12rem;
     text-align: center;
-    height: 2.5rem;
+    height: 3rem;
     border: none;
-    background-color: red;
+    background-color: #dd1630;
     color: white;
     font-size: 1.3rem;
 }
@@ -93,29 +122,36 @@
 .load {
     width: 12rem;
     text-align: center;
-    height: 2.5rem;
+    height: 3rem;
     border: none;
-    background-color: antiquewhite;
+    background-color: rgba(128, 128, 128, 0.087);
     color: black;
     font-size: 1.3rem;
 }
 
 .btn1 {
-    width: 100%;
-    text-align: center;
+    background-color: rgba(128, 128, 128, 0.399);
     height: 2rem;
-    margin: 10px 0 -.3rem;
+    padding: 1rem;
     border: none;
-    background-color: antiquewhite;
-    color:brown;
+    color: white;
     font-size: 1.3rem;
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 100%;
 }
 
 .select {
+    display: block;
+    margin: .5rem 0;
+    width: 4rem;
+    background-color: rgba(128, 128, 128, 0.087);
+    color: black;
     border: none;
-    font-size: 1.1rem;
-    background-color: transparent;
+    height: 2rem;
+    text-align: center;
+    outline: none;
 }
 
 .select:focus {
@@ -123,14 +159,66 @@
     outline: none;
 }
 
-.h1 {
-    margin: 15px auto;
-    text-align: center;
-    font-weight: bold;
-    color: brown;
+.options {
+    background-color: white;
+    color: black;
 }
 
-.div {
-    padding: 5px;
-    text-align: center;
+.options:checked {
+    background-color: #dd1630;
+    color: white;
+}
+
+.flex {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+@media screen and (max-width : 600px) {
+    .tiny{
+        flex-direction: column;
+    }
+
+    .para{
+        align-self: flex-start;
+    }
+
+    .images{
+        gap: 10%;
+    }
+
+    .h1{
+        font-size: 1.2rem;
+    }
+
+    .select{
+        margin: 0;
+    }
+
+    .color{
+        margin: .5rem 0;
+    }
+
+    .ul{
+        padding: 2rem 0;
+    }
+}
+
+
+@media screen and (max-width : 1000px) {
+    .child {
+        width: 100%;
+        padding: 0 1rem;
+    }
+
+    .div{
+        width: 100%;
+        padding: 0 1rem;
+    }
+
+    .images{
+        width: 80%;
+    }
+
 }

@@ -4,7 +4,8 @@ import { useState } from 'react';
 import axios from 'axios';
 import emailjs from '@emailjs/browser';
 import { useSnackbar } from 'notistack';
-import {useRouter} from 'next/router'
+import { useRouter } from 'next/router'
+import Link from 'next/link';
 
 export default function Forgotten() {
     const [loading, setLoading] = useState(false)
@@ -93,6 +94,14 @@ export default function Forgotten() {
 
     return (
         <Layouts title='login'>
+            <div className={styles.home}>
+                <div className={styles.child}>
+                    <Link href='/Loading'>
+                        <a>Home</a>
+                    </Link>
+                    <p>Reset Password</p>
+                </div>
+            </div>
             <div className={styles.div}>
                 {newPassword ? <form onSubmit={finalSubmit}>
                     <label className={styles.label}>Enter New Password</label>
@@ -105,7 +114,7 @@ export default function Forgotten() {
                         <button className={styles.btn1} onClick={backer}>Back</button>
                         <label className={styles.label}>Please check your mail for OTP</label>
                         <input onChange={(e) => setMyOtp(e.target.value)} className={styles.input} type='number' placeholder='Valid OTP' required></input>
-                        <button type="submit" className={ loading ? styles.btn2 : styles.btn} >{loading ? 'Loading...' : 'Continue'}</button>
+                        <button type="submit" className={loading ? styles.btn2 : styles.btn} >{loading ? 'Loading...' : 'Continue'}</button>
                     </form>}</div>}
             </div>
         </Layouts>

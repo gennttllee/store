@@ -38,9 +38,17 @@ export default function Payment() {
 
     return (
         <Layouts>
+            <div className={styles.home}>
+                <div className={styles.made}>
+                    <Link href='/Loading'>
+                        <a>Home</a>
+                    </Link>
+                    <p>Payment Method</p>
+                </div>
+            </div>
             <div className={styles.div}>
                 <h1 className={styles.h1}>Payment Method</h1>
-                <div className={styles.div}>
+                <div className={styles.div1}>
                     <div className={styles.child}>
                         <input className={styles.input} onChange={(e) => setPayment(e.target.value)} type='radio' name="payment" value='cash' checked={payment === 'cash'}></input>
                         <label className={styles.label}>Cash on delivery</label>

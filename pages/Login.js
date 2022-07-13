@@ -9,12 +9,12 @@ import { useSnackbar } from 'notistack';
 import styles from '../styles/login.module.css'
 
 export default function Login() {
-    const [loading, setLoading]= useState(false)
+    const [loading, setLoading] = useState(false)
     const router = useRouter();
     const { dispatch, state } = useContext(Store)
     const { enqueueSnackbar, closeSnackbar } = useSnackbar();
     const { userInfo, cart } = state;
-    const [show, setShow] = useState(false)
+    const [show, setShow] = useState(true)
     const mark = cart.cartItems.reduce((a, c) => a + c.quantity * 1, 0)
     useEffect(() => {
         if (userInfo) {
@@ -51,19 +51,25 @@ export default function Login() {
 
     return (
         <Layouts title='login'>
+            <div className={styles.home}>
+                <div className={styles.child}>
+                    <Link href='/Loading'>
+                        <a>Home</a>
+                    </Link>
+                    <p>Login to your account</p>
+                </div>
+            </div>
             <div className={styles.div}>
                 <form className={styles.form} onSubmit={submitHandler}>
-                <h1 className={styles.h1}>Login</h1>
-                <label className={styles.label}>Email address</label>
-                    <input className={styles.input1} onChange={(e) => setEmail(e.target.value)} type='email' placeholder='email' required></input>
-                    <label className={styles.label}>Password</label>
-                    <input className={styles.input1} onChange={(e) => setPassword(e.target.value)} type='password' placeholder='password' required></input>
-                    <button className={ loading? styles.load :styles.btn} type='submit'>{loading ? 'Loading...' : 'Login'}</button>
+                    <h1 className={styles.h1}>Login to your account</h1>
+                    <input className={styles.input1} onChange={(e) => setEmail(e.target.value)} type='email' placeholder='Email' required></input>
+                    <input className={styles.input1} onChange={(e) => setPassword(e.target.value)} type='password' placeholder='Password' required></input>
+                    <button className={loading ? styles.load : styles.btn} type='submit'>{loading ? 'Loading...' : 'Login'}</button>
                 </form>
                 <p>Dont have an account ? <Link href='/Register'>
                     <a className={styles.anchor}>Register here</a>
                 </Link></p>
-                {show &&  <p>Forgotten your password ? <Link href='/Forgotten'>
+                {show && <p>Forgotten your password ? <Link href='/Forgotten'>
                     <a className={styles.anchor1}>Click here</a>
                 </Link></p>}
             </div>

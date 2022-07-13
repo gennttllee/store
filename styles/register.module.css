@@ -1,29 +1,38 @@
 .input{
-    width: 70%;
-    height: 3rem;
-    margin: 1rem;
-    padding-left: 1rem;
+    display: block;
+    margin: 2rem auto ;
+    width: 31rem;
+    height: 3.7rem;
     border: none;
-    outline: solid 2px orange;
+    outline: none;
+    background-color: rgba(128, 128, 128, 0.087);
+    padding-left: 1rem;
+}
+
+.home{
+    width: 100%;
+    margin: 0 auto 3rem;
+    background-color: rgba(128, 128, 128, 0.087);
+    height: 3rem;
+}
+
+.child{
+    width: 70%;
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    font-size: 1.3rem;
+    gap: 2rem;
 }
 
 .input:focus{
-    outline-color: red;
-    border-color: red;
+    outline-color: black;
+    border: 1px solid black;
 }
 
 .div{
     text-align: center;
-    padding: 1px 0 0;
-    height: 80vh;
-    position: relative;
-    animation: movers;
-    animation-duration: 1s;
-}
-
-@keyframes movers {
-    from { opacity: 0};
-    to { opacity: 1};
 }
 
 .label{
@@ -34,25 +43,25 @@
 }
 
 .btn{
+    display: block;
     width: 13rem;
-    height: 2.5rem;
+    height: 3rem;
     border: none;
-    background-color: red;
+    background-color: #dd1630;
     color: white;
     font-size: 1.3rem;
-    margin: 1rem auto 0;
-    display: block;
+    margin: 3rem auto 0;
 }
 
 .load{
     display: block;
     width: 13rem;
-    height: 2.5rem;
+    height: 3rem;
     border: none;
-    background-color: antiquewhite;
+    background-color: rgba(128, 128, 128, 0.087);
     color: black;
     font-size: 1.3rem;
-    margin: 1rem auto 0;
+    margin: 3rem auto 0;
 }
 
 .anchor{
@@ -63,7 +72,14 @@
     margin: 2rem auto 1rem;
 }
 
-.h1{
-    text-transform: uppercase;
-    color: brown;
+
+@media screen and (max-width : 600px) {
+    .child{
+        width: 100%;
+        padding: 0 1rem;
+    }
+
+    .input1{
+        width: 70%;
+    }
 }

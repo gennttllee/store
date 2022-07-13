@@ -9,40 +9,72 @@ import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Load from '../components/Load';
 
-
 function Layouts({ title, children }) {
     const router = useRouter();
     const { dispatch, state } = useContext(Store)
     const { userInfo } = state;
-    const mark = state.cart.cartItems.reduce((a, c) => a + c.quantity * 1, 0)
-    const [loading, setLoading] = useState(false)
+    const [show, setShow] = useState(true)
+    const [toggle, setToggle] = useState()
+    const [profile, setProfile] = useState(false)
+    const [load, setLoad] = useState(false)
+    const [bar, setBar] = useState(false)
 
-
-    const selectMe = (e) => {
-        if (e.target.value === 'logout') {
-            dispatch({ type: 'USER_LOGOUT' })
-            Cookies.remove('userInfo')
-            Cookies.remove('cartItems')
-            Cookies.remove('shippingAddress')
-            router.push('/Loading')
-        } else if (e.target.value === 'profile') {
-            setLoading(true)
-            router.push('/Profile')
-        } else if (e.target.value === 'dashboard') {
-            setLoading(true)
-            if (!userInfo.isAdmin) {
-                router.push('/History')
-            } else {
-                router.push('/Dashboard')
-            }
+    useEffect(() => {
+        window.addEventListener('scroll', controlNavbar)
+        return () => {
+            window.removeEventListener('scroll', controlNavbar)
         }
-    };
+    }, [show, router.query]);
+
+    const controlNavbar = () => {
+        if (window.scrollY > 200) {
+            setShow(false)
+        } else {
+            setShow(true)
+        }
+    }
+
+    const logged = () => {
+        if (!userInfo) {
+            router.push('/Login')
+        } else {
+            setProfile(!profile);
+        }
+    }
+
+    const out = () => {
+        dispatch({ type: 'USER_LOGOUT' })
+        Cookies.remove('userInfo')
+        Cookies.remove('cartItems')
+        Cookies.remove('shippingAddress')
+        router.push('/Loading')
+    }
+
+    useEffect(() => {
+        if (window.innerWidth > 1100) {
+            setBar(false)
+        }
+    }, [window.innerWidth]);
 
     useEffect(() => {
         if (!userInfo) {
             Cookies.remove('userInfo')
         }
     }, [userInfo]);
+
+    const toggler = (item) => {
+        if (toggle === item) {
+            setToggle();
+        } else {
+            setToggle(item)
+        }
+    }
+
+    const name = state.userInfo ? state.userInfo.name.slice(0, 5) : '';
+
+    const total = state.cart.cartItems.reduce((a, c) => {
+        return a + c.quantity
+    }, 0)
 
     return (
         <div className={styles.container}>
@@ -51,70 +83,175 @@ function Layouts({ title, children }) {
                 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0'></meta>
             </Head>
             <nav className={styles.navbar}>
-                <Link href='/Loading'>
-                    <a className={styles.brand}>
-                        <Image src='/images/ego.jpeg' alt='Logo' width={50} height={40} />
-                    </a>
-                </Link>
-                <ul className={styles.ul}>
-                    <li className={styles.li}>
-                        <Link href='/Cart'>
-                            <a>
-                            <span className='fas fa-shopping-cart'></span>
-                                : <span className={styles.spanner}>{mark}</span>
-                            </a>
-                        </Link>
-                    </li>
-                    <li>
-                        {userInfo ? <select className={styles.select} onChange={selectMe}>
-                            <option value={userInfo.name}>{userInfo.name}</option>
-                            <option value='dashboard'>dashboard</option>
-                            <option value='profile'>profile</option>
-                            <option value='logout'>Logout</option>
-                        </select> : <Link href='/Login'>
-                            <a>Login</a>
-                        </Link>}
-                    </li>
-                </ul>
-            </nav>
-            <div className={styles.main}>
-                {loading ? <Load /> : <main >{children}</main>}
-            </div>
-            <footer className={styles.footer}>
-                <p className={styles.p}>@ 2022 All rights reserved by slides by ego </p>
-                <div className={styles.divIcons}>
-                    <Link href='/'>
-                        <a>
-                            <i className={`fa-brands fa-instagram ${styles.icon}`}></i>
-                        </a>
-                    </Link>
-                    <Link href='/'>
-                        <a>
-                            <i className={`fa-brands fa-facebook-f ${styles.icon}`}></i>
-                        </a>
-                    </Link>
-                    <Link href='/'>
-                        <a>
-                            <i className={`fa-brands fa-twitter ${styles.icon}`}></i>
-                        </a>
-                    </Link>
-                    <Link href='https://wa.me/message/AY7AA5N2OIJSN1'>
-                        <a target='_blank'>
-                            <i className={`fa-brands fa-whatsapp ${styles.icon}`}></i>
-                        </a>
-                    </Link>
+                <div className={styles.contain1}>
+                    <div className={styles.row}>
+                        <p className={styles.p}> 24 Waverly Pl, New York, NY 10003   <span className={styles.span}>8-800-200-100 </span>  <span className={styles.span}> demo@demo.com</span></p>
+                        <p className={styles.p1}>
+                            <span className={`fa-brands fa-instagram ${styles.icon3}`}></span>
+                            <span className={`fa-brands fa-facebook ${styles.icon4}`}></span>
+                            <span className={`fa-brands fa-twitter ${styles.icon5}`}></span>
+                            <span className={`fa fa-inbox ${styles.icon3}`}></span>
+                        </p>
+                    </div>
                 </div>
-                <table className={styles.table}>
-                    <tr>
-                    <td><Image src='/images/verve.png' alt='image' width={70} height={50}/></td>
-                        <td><Image src='/images/pay.png' alt='image' width={70} height={50}/></td>
-                        <td><Image src='/images/master.png' alt='image' width={70} height={50}/></td>
-                        <td><Image src='/images/visa.jpg' alt='image' width={70} height={50}/></td>
-                    </tr>
-                </table>
-                <p>Created and powered by <Link href='https://www.mwprofile.com/'>
-                    <a target='_blank'><spa className={styles.mark}>Mark Williams</spa></a>
-                </Link></p>
+                <div className={show ? bar ? styles.bar : styles.contain : bar ? styles.bar : styles.fixed}>
+                    <div className={bar ? styles.child1 : styles.child}>
+                        {show && <h1 className={styles.h1}>SLIDES BY EGO</h1>}
+                        <div className={bar ? styles.flex2 : styles.flex1}>
+                            <button onClick={() => setBar(!bar)} className={styles.visible}>
+                                {bar ? <span className={`fa-solid fa-xmark ${styles.icon9}`}></span> : <span className={`fa fa-bars ${styles.icon2}`}></span>}
+                            </button>
+                            <div className={styles.visible}>
+                                {bar ? null : <h1 className={styles.h2}>SLIDES BY EGO</h1>}
+                            </div>
+                            <div className={styles.invisible}>
+                                {show ? <p>Nigeria</p> : <h1 className={styles.h2}>SLIDES BY EGO</h1>}
+                            </div>
+                            <ul className={bar ? styles.ul1 : styles.ul}>
+                                <li className={styles.li}><Link href='/Bags'>
+                                    <a onClick={() => setLoad(true)}>Bags</a>
+                                </Link></li>
+                                <li className={styles.li}>shoes</li>
+                                <li className={styles.li}>belts</li>
+                                <li className={styles.li}>
+                                    <Link href='/Slippers'>
+                                        <a onClick={() => setLoad(true)}>Slippers</a>
+                                    </Link>
+                                </li>
+                            </ul>
+                            <p className={bar ? styles.p3 : styles.p2}>
+                                {bar ? null : <Link href='/Cart'>
+                                    <a className={styles.anonymous}>
+                                        <span className={`fa fa-shopping-cart ${styles.icon2}`}></span>
+                                        {total > 0 && <p className={styles.length}>{total}</p>}
+                                    </a>
+                                </Link>}
+                                {bar ? <Link href={userInfo.name ? `/Profile` : `/Login`}>
+                                    <a className={styles.wisher}>{userInfo.name ? userInfo.name : 'login'}</a>
+                                </Link> : <button className={styles.user} onClick={logged}>
+                                    <div className={styles.use}>
+                                        <span className={`fa fa-user ${styles.icon1}`}></span>
+                                        <p className={styles.name}>{name}</p>
+                                    </div>
+                                    {profile && <div className={styles.position}>
+                                        <Link href='/Profile'>
+                                            <a className={styles.logout}>My Profile</a>
+                                        </Link>
+                                        <button onClick={out} className={styles.logout}>Logout</button>
+                                    </div>}
+                                </button>}
+                                <Link href='/Favorites'>
+                                    {bar ? <a className={styles.wisher}>Wishlists</a> : <a className={styles.anonymous1}>
+                                        <span className={`fa fa-heart ${styles.icon1}`}></span>
+                                        {state.favorites.length > 0 && <p className={styles.length}>{state.favorites.length}</p>}
+                                    </a>}
+                                </Link>
+                                <div className={styles.invisible}>
+                                    <span className={`fa fa-circle-question ${styles.icon1}`}></span>
+                                </div>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <main className={styles.main}>
+                {load ? <Load /> : children}
+            </main>
+            <footer className={styles.footer}>
+                <div className={styles.last}>
+                    <h1 className={styles.ego}>slides by ego</h1>
+                    <h2 className={styles.us}>subscribe to us</h2>
+                    <form className={styles.form}>
+                        <input className={styles.email} type='email' placeholder='enter your email address' required />
+                        <button className={styles.submit} type='submit'>subscribe </button>
+                        <br />
+                        <input className={styles.check} type='checkbox' required></input>
+                        <label className={styles.label}>I agree to the terms, conditions and privacy policy</label>
+                    </form>
+                    <div className={styles.flexed}>
+                        <div>
+                            <h1 className={styles.log}>slides by ego</h1>
+                            <div>
+                                <span className={`fa-brands fa-instagram ${styles.icon3}`}></span>
+                                <span className={`fa-brands fa-facebook ${styles.icon4}`}></span>
+                                <span className={`fa-brands fa-twitter ${styles.icon5}`}></span>
+                                <span className={`fa-brands fa-whatsapp ${styles.icon6}`}></span>
+                            </div>
+                        </div>
+                        <div className={styles.table}>
+                            <div>
+                                <div className={styles.mini}>
+                                    <h4 className={styles.logs}>About Shop </h4>
+                                    <button onClick={() => toggler(1)} className={styles.btn10}>
+                                        <span className={`fa-solid fa-caret-down ${styles.drop}`}></span>
+                                    </button>
+                                </div>
+                                <div className={toggle === 1 ? styles.live : styles.die}>
+                                    <p>Delivery</p>
+                                    <p>Legal Notice</p>
+                                    <p>Stores</p>
+                                    <p>Login</p>
+                                </div>
+                            </div>
+                            <div>
+                                <div className={styles.mini}>
+                                    <h4 className={styles.logs}>categories </h4>
+                                    <button onClick={() => toggler(2)} className={styles.btn10}>
+                                        <span className={`fa-solid fa-caret-down ${styles.drop}`}></span>
+                                    </button>
+                                </div>
+                                <div className={toggle === 2 ? styles.live : styles.die}>
+                                    <p>About us</p>
+                                    <p>Contact Us</p>
+                                    <p>Our Blog</p>
+                                    <p>Catalogue Page</p>
+                                </div>
+                            </div>
+                            <div>
+                                <div className={styles.mini}>
+                                    <h4 className={styles.logs}>Account </h4>
+                                    <button onClick={() => toggler(3)} className={styles.btn10}>
+                                        <span className={`fa-solid fa-caret-down ${styles.drop}`}></span>
+                                    </button>
+                                </div>
+                                <div className={toggle === 3 ? styles.live : styles.die}>
+                                    <p>Personal Info</p>
+                                    <p>Orders</p>
+                                    <p>Credit Slips</p>
+                                    <p>Addresses</p>
+                                    <p>Vouchers</p>
+                                </div>
+                            </div>
+                            <div>
+                                <div className={styles.mini}>
+                                    <h4 className={styles.logs}>Contacts </h4>
+                                    <button onClick={() => toggler(4)} className={styles.btn10}>
+                                        <span className={`fa-solid fa-caret-down ${styles.drop}`}></span>
+                                    </button>
+                                </div>
+                                <div className={toggle === 4 ? styles.live : styles.die}>
+                                    <p>Shop</p>
+                                    <p>Nigeria</p>
+                                    <p>24 Waverly Pl, New York, NY 10003</p>
+                                    <p>8-800-200-100</p>
+                                    <p>demo@demo.com</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className={styles.chance}>
+                        <p>
+                            <span className='fa fa-copyright'></span> 2022
+                            <a className={styles.mark} target='blank' href='https://www.mwprofile.com'>e-commerce software by Mark Williams </a>
+                        </p>
+                        <div className={styles.images}>
+                            <Image src='/images/verve.png' alt='verve' width={70} height={30} />
+                            <Image src='/images/visa.jpg' alt='verve' width={70} height={30} />
+                            <Image src='/images/master.png' alt='verve' width={70} height={30} />
+                            <Image src='/images/pay.png' alt='verve' width={70} height={30} />
+                        </div>
+                    </div>
+                </div>
             </footer>
         </div>
     )

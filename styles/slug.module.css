@@ -1,209 +1,156 @@
-.show {
-    margin: 1rem 0;
-}
-
-.back {
-    color: white;
-    background-color: red;
-    border: none;
-    width: 7rem;
-    height: 2rem;
-    margin: 1rem 0;
-}
-
-.product {
-    color: brown;
-    margin: 1.5rem auto .1rem;
-    text-align: center;
-}
-
-.h2 {
-    color: brown;
-    text-align: center;
-    text-transform: uppercase;
-}
-
-.container {
-    display: flex;
-    flex-direction: column;
-    padding: .5rem;
+.home {
     width: 100%;
-    position: relative;
-    animation: mover;
-    animation-duration: 1s;
+    margin: 0 auto 3rem;
+    background-color: rgba(128, 128, 128, 0.087);
+    height: 3rem;
 }
 
-@keyframes mover {
-    from {background-color: transparent; opacity: 0};
-    to { opacity: 1};
-}
-
-@keyframes movers {
-    from {left: -10rem; opacity: 0};
-    to {left: 0; opacity: 1};
-}
-
-.floater {
+.h1{
     margin: 0;
-    width: 100%;
-    padding: 0;
-    position: relative;
-    animation: movers;
-    animation-duration: 1s;
 }
 
-.img {
-    margin: 0 0 1rem;
+.child {
+    width: 70%;
     height: 100%;
-    width: 100%;
-    text-align: center;
-}
-
-.span{
-    color: green;
-    text-decoration-style: double;
-    text-decoration-line: line-through;
-}
-
-.table{
-    text-align: left;
-    width: 100%;
-}
-
-.th{
-    width: 30%;
-    color: brown;
-    border-width: 0 5px 0 0;
-    border-color: brown;
-    border-style: solid;
-}
-
-.td{
-   padding-left: 10%;
-}
-
-
-.h3 {
-    margin: 0;
-}
-
-.main {
-    margin: 2rem 0 1rem;
-    padding: .5rem 1rem;
-}
-
-.btn {
-    width: 7rem;
-    height: 2rem;
-    background-color: red;
-    color: white;
-    outline: none;
-    border: none;
-    font-size: 1rem;
-    margin: 1rem 0 0;
-    text-align: center;
-}
-
-.select{
-    border: none;
-    outline: none;
-    background-color: transparent;
-}
-
-.loading {
-    width: 7rem;
-    height: 2rem;
-    background-color: orange;
-    color: black;
-    outline: none;
-    border: none;
-    font-size: 1rem;
-    margin: 1rem 0 0;
-}
-
-.row {
+    margin: 0 auto;
     display: flex;
-    flex-direction: row;
-    overflow-x: auto;
+    align-items: center;
+    font-size: 1.3rem;
+    gap: 2rem;
 }
 
-.contain {
-    margin: 0 1rem 1rem;
+.shade {
+    margin: 0 auto;
+    width: 70%;
+    display: flex;
+    justify-content: flex-start;
+    gap: 3rem;
     background-color: white;
-    height: 18rem;
-    width: 9rem;
+}
+
+.select {
+    display: block;
+    margin: 1rem 0;
+    width: 4rem;
+    background-color: #dd1630;
+    color: white;
+    border: none;
+    height: 3rem;
+    text-align: center;
+    outline: none;
+}
+
+.options {
+    background-color: white;
+    color: black;
+}
+
+.dam {
+    display: flex;
+    justify-content: flex-start;
+    gap: 1rem;
+}
+
+.ola {
+    background-color: rgba(128, 128, 128, 0.229);
+    height: 3rem;
+    width: 5rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    font-size: 1.3rem;
+}
+
+.column {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    position: relative;
-    text-align: center;
+    height: 85vh;
 }
 
-.image {
-    width: 7rem;
+.flex {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 
-.btn1 {
-    background-color: red;
+.btn9 {
+    background-color: #dd1630;
     color: white;
+    height: 3rem;
     border: none;
-    height: 2rem;
+    width: 10rem;
+    float: right;
+    text-transform: uppercase;
 }
 
-.load {
-    background-color: orange;
-    color: black;
-    border: none;
-    height: 2rem;
+.center {
+    align-self: center;
 }
 
-.p1 {
-    text-align: center;
-    margin-top: 0;
-    margin-bottom: 0;
+.icon3 {
+    margin: 0 .4rem 0 0;
+    color: white;
+    background-color: rgb(183, 16, 16);
+    padding: .7rem;
+    border-radius: 100%;
+    font-size: 1.1rem;
 }
 
-.p2 {
-    text-align: center;
-    margin-bottom: 0;
-    font-size: 1.3rem;
-    position: absolute;
-    bottom: 13%;
-    left: 45%;
-    margin:0 -25% 0;
+.icon4 {
+    margin: 0 .4rem;
+    color: white;
+    background-color: rgb(10, 10, 120);
+    padding: .7rem;
+    border-radius: 100%;
+    font-size: 1.1rem;
 }
 
-@media screen and (min-width : 800px) {
-    .image {
-        width: 9rem;
+.icon5 {
+    margin: 0 .4rem;
+    color: white;
+    background-color: rgb(100, 152, 230);
+    padding: .7rem;
+    border-radius: 100%;
+    font-size: 1.1rem;
+}
+
+.icon6 {
+    margin: 0 .4rem;
+    color: white;
+    background-color: rgb(73, 150, 73);
+    padding: .7rem;
+    border-radius: 100%;
+    font-size: 1.1rem;
+}
+
+@media screen and (max-width : 600px) {
+    .shade{
+        flex-direction: column;
     }
 
-    .contain{
-        height: 20rem;
+    .column{
+        height: 100%;
+        gap: 2rem;
     }
+}
 
-    .container{
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        text-align: left;
-        align-items: center;
-    }
-
-    .img{
-        margin: 0 1rem 0 0;
-        width:fit-content;
-        text-align: left;
-    }
-
-    .floater{
-        margin: 0 2rem;
-        text-align: left;
-        width: 50%;
-    }
-
-    .table{
-        text-align: left;
+@media screen and (max-width : 1000px) {
+    .child {
         width: 100%;
+        padding: 0 1rem;
+    }
+
+    .shade{
+        width: 100%;
+        padding: 0 1rem;
+        flex-direction: column;
+    }
+
+    .column{
+        height: 100%;
+        gap: 2rem;
     }
 }
