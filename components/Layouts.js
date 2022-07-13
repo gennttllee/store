@@ -4,12 +4,14 @@ import Link from 'next/link';
 import Cookies from "js-cookie"
 import dynamic from 'next/dynamic'
 import { Store } from '../utils/Mystore'
+import { useSnackbar } from 'notistack';
 import { useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Load from '../components/Load';
 
 function Layouts({ title, children }) {
+    const { enqueueSnackbar, closeSnackbar } = useSnackbar();
     const router = useRouter();
     const { dispatch, state } = useContext(Store)
     const { userInfo } = state;
@@ -68,6 +70,12 @@ function Layouts({ title, children }) {
         } else {
             setToggle(item)
         }
+    }
+
+    const submitForm =(e)=>{
+        e.preventDefault()
+        enqueueSnackbar('Successful', { variant: 'success' });
+        e.target.reset();
     }
 
     const name = state.userInfo ? state.userInfo.name.slice(0, 5) : '';
@@ -161,9 +169,9 @@ function Layouts({ title, children }) {
                 <div className={styles.last}>
                     <h1 className={styles.ego}>slides by ego</h1>
                     <h2 className={styles.us}>subscribe to us</h2>
-                    <form className={styles.form}>
+                    <form onSubmit={submitForm} className={styles.form}>
                         <input className={styles.email} type='email' placeholder='enter your email address' required />
-                        <button className={styles.submit} type='submit'>subscribe </button>
+                        <button className={styles.submit} type='submit'>Subscribe </button>
                         <br />
                         <input className={styles.check} type='checkbox' required></input>
                         <label className={styles.label}>I agree to the terms, conditions and privacy policy</label>

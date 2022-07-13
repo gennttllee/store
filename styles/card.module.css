@@ -36,6 +36,7 @@
   font-size: 1.3rem;
   margin-top: 1.4rem;
   padding: 0;
+  color: black;
 }
 
 .flex {
@@ -174,6 +175,10 @@
     margin: 1rem 0;
     display: block;
     transition: all ease 1s;
+  }
+
+  .p{
+    padding: .2rem .7rem;
   }
 
   .eye {

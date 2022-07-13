@@ -6,6 +6,7 @@
 .navbar {
     width: 100%;
     margin: 0 auto;
+    transition: all ease 1s;
 }
 
 .contain1 {
@@ -146,6 +147,7 @@
 .icon2 {
     align-self: center;
     font-size: 1.6rem;
+    color: black;
 }
 
 .span {
@@ -264,6 +266,7 @@
 
 .check {
     margin: 1rem .5rem 1rem 0;
+    accent-color: #dd1630;;
 }
 
 .flexed {
