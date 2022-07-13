@@ -72,7 +72,7 @@ function Layouts({ title, children }) {
         }
     }
 
-    const submitForm =(e)=>{
+    const submitForm = (e) => {
         e.preventDefault()
         enqueueSnackbar('Successful', { variant: 'success' });
         e.target.reset();
@@ -93,7 +93,7 @@ function Layouts({ title, children }) {
             <nav className={styles.navbar}>
                 <div className={styles.contain1}>
                     <div className={styles.row}>
-                        <p className={styles.p}> 24 Waverly Pl, New York, NY 10003   <span className={styles.span}>8-800-200-100 </span>  <span className={styles.span}> demo@demo.com</span></p>
+                        <p className={styles.p}> No 1 Adedoyin street Ogba Lagos   <span className={styles.span}>08102599232 </span>  <span className={styles.span}> slidesbyego@gmail.com</span></p>
                         <p className={styles.p1}>
                             <span className={`fa-brands fa-instagram ${styles.icon3}`}></span>
                             <span className={`fa-brands fa-facebook ${styles.icon4}`}></span>
@@ -198,7 +198,9 @@ function Layouts({ title, children }) {
                                     <p>Delivery</p>
                                     <p>Legal Notice</p>
                                     <p>Stores</p>
-                                    <p>Login</p>
+                                    <Link href='/Profile'>
+                                        <a style={{display : 'block', color : 'black', margin : '1rem 0'}}>Personal Info</a>
+                                    </Link>
                                 </div>
                             </div>
                             <div>
@@ -211,8 +213,9 @@ function Layouts({ title, children }) {
                                 <div className={toggle === 2 ? styles.live : styles.die}>
                                     <p>About us</p>
                                     <p>Contact Us</p>
-                                    <p>Our Blog</p>
-                                    <p>Catalogue Page</p>
+                                    <Link href='/Main'>
+                                        <a style={{display : 'block', color : 'black', margin : '1rem 0'}}>Catalogue Page</a>
+                                    </Link>
                                 </div>
                             </div>
                             <div>
@@ -223,10 +226,16 @@ function Layouts({ title, children }) {
                                     </button>
                                 </div>
                                 <div className={toggle === 3 ? styles.live : styles.die}>
-                                    <p>Personal Info</p>
-                                    <p>Orders</p>
+                                    <Link href='/Profile'>
+                                        <a style={{display : 'block', color : 'black', margin : '1rem 0'}}>Personal Info</a>
+                                    </Link>
+                                    <Link href='/History'>
+                                        <a style={{display : 'block', color : 'black', margin : '1rem 0'}}>Orders</a>
+                                    </Link>
                                     <p>Credit Slips</p>
-                                    <p>Addresses</p>
+                                    <Link href='/Profile'>
+                                        <a style={{display : 'block', margin : '1rem 0', color: 'black'}}>Addresses</a>
+                                    </Link>
                                     <p>Vouchers</p>
                                 </div>
                             </div>
@@ -240,9 +249,9 @@ function Layouts({ title, children }) {
                                 <div className={toggle === 4 ? styles.live : styles.die}>
                                     <p>Shop</p>
                                     <p>Nigeria</p>
-                                    <p>24 Waverly Pl, New York, NY 10003</p>
-                                    <p>8-800-200-100</p>
-                                    <p>demo@demo.com</p>
+                                    <p>No 1 Adedoyin street Ogba Lagos</p>
+                                    <p>08102599232</p>
+                                    <p>slidesbyego@gmail.com</p>
                                 </div>
                             </div>
                         </div>
