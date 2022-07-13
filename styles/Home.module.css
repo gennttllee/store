@@ -257,6 +257,8 @@
   grid-gap: 1.5rem;
 }
 
+
+
 .section {
   width: 70%;
   height: 80rem;
@@ -354,6 +356,14 @@
     grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
     grid-auto-rows: 12rem;
     grid-gap: .5rem;
+  }
+
+  .link{
+    width: 12rem;
+  }
+
+  .link1{
+    width: 90%;
   }
 
   .container1 {

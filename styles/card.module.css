@@ -1,6 +1,7 @@
 .span {
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
   z-index: 2;
 }
 
@@ -106,8 +107,6 @@
   color: white;
 }
 
-
-
 .dilly {
   display: flex;
   flex-direction: column;
@@ -175,6 +174,18 @@
     margin: 1rem 0;
     display: block;
     transition: all ease 1s;
+  }
+
+  .btn9{
+    height: 2.5rem;
+  }
+
+  .select{
+    height: 2.5rem;
+  }
+
+  .ola{
+    height: 2.5rem;
   }
 
   .p{
