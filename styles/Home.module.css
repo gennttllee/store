@@ -75,6 +75,8 @@
 .options {
   background-color: white;
   color: black;
+  display: block;
+  text-align: center;
 }
 
 .dam {
