@@ -98,14 +98,14 @@
   -webkit-appearance: none;
   height: 3rem;
   outline: none;
-  text-align-last:center;
+  text-align-last: center;
   -moz-text-align-last: center;
 }
 
 .options {
   background-color: white;
   color: black;
-  display: block;
+  width: fit-content;
   text-align: center;
 }
 
@@ -183,19 +183,19 @@
     transition: all ease 1s;
   }
 
-  .btn9{
+  .btn9 {
     height: 2.5rem;
   }
 
-  .select{
+  .select {
     height: 2.5rem;
   }
 
-  .ola{
+  .ola {
     height: 2.5rem;
   }
 
-  .p{
+  .p {
     padding: .2rem .7rem;
   }
 

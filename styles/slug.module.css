@@ -35,10 +35,8 @@
     color: white;
     border: none;
     height: 3rem;
-    text-align: center;
     outline: none;
     border-radius: 0;
-    text-align: center;
     -webkit-appearance: none;
     text-align-last:center;
     -moz-text-align-last: center;
@@ -47,8 +45,8 @@
 .options {
     background-color: white;
     color: black;
-    display: block;
     text-align: center;
+    width: fit-content;
 }
 
 .dam {
