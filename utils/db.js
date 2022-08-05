@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const connection = {};
 
-const URI = "mongodb+srv://gennttlleee:081084@malachi.zrau1.mongodb.net/?retryWrites=true&w=majority"
+const URI = process.env.BASE
 async function connect() {
     if (connection.isConnected) {
         console.log('already connected');

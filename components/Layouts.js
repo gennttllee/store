@@ -127,7 +127,7 @@ function Layouts({ title, children }) {
                                     </Link>
                                 </li>
                             </ul>
-                            <p className={bar ? styles.p3 : styles.p2}>
+                            <div className={bar ? styles.p3 : styles.p2}>
                                 {bar ? null : <Link href='/Cart'>
                                     <a className={styles.anonymous}>
                                         <span className={`fa fa-shopping-cart ${styles.icon2}`}></span>
@@ -157,7 +157,7 @@ function Layouts({ title, children }) {
                                 <div className={styles.invisible}>
                                     <span className={`fa fa-circle-question ${styles.icon1}`}></span>
                                 </div>
-                            </p>
+                            </div>
                         </div>
                     </div>
                 </div>

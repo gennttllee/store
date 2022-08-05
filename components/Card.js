@@ -45,7 +45,7 @@ export default function Card(props) {
                 <p className={styles.price}><span className={styles.naira}>N</span>{`${props.price}.00`}</p>
                 <div className={show === props.index ? styles.dilly : styles.dilly1}>
                     <button onClick={props.shadow} className={styles.eye}>
-                        <span className='fa fa-eye'></span>
+                       <span className='fa fa-eye'></span>
                     </button>
                     <div className={styles.wrapper}>
                         <div className={styles.flex}>

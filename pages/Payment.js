@@ -3,11 +3,12 @@ import { Store } from '../utils/Mystore';
 import { useContext, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Cookies from 'js-cookie'
-import { Link } from "@mui/material";
+import  Link  from "next/link";
+import dynamic from 'next/dynamic';
 import styles from '../styles/payment.module.css';
 import { useSnackbar } from 'notistack';
 
-export default function Payment() {
+function Payment() {
     const { enqueueSnackbar, closeSnackbar } = useSnackbar();
     const router = useRouter();
     const { state, dispatch } = useContext(Store);
@@ -74,3 +75,5 @@ export default function Payment() {
         </Layouts>
     )
 }
+
+export default dynamic(() => Promise.resolve(Payment), { ssr: false })

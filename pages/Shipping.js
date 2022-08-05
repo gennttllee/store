@@ -6,19 +6,19 @@ import Cookies from 'js-cookie';
 import { useSnackbar } from 'notistack';
 import styles from '../styles/shipping.module.css'
 import Link from 'next/link';
+import dynamic from "next/dynamic";
 
-export default function Shipping() {
+function Shipping() {
     const { enqueueSnackbar, closeSnackbar } = useSnackbar();
-    const [address, setAddress] = useState();
-    const [city, setCity] = useState()
-    const [full, setFull] = useState()
+    const [address, setAddress] = useState('');
+    const [city, setCity] = useState('')
+    const [full, setFull] = useState('')
     const [loading, setLoading] = useState(false)
-    const [number, setNumber] = useState()
+    const [number, setNumber] = useState('')
     const router = useRouter();
     const { state, dispatch } = useContext(Store)
     const { userInfo } = state;
     const mark = state.cart.cartItems.reduce((a, c) => a + c.quantity * 1, 0)
-    closeSnackbar()
 
     useEffect(() => {
         const mark = state.cart.cartItems.reduce((a, c) => a + c.quantity * 1, 0)
@@ -27,10 +27,6 @@ export default function Shipping() {
         } else if (!userInfo.name) {
             router.push('/Login')
         }
-    })
-
-    useEffect(() => {
-        setLoading(false)
         const myData = Cookies.get('shippingAddress');
         if (myData) {
             const data = JSON.parse(myData)
@@ -39,7 +35,8 @@ export default function Shipping() {
             setNumber(data.number);
             setCity(data.city);
         }
-    }, []);
+    }, [mark, router, userInfo, state.cart.cartItems])
+
 
 
     const submitHandler = (e) => {
@@ -73,3 +70,5 @@ export default function Shipping() {
         </Layouts>
     )
 };
+
+export default dynamic(() => Promise.resolve(Shipping), { ssr: false })

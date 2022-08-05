@@ -1,17 +1,12 @@
 import Layouts from "../components/Layouts";
-import { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import Image from 'next/image';
 import styles from '../styles/loading.module.css'
+import dynamic from "next/dynamic";
 
-
-export default function Loading() {
+function Loading() {
     const router = useRouter();
 
-    useEffect(() => {
-        router.push('/')
-    });
-
+    router.push('/')
 
     return (
         <Layouts>
@@ -23,3 +18,5 @@ export default function Loading() {
         </Layouts>
     )
 }
+
+export default dynamic(() => Promise.resolve(Loading), { ssr: false })

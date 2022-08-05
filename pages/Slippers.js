@@ -64,7 +64,7 @@ export default function Slippers(props) {
 
     return <Layouts title='Slippers'>
         <div className={styles.home}>
-            <div className={styles.child}>
+            <div className={styles.made}>
                 <Link href='/Loading'>
                     <a>Home</a>
                 </Link>

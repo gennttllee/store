@@ -66,7 +66,7 @@ function Cart() {
                     <button className={styles.back} onClick={() => setLoad(false)}>back</button>
                     <Image loader={() => visible} src={visible} alt='image' width={500} height={600}></Image>
                 </div> : <div className={styles.container}>
-                    {cart.cartItems.map((item) => <ul className={styles.ul} key={item._id}>
+                    {cart.cartItems.map((item , index) => <ul className={styles.ul} key={item._id}>
 
                         <div className={styles.images}>
                             <div onClick={() => selectMe(item)}> <Image src={item.image} alt='my' width={200} height={150} /></div>
@@ -77,7 +77,7 @@ function Cart() {
                                         <p className={styles.color}>Size :</p>
                                         <select value={item.size} onChange={(e) => mySize(item, e.target.value)} className={styles.select}>
                                             <option className={styles.options} value={item.size}>{item.size}</option>
-                                            {sizes.map(i => <option className={styles.options} key={i.index}>{i}</option>)}
+                                            {sizes.map((i, index) => <option className={styles.options} key={index}>{i}</option>)}
                                         </select>
                                     </div>
                                     <div className={styles.flex}>

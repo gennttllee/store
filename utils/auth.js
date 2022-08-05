@@ -1,6 +1,6 @@
 
 import jwt from 'jsonwebtoken'
-const JWTSECRETS = "malachi"
+const JWTSECRETS = process.env.SECRETS
 
 const signToken = (user) => {
     return jwt.sign({ _id: user._id, name: user.name, email: user.email, isAdmin: user.isAdmin },

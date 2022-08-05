@@ -21,6 +21,12 @@ function PlaceOrder() {
     const { enqueueSnackbar, closeSnackbar } = useSnackbar();
     const [visible, setVisible] = useState(false)
     const [loading, setLoading] = useState(false)
+    const emailId = process.env.NEXT_PUBLIC_EMAIL_ID
+    const templateId = process.env.NEXT_PUBLIC_TEMPLATE_ID
+    const emailKey = process.env.NEXT_PUBLIC_EMAIL_KEY
+    const egoId = process.env.NEXT_PUBLIC_EGO_ID
+    const egoTemplate = process.env.NEXT_PUBLIC_EGO_TEMPLATE
+    const egoService = process.env.NEXT_PUBLIC_EGO_SERVICE
 
     useEffect(() => {
         if (cart.paymentMethod == 'debit' || cart.paymentMethod == 'bank') {
@@ -94,7 +100,7 @@ function PlaceOrder() {
             paymentMethod: cart.paymentMethod,
         };
 
-        emailjs.send('service_jt5ecm8', 'template_7ac7siy', templateParam, 'mCX-8FOZiFNGyqj_7')
+        emailjs.send(egoId, egoTemplate, templateParam, egoService)
             .then(function (response) {
                 console.log('SUCCESS!', response.status, response.text);
             }, function (error) {
@@ -117,7 +123,7 @@ function PlaceOrder() {
             totalPrice: totalPrice,
             paymentMethod: cart.paymentMethod,
         };
-        emailjs.send('markwilliamz1995@gmail.c', 'template_j0u011q', templateParams, 'jyIO1gciS2IyWyp9M')
+        emailjs.send(emailId, templateId, templateParams, emailKey)
             .then(function (response) {
                 console.log('SUCCESS!', response.status, response.text);
             }, function (error) {
@@ -129,16 +135,14 @@ function PlaceOrder() {
         reference: (new Date()).getTime().toString(),
         email: userInfo.email,
         amount: totalPrice * 100,
-        publicKey: 'pk_test_d6038e47dcccf5bc1f49cef108180ac78dd4b084',
+        publicKey: process.env.NEXT_PUBLIC_KEY,
     };
 
     const handlePaystackSuccessAction = (reference) => {
         checkout();
-        console.log(reference);
     };
 
     const handlePaystackCloseAction = () => {
-        console.log('closed')
         enqueueSnackbar('closed', { variant: 'error' });
     }
 
@@ -165,44 +169,57 @@ function PlaceOrder() {
                 <h1 className={styles.h1}>Order summary</h1>
                 <h3 className={styles.h2}>Customer Info</h3>
                 <table className={styles.table} >
-                    <tr className={styles.tr}>
-                        <th className={styles.th9}> full name</th>
-                        <th className={styles.th2}> Telephone</th>
-                        <th className={styles.th1}>address</th>
-                        <th className={styles.th2}>city</th>
-                    </tr>
-                    <tr>
-                        <td> {cart.shippingAddress.full}</td>
-                        <td>{cart.shippingAddress.number}</td>
-                        <td> {cart.shippingAddress.address}</td>
-                        <td>{cart.shippingAddress.city}</td>
-                    </tr>
+                    <thead>
+                        <tr className={styles.tr}>
+                            <th className={styles.th9}> full name</th>
+                            <th className={styles.th2}> Telephone</th>
+                            <th className={styles.th1}>address</th>
+                            <th className={styles.th2}>city</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td> {cart.shippingAddress.full}</td>
+                            <td>{cart.shippingAddress.number}</td>
+                            <td> {cart.shippingAddress.address}</td>
+                            <td>{cart.shippingAddress.city}</td>
+                        </tr>
+                    </tbody>
                 </table>
+
                 <h3 className={styles.h2}>Payment Info</h3>
                 <table className={styles.table} >
-                    <tr>
-                        <th className={styles.th2}>Payment Method</th>
-                    </tr>
-                    <tr>
-                        <td>{cart.paymentMethod}</td>
-                    </tr>
+                    <thead>
+                        <tr>
+                            <th className={styles.th2}>Payment Method</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{cart.paymentMethod}</td>
+                        </tr>
+                    </tbody>
                 </table>
                 <h3 className={styles.h2}>Order info</h3>
                 {cart.cartItems.map((item) => <table className={styles.table} key={item._id}>
-                    <tr className={styles.tr}>
-                        <th className={styles.th}> image</th>
-                        <th className={styles.th1}> name</th>
-                        <th className={styles.th2}>Qty</th>
-                        {item.size ? <th className={styles.th2}>Size</th> : <th className={styles.th2}>Color</th>}
-                        <th className={styles.th2}>price</th>
-                    </tr>
-                    <tr>
-                        <td> <Image loader={() => item.image} src={item.image} alt='my' width={60} height={50} /></td>
-                        <td>{item.name}</td>
-                        <td> {item.quantity}</td>
-                        {item.size ? <td> {item.size}</td> : <td>{item.color}</td>}
-                        <td> <span className={styles.naira}>N</span>{item.price}</td>
-                    </tr>
+                    <thead>
+                        <tr className={styles.tr}>
+                            <th className={styles.th}> image</th>
+                            <th className={styles.th1}> name</th>
+                            <th className={styles.th2}>Qty</th>
+                            {item.size ? <th className={styles.th2}>Size</th> : <th className={styles.th2}>Color</th>}
+                            <th className={styles.th2}>price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td> <Image src={item.image} alt='my' width={60} height={50} /></td>
+                            <td>{item.name}</td>
+                            <td> {item.quantity}</td>
+                            {item.size ? <td> {item.size}</td> : <td>{item.color}</td>}
+                            <td> <span className={styles.naira}>N</span>{item.price}</td>
+                        </tr>
+                    </tbody>
                 </table>)}
                 <h3 className={styles.h3}> Items : {cart.cartItems.reduce((a, c) => a + c.quantity * 1, 0)} </h3>
                 <h3 className={styles.h3}>Amount :  <span className={styles.naira}>N</span>{itemsPrice}</h3>
