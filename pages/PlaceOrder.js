@@ -27,6 +27,7 @@ function PlaceOrder() {
     const egoId = process.env.NEXT_PUBLIC_EGO_ID
     const egoTemplate = process.env.NEXT_PUBLIC_EGO_TEMPLATE
     const egoService = process.env.NEXT_PUBLIC_EGO_SERVICE
+    const paystack = process.env.NEXT_PUBLIC_PAYSTACK
 
     useEffect(() => {
         if (cart.paymentMethod == 'debit' || cart.paymentMethod == 'bank') {
@@ -135,7 +136,7 @@ function PlaceOrder() {
         reference: (new Date()).getTime().toString(),
         email: userInfo.email,
         amount: totalPrice * 100,
-        publicKey: process.env.NEXT_PUBLIC_KEY,
+        publicKey: paystack,
     };
 
     const handlePaystackSuccessAction = (reference) => {
