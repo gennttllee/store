@@ -2,14 +2,14 @@ import Layouts from "../components/Layouts";
 import { useRouter } from 'next/router';
 import { useContext, useEffect } from 'react';
 import { Store } from '../utils/Mystore';
-import db from '../utils/db'
+import {database} from '../utils/db'
 import Order from '../models/Order'
 import Image from 'next/image';
 import Link from 'next/link';
 import styles from '../styles/history.module.css'
 
 
-export default function History(props) {
+export default function History({baba}) {
     const router = useRouter();
     const { state, dispatch } = useContext(Store)
     const { userInfo } = state;
@@ -17,12 +17,9 @@ export default function History(props) {
         if (!userInfo.name) {
             router.push('/Login')
         }
-    }, []);
+    }, [router, userInfo]);
 
-    const { baba } = props;
-    const orders = JSON.parse(baba)
-    const myHistory = orders.filter(item => item.user === userInfo._id)
-    console.log(myHistory)
+    const myHistory = JSON.parse(baba)
     return (
         <Layouts>
             <div className={styles.home}>
@@ -74,11 +71,10 @@ export default function History(props) {
     )
 }
 
-export async function getServerSideProps() {
-    await db.connect();
-    const orders = await Order.find({})
+export async function getServerSideProps({params}) {
+    await database();
+    const orders = await Order.find({user : params.id})
     const baba = JSON.stringify(orders)
-    await db.disconnect();
     return {
         props: {
             baba

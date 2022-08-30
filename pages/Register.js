@@ -9,25 +9,23 @@ import { useSnackbar } from 'notistack';
 import styles from '../styles/register.module.css'
 
 export default function Register() {
+    const initialState ={email : '', password : '', confirm : '', name : ''} 
     const { enqueueSnackbar, closeSnackbar } = useSnackbar();
     const router = useRouter();
     const { dispatch, state } = useContext(Store)
-    const [email, setEmail] = useState();
-    const [password, setPassword] = useState()
-    const [confirm, setConfirm] = useState()
-    const [name, setName] = useState()
+    const [user, setUser] = useState(initialState);
     const [loading, setLoading] = useState()
-
 
     const submitHandler = async (e) => {
         e.preventDefault()
         closeSnackbar()
-        if (confirm !== password) {
+        if (user.confirm !== user.password) {
             enqueueSnackbar('Password does not match', { variant: 'error' });
         } else {
             setLoading(true)
             try {
-                const { data } = await axios.post('/api/users/register', { email, password, name });
+                const { data } = await axios.post(`/api/users/:${user.email}`, user);
+                setUser(initialState);
                 dispatch({ type: 'USER_LOGIN', payload: data })
                 Cookies.set('userInfo', JSON.stringify(data))
                 enqueueSnackbar('Registered successfully', { variant: 'success' });
@@ -39,10 +37,14 @@ export default function Register() {
                 }
             } catch (error) {
                 setLoading(false)
-                enqueueSnackbar(error.message, { variant: 'error' });
+                enqueueSnackbar(error.response.data, { variant: 'error' });
             };
         }
     };
+
+    const changes =(e)=>{
+        setUser({...user, [e.target.name] : e.target.value})
+    }
 
     return (
         <Layouts title='register'>
@@ -57,10 +59,10 @@ export default function Register() {
             <div className={styles.div}>
                 <form className={styles.form} onSubmit={submitHandler}>
                     <h1 className={styles.h1}>Create an account</h1>
-                    <input className={styles.input} onChange={(e) => setName(e.target.value)} type='text' placeholder='First name' required></input>
-                    <input className={styles.input} onChange={(e) => setEmail(e.target.value)} type='email' placeholder='Email' required></input>
-                    <input className={styles.input} onChange={(e) => setPassword(e.target.value)} type='password' minLength='8' placeholder='Password' required></input>
-                    <input className={styles.input} onChange={(e) => setConfirm(e.target.value)} type='password' minLength='8' placeholder=' Confirm password' required></input>
+                    <input className={styles.input} onChange={changes} type='text' name='name' value={user.name} placeholder='First name' required></input>
+                    <input className={styles.input} onChange={changes} type='email' name='email' value={user.email} placeholder='Email' required></input>
+                    <input className={styles.input} onChange={changes} type='password' name='password' value={user.password} minLength='8' placeholder='Password' required></input>
+                    <input className={styles.input} onChange={changes} type='password' name='confirm' value={user.confirm} minLength='8' placeholder=' Confirm password' required></input>
                     <button className={loading ? styles.load : styles.btn} type='submit'>{loading ? 'Loading...' : 'Register'}</button>
                 </form>
                 <p>Already have an account ? <Link href='/Login'>

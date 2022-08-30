@@ -35,14 +35,14 @@ function PlaceOrder() {
         } else {
             setVisible(false)
         }
-    }, []);
+    }, [cart.paymentMethod]);
 
 
     let orderId;
     const checkout = async () => {
         setLoading(true);
         try {
-            const { data } = await axios.post('/api/products/completed', {
+            const { data } = await axios.post('/api/orders', {
                 orderItems: cartItems,
                 paymentMethod,
                 shippingAddress,
@@ -54,7 +54,7 @@ function PlaceOrder() {
                     Authorization: `Bearer ${userInfo.token}`,
                 }
             });
-            orderId = data.mainOrder._id
+            orderId = data._id
             customerReceipt(orderId);
             adminReceipt();
             enqueueSnackbar('order successful', { variant: 'success' });
@@ -62,9 +62,9 @@ function PlaceOrder() {
             Cookies.remove('cartItems');
             setLoading(false)
             router.push('/Loading')
-        } catch (err) {
+        } catch (error) {
             setLoading(false)
-            enqueueSnackbar(err.message, { variant: 'error' });
+            enqueueSnackbar(error.response.data, { variant: 'error' });
         }
     }
 
@@ -72,7 +72,7 @@ function PlaceOrder() {
         if (!userInfo) {
             router.push('/Loading')
         }
-    }, [])
+    }, [router, userInfo]);
 
     let quantity = cart.cartItems.reduce((a, c) => a + c.quantity * 1, 0)
     let shippingPrice = 1500

@@ -3,13 +3,11 @@ import { useRouter } from "next/router"
 import { Store } from "../utils/Mystore";
 import { useContext, useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
-import { useSnackbar } from 'notistack';
 import styles from '../styles/shipping.module.css'
 import Link from 'next/link';
 import dynamic from "next/dynamic";
 
 function Shipping() {
-    const { enqueueSnackbar, closeSnackbar } = useSnackbar();
     const [address, setAddress] = useState('');
     const [city, setCity] = useState('')
     const [full, setFull] = useState('')

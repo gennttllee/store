@@ -1,7 +1,7 @@
 import Card from '../components/Card';
 import Layouts from "../components/Layouts";
 import styles from '../styles/main.module.css'
-import db from '../utils/db';
+import {database, convertDocToObj} from '../utils/db';
 import Product from '../models/Product'
 import { useContext, useState } from 'react';
 import { Store } from '../utils/Mystore';
@@ -13,7 +13,6 @@ import {useRouter} from 'next/router';
 
 export default function Bags(props) {
     const { enqueueSnackbar, closeSnackbar } = useSnackbar();
-    closeSnackbar()
     const { products } = props;
     const { dispatch, state } = useContext(Store);
     const [load, setLoad] = useState()
@@ -72,7 +71,7 @@ export default function Bags(props) {
         </div>
         <section className={styles.container1}>
             <div className={styles.float}>
-                {bags.map((product, index) => load === index ? <Load /> : <Card
+                {bags.map((product, index) => load === index ? <Load key={index} /> : <Card
                     key={product._id}
                     index={index}
                     icon={`fa fa-heart ${Object.values(state.favorites).includes(product) ? styles.hate : styles.heart}`}
@@ -92,12 +91,11 @@ export default function Bags(props) {
 };
 
 export async function getServerSideProps() {
-    await db.connect();
+    await database();
     const products = await Product.find({}).lean();
-    await db.disconnect();
     return {
         props: {
-            products: products.map(db.convertDocToObj),
+            products: products.map(convertDocToObj),
         },
     };
 }

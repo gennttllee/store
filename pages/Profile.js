@@ -3,12 +3,10 @@ import { useState, useContext, useEffect } from 'react';
 import { Store } from '../utils/Mystore';
 import { useRouter } from "next/router"
 import Cookies from 'js-cookie';
-import { useSnackbar } from 'notistack';
 import Layouts from '../components/Layouts'
 import styles from '../styles/profile.module.css'
 
 export default function Profile() {
-    const { enqueueSnackbar, closeSnackbar } = useSnackbar();
     const { dispatch, state } = useContext(Store)
     const { userInfo, cart } = state;
     const router = useRouter();
@@ -25,7 +23,7 @@ export default function Profile() {
         } else {
             setStatus('Customer')
         }
-    }, [userInfo]);
+    }, [router, userInfo]);
 
     const clicker = (item) => {
         setLoading(item)
@@ -72,10 +70,10 @@ export default function Profile() {
                         </div>
                     </div>
                 </div>
-                <Link href={userInfo.isAdmin ? '/AdminOrders' : '/History'}>
+                <Link href={userInfo.isAdmin ? `/Admin/orders/${userInfo._id}` : `/${userInfo._id}`}>
                     <a onClick={()=>clicker(1)} className={styles.link}>{loading === 1 ? 'loading...' : 'History'} <span className={`fa fa-arrow-right-long ${styles.arrows}`}></span></a>
                 </Link>
-                {userInfo.isAdmin && <Link href= '/Dashboard'>
+                {userInfo.isAdmin && <Link href={`/Admin/products/${userInfo._id}`}>
                     <a onClick={()=>clicker(2)} className={styles.link}>{loading === 2 ? 'loading...' : 'Products'} <span className={`fa fa-arrow-right-long ${styles.arrows}`}></span></a>
                 </Link>}
                 <button onClick={logout} className={styles.link}>{loading === 3 ? 'Loading...' : 'Logout'}</button>

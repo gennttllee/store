@@ -95,11 +95,9 @@
   color: white;
   border: none;
   border-radius: 0;
-  -webkit-appearance: none;
   height: 3rem;
   outline: none;
-  text-align-last: center;
-  -moz-text-align-last: center;
+
 }
 
 .options {
@@ -175,12 +173,16 @@
   font-size: 1.3rem;
 }
 
-@media screen and (max-width : 600px) {
+@media screen and (max-width : 1200px) {
   .dilly1 {
     width: 100%;
     margin: 1rem 0;
     display: block;
     transition: all ease 1s;
+  }
+
+  .dilly{
+    position: initial;
   }
 
   .btn9 {

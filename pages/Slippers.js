@@ -1,19 +1,18 @@
 import Card from '../components/Card';
 import Layouts from "../components/Layouts";
 import styles from '../styles/main.module.css'
-import db from '../utils/db';
+import { database, convertDocToObj } from '../utils/db';
 import Product from '../models/Product'
 import { useContext, useState } from 'react';
 import { Store } from '../utils/Mystore';
 import { useSnackbar } from 'notistack';
 import Link from 'next/link';
 import Load from '../components/Load';
-import {useRouter} from 'next/router';
+import { useRouter } from 'next/router';
 
 export default function Slippers(props) {
     const router = useRouter();
     const { enqueueSnackbar, closeSnackbar } = useSnackbar();
-    closeSnackbar()
 
     const { products } = props;
     const { dispatch, state } = useContext(Store);
@@ -64,7 +63,7 @@ export default function Slippers(props) {
 
     return <Layouts title='Slippers'>
         <div className={styles.home}>
-            <div className={styles.made}>
+            <div className={styles.child}>
                 <Link href='/Loading'>
                     <a>Home</a>
                 </Link>
@@ -73,7 +72,7 @@ export default function Slippers(props) {
         </div>
         <section className={styles.container1}>
             <div className={styles.float}>
-                {slippers.map((product, index) => load === index ? <Load /> : <Card
+                {slippers.map((product, index) => load === index ? <Load key={index} /> : <Card
                     key={product._id}
                     index={index}
                     icon={`fa fa-heart ${Object.values(state.favorites).includes(product) ? styles.hate : styles.heart}`}
@@ -93,12 +92,11 @@ export default function Slippers(props) {
 };
 
 export async function getServerSideProps() {
-    await db.connect();
+    await database();
     const products = await Product.find({}).lean();
-    await db.disconnect();
     return {
         props: {
-            products: products.map(db.convertDocToObj),
+            products: products.map(convertDocToObj),
         },
     };
 }

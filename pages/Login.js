@@ -24,7 +24,7 @@ export default function Login() {
                 router.push('/')
             }
         }
-    }, [])
+    }, [mark, router, userInfo])
 
     const [email, setEmail] = useState();
     const [password, setPassword] = useState()
@@ -32,7 +32,7 @@ export default function Login() {
         e.preventDefault()
         setLoading(true)
         try {
-            const { data } = await axios.post('/api/users/login', { email, password });
+            const { data } = await axios.post('/api/users', { email, password });
             dispatch({ type: 'USER_LOGIN', payload: data })
             Cookies.set('userInfo', JSON.stringify(data))
             enqueueSnackbar('login successfully', { variant: 'success' });
@@ -44,7 +44,7 @@ export default function Login() {
             }
         } catch (error) {
             setLoading(false)
-            enqueueSnackbar('invalid email or password', { variant: 'error' });
+            enqueueSnackbar(error.response.data, { variant: 'error' });
             setShow(true);
         };
     };

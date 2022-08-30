@@ -11,15 +11,10 @@ handler.post(async (req, res) => {
         await db.connect();
         const user = await User.updateOne({ email: req.body.email }, { $set: { password: bcrypt.hashSync(req.body.password) } })
         await db.disconnect();
-        console.log(user)
         const token = signToken(user);
-        res.send({
-            token,
-            _id: user._id, name: user.name, email: user.email, isAdmin: user.isAdmin
-        })
+        res.status(201).json({token,_id: user._id, name: user.name, email: user.email, isAdmin: user.isAdmin })
     } catch (error) {
-        console.log(error)
-        res.status(500).send(error)
+        res.status(500).json(error)
     }
 });
 

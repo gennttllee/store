@@ -56,7 +56,7 @@ function Layouts({ title, children }) {
         if (window.innerWidth > 1100) {
             setBar(false)
         }
-    }, [window.innerWidth]);
+    }, []);
 
     useEffect(() => {
         if (!userInfo) {
@@ -149,7 +149,7 @@ function Layouts({ title, children }) {
                                     </div>}
                                 </button>}
                                 <Link href='/Favorites'>
-                                    {bar ? <a className={styles.wisher}>Wishlists</a> : <a className={styles.anonymous1}>
+                                    {bar ? <a className={styles.wisher}>Wishlists <span className={styles.mummyWish}>{state.favorites.length}</span></a> : <a className={styles.anonymous1}>
                                         <span className={`fa fa-heart ${styles.icon1}`}></span>
                                         {state.favorites.length > 0 && <p className={styles.length}>{state.favorites.length}</p>}
                                     </a>}

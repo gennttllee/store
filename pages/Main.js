@@ -1,26 +1,22 @@
 import Card from '../components/Card';
 import Layouts from "../components/Layouts";
 import styles from '../styles/main.module.css'
-import db from '../utils/db';
+import {database, convertDocToObj} from '../utils/db';
 import Product from '../models/Product'
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useState } from 'react';
 import { Store } from '../utils/Mystore';
 import { useSnackbar } from 'notistack';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import Load from '../components/Load';
 
-
-export default function Main(props) {
+export default function Main({products}) {
     const { enqueueSnackbar, closeSnackbar } = useSnackbar();
-    closeSnackbar()
-    const [loading, setLoading] = useState()
     const [load, setLoad]= useState()
-    const { products } = props;
     const { dispatch, state } = useContext(Store);
     const router = useRouter();
 
-    const addToCart = async (product, index) => {
+    const addToCart = async (product) => {
         const size = 41
         const existItem = state.cart.cartItems.find(x => x._id === product._id);
         const quantity = existItem ? parseInt(existItem.quantity) + 1 : 1;
@@ -70,8 +66,8 @@ export default function Main(props) {
             <p className={styles.p}>New arrivals</p>
             <h1 className={styles.trendy}>All Products</h1>
             <div className={styles.float}>
-                {products.map((product, index) => load === index ? <Load /> : <Card
-                    key={product._id}
+                {products.map((product, index) => load === index ? <Load key={index} /> : <Card
+                    key={index}
                     index={index}
                     icon={`fa fa-heart ${Object.values(state.favorites).includes(product) ? styles.hate : styles.heart}`}
                     link={`/product/${product.slug}`}
@@ -90,12 +86,11 @@ export default function Main(props) {
 };
 
 export async function getServerSideProps() {
-    await db.connect();
+    await database();
     const products = await Product.find({}).lean();
-    await db.disconnect();
     return {
         props: {
-            products: products.map(db.convertDocToObj),
+            products: products.map(convertDocToObj),
         },
     };
 }

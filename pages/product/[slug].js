@@ -2,7 +2,7 @@ import Layouts from '../../components/Layouts';
 import Image from 'next/image';
 import styles from '../../styles/slug.module.css';
 import Link from 'next/link';
-import db from '../../utils/db';
+import { database, convertDocToObj } from '../../utils/db';
 import Product from '../../models/Product';
 import { Store } from '../../utils/Mystore';
 import { useContext, useState, useEffect } from 'react';
@@ -118,15 +118,13 @@ export default function ProductScreen(props) {
     )
 }
 
-export async function getServerSideProps(context) {
-    const { params } = context;
+export async function getServerSideProps({params}) {
+    await database();
     const { slug } = params;
-    await db.connect();
     const product = await Product.findOne({ slug }).lean();
-    await db.disconnect();
     return {
         props: {
-            product: db.convertDocToObj(product),
+            product: convertDocToObj(product),
         },
     };
 }

@@ -23,7 +23,7 @@ function Payment() {
         } else {
             setPayment(Cookies.get('paymentMethod') || '');
         }
-    }, []);
+    }, [cart.shippingAddress, router]);
 
     const submit = () => {
         setLoading(true)

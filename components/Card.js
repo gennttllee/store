@@ -9,7 +9,7 @@ import { useRouter } from 'next/router';
 export default function Card(props) {
     const { dispatch, state } = useContext(Store)
     const [loading, setLoading] = useState(false)
-    const [show, setShow] = useState()
+    const [show, setShow] = useState(null)
 
     const clickUs = () => {
         setLoading(true)
@@ -22,7 +22,7 @@ export default function Card(props) {
     }
 
     const passedOut = () => {
-        setShow();
+        setShow(null);
     }
 
     return (
@@ -45,7 +45,7 @@ export default function Card(props) {
                 <p className={styles.price}><span className={styles.naira}>N</span>{`${props.price}.00`}</p>
                 <div className={show === props.index ? styles.dilly : styles.dilly1}>
                     <button onClick={props.shadow} className={styles.eye}>
-                       <span className='fa fa-eye'></span>
+                        <span className='fa fa-eye'></span>
                     </button>
                     <div className={styles.wrapper}>
                         <div className={styles.flex}>

@@ -11,12 +11,11 @@ import dynamic from 'next/dynamic';
 
 export function Favorites() {
     const { enqueueSnackbar, closeSnackbar } = useSnackbar();
-    closeSnackbar()
     const [load, setLoad] = useState()
     const { dispatch, state } = useContext(Store);
     const router = useRouter();
 
-    const addToCart = async (product, index) => {
+    const addToCart = async (product) => {
         const size = 41
         const existItem = state.cart.cartItems.find(x => x._id === product._id);
         const quantity = existItem ? parseInt(existItem.quantity) + 1 : 1;
@@ -65,7 +64,7 @@ export function Favorites() {
             </div>
             <section className={styles.container1}>
                 {state.favorites.length > 0 ? <div className={styles.float}>
-                    {state.favorites.map((product, index) => load === index ? <Load /> : <Card
+                    {state.favorites.map((product, index) => load === index ? <Load key={index} /> : <Card
                         key={product._id}
                         index={index}
                         icon={`fa fa-heart ${Object.values(state.favorites).includes(product) ? styles.hate : styles.heart}`}

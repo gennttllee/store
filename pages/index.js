@@ -2,9 +2,9 @@ import Image from 'next/image';
 import Layouts from "../components/Layouts";
 import styles from '../styles/Home.module.css'
 import Link from 'next/link';
-import { useContext, useState, useEffect } from 'react';
+import { useContext, useState} from 'react';
 import { Store } from '../utils/Mystore';
-import db from '../utils/db';
+import {database, convertDocToObj} from '../utils/db';
 import Product from '../models/Product'
 import { useSnackbar } from 'notistack';
 import { useRouter } from 'next/router';
@@ -171,12 +171,11 @@ export default function Home(props) {
 };
 
 export async function getServerSideProps() {
-  await db.connect();
+  await database();
   const products = await Product.find({}).lean();
-  await db.disconnect();
   return {
     props: {
-      products: products.map(db.convertDocToObj),
+      products: products.map(convertDocToObj),
     },
   };
 }

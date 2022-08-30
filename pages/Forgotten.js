@@ -6,10 +6,13 @@ import emailjs from '@emailjs/browser';
 import { useSnackbar } from 'notistack';
 import { useRouter } from 'next/router'
 import Link from 'next/link';
+import dynamic from "next/dynamic";
 
-export default function Forgotten() {
+function Forgotten() {
+    const ego1 = process.env.NEXT_PUBLIC_EGO_ID;
+    const ego3 = process.env.NEXT_PUBLIC_EGO_SERVICE;
     const [loading, setLoading] = useState(false)
-    const [email, setEmail] = useState();
+    const [email, setEmail] = useState('');
     const [show, setShow] = useState(false);
     const [myOtp, setMyOtp] = useState();
     const [newPassword, setNewPassword] = useState(false);
@@ -17,7 +20,6 @@ export default function Forgotten() {
     const [password, setPassword] = useState()
     const { enqueueSnackbar, closeSnackbar } = useSnackbar();
     const router = useRouter();
-
 
     let name;
     var templateParams = {
@@ -32,13 +34,14 @@ export default function Forgotten() {
         e.preventDefault()
         closeSnackbar()
         setLoading(true)
+        console.log(email)
         try {
-            const { data } = await axios.post('/api/users/recover', { email });
-            name = data[1]
+            const { data } = await axios.get(`/api/users/${email}`);
+            name = data.name
             setInterval(() => {
                 setNumber(Math.floor(19950 + Math.random() * 19951));
             }, 600000);
-            emailjs.send('service_jt5ecm8', 'template_m1kk5rn', templateParams, 'mCX-8FOZiFNGyqj_7')
+            emailjs.send(ego1, 'template_m1kk5rn', templateParams, ego3)
                 .then(function (response) {
                     console.log('SUCCESS!', response.status, response.text);
                 }, function (error) {
@@ -51,8 +54,8 @@ export default function Forgotten() {
                 enqueueSnackbar('Timeout', { variant: 'error' })
                 setShow(false)
             }, 600000);
-        } catch (err) {
-            enqueueSnackbar('invalid credentials', { variant: 'error' })
+        } catch (error) {
+            enqueueSnackbar(error.response.data, { variant: 'error' })
             setLoading(false)
         }
     };
@@ -82,13 +85,13 @@ export default function Forgotten() {
         setLoading(true);
         closeSnackbar()
         try {
-            const { data } = await axios.post('/api/users/reset', { email, password })
+            const { data } = await axios.patch('/api/users', { email, password })
             setLoading(false);
             enqueueSnackbar('password changed successfully', { variant: 'success' })
             router.push('/Login')
-        } catch (err) {
+        } catch (error) {
             setLoading(false);
-            enqueueSnackbar(err.message, { variant: 'error' })
+            enqueueSnackbar(err.response.data, { variant: 'error' })
         }
     }
 
@@ -120,3 +123,5 @@ export default function Forgotten() {
         </Layouts>
     )
 };
+
+export default dynamic(() => Promise.resolve(Forgotten), { ssr: false })

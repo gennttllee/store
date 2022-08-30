@@ -546,4 +546,12 @@
         justify-content: center;
         gap: 1rem;
     }
+
+    .mummyWish{
+        background-color: red;
+        color: white;
+        border-radius: 100%;
+        padding: .2rem .7rem;
+        margin-left: 1rem;
+    }
 }
